@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/blogs/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blogs/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blogs/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/blogs/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/blogs/css/main.css">
+
+
+<link rel="stylesheet" href="/blogs/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/blogs/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="原型1 默认情况下，prototype 是object2 默认情况下，constructor指向构造函数本身3 普通对象没有prototype   既  通过函数或Object ，Array new的对象，4 所有的对象都有隐式原型proto     介于中间层的如 Array 自定义函数 等，它们的隐式原型指向Object原型 原型方法Object上的方法，只能由Object调用  普通对象不能">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS&#x2F;原型">
+<meta property="og:url" content="http://yoursite.com/2020/03/20/JS/%E5%8E%9F%E5%9E%8B/index.html">
+<meta property="og:site_name" content="HC">
+<meta property="og:description" content="原型1 默认情况下，prototype 是object2 默认情况下，constructor指向构造函数本身3 普通对象没有prototype   既  通过函数或Object ，Array new的对象，4 所有的对象都有隐式原型proto     介于中间层的如 Array 自定义函数 等，它们的隐式原型指向Object原型 原型方法Object上的方法，只能由Object调用  普通对象不能">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-03-20T07:28:56.118Z">
+<meta property="article:modified_time" content="2020-03-20T07:29:21.810Z">
+<meta property="article:author" content="HC">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2020/03/20/JS/%E5%8E%9F%E5%9E%8B/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>JS/原型 | HC</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/blogs/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">HC</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/blogs/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/blogs/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/20/JS/%E5%8E%9F%E5%9E%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blogs/images/avatar.gif">
+      <meta itemprop="name" content="HC">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HC">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          JS/原型
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-03-20 15:28:56 / Modified: 15:29:21" itemprop="dateCreated datePublished" datetime="2020-03-20T15:28:56+08:00">2020-03-20</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="原型"><a href="#原型" class="headerlink" title="原型"></a>原型</h1><p>1 默认情况下，prototype 是object<br>2 默认情况下，constructor指向构造函数本身<br>3 普通对象没有prototype   既  通过函数或Object ，Array new的对象，<br>4 所有的对象都有隐式原型<strong>proto</strong>     介于中间层的如 Array 自定义函数 等，它们的隐式原型指向Object原型</p>
+<h2 id="原型方法"><a href="#原型方法" class="headerlink" title="原型方法"></a>原型方法</h2><p>Object上的方法，只能由Object调用  普通对象不能用，因为继承不了<br>1 Object.create(普通对象或者对象的prototype)  ，以该对象的原型作为创建的新对象的隐式原型 <strong>proto</strong>指向<br>2 Object.getPrototypeOf(对象)  ，获取传入对象的隐式原型</p>
+<p>3 A instanceof B ,  判断B的原型是否在A的原型链上</p>
+<p>Object.prototype上的方法，可以是普通对象，因为会继承Object.prototype上的方法<br>4 Object.prototype.isprototypeOf(对象)，判断当前对象是否在指定对象（Object.prototype）的原型链上<br>5 Object.prototype.hasOwnProperty(属性名)  ，判断该属性是否在指定对象（Object.prototype）上<br>指定对象不一定是Object.prototype,可以是其子对象</p>
+<h2 id="原型的应用："><a href="#原型的应用：" class="headerlink" title="原型的应用："></a>原型的应用：</h2><p>1 将类数组转为真数组 （[].slice.call(类数组)    Array.prototype.slice.call(类数组)  Array.from(类数组)）<br>2 实现继承    如  function User(){}      function Vuser(){}  原来Vuser和User的prototype都指向Object.prototype,现在想要Vuser的prototype指向User的prototype</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">a方法：  <span class="function"><span class="keyword">function</span> <span class="title">inherit</span>(<span class="params">son,father</span>)</span>&#123;</span><br><span class="line">	son.prototype = <span class="built_in">Object</span>.create(father.prototype)  </span><br><span class="line"> 	<span class="comment">//表示创建出来的对象的__proto__指向father.prototype</span></span><br><span class="line">	son.prototype.constructor = son;</span><br><span class="line">	son.prototype.uber = father.prototype;</span><br><span class="line">&#125;</span><br><span class="line">b方法：<span class="function"><span class="keyword">function</span> <span class="title">inherit</span>（<span class="title">son</span>,<span class="title">father</span>）</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> Temp  = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line">	Temp.prototype = father.prototype</span><br><span class="line">	son.prototype = <span class="keyword">new</span> Temp()</span><br><span class="line">	son.prototype.contructor = son</span><br><span class="line">	son.prototype.uber = father.prototype</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">c方法：<span class="keyword">var</span> inherit = ( <span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> Temp = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">son,father</span>)</span>&#123;</span><br><span class="line">	Temp.prototype = father.prototype</span><br><span class="line">	son.prototype = <span class="keyword">new</span> Temp()</span><br><span class="line">	son.prototype.constructor = son</span><br><span class="line">	son.prototype.uber = father.prototype</span><br><span class="line">&#125;</span><br><span class="line">&#125;())</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/blogs/2020/03/20/JS/%E5%8E%9F%E5%A7%8B%E7%B1%BB%E5%9E%8B%E5%8C%85%E8%A3%85%E5%99%A8/" rel="prev" title="JS/原始类型包装器">
+      <i class="fa fa-chevron-left"></i> JS/原始类型包装器
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/blogs/2020/03/20/JS/%E5%A4%96%E9%83%A8%E5%87%BD%E6%95%B0%E4%BD%BF%E7%94%A8%E5%86%85%E9%83%A8%E5%87%BD%E6%95%B0%E7%9A%84%E6%96%B9%E6%B3%95/" rel="next" title="JS/外部函数使用内部函数的方法">
+      JS/外部函数使用内部函数的方法 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#原型"><span class="nav-number">1.</span> <span class="nav-text">原型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#原型方法"><span class="nav-number">1.1.</span> <span class="nav-text">原型方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原型的应用："><span class="nav-number">1.2.</span> <span class="nav-text">原型的应用：</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">HC</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/blogs/archives/">
+        
+          <span class="site-state-item-count">32</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">HC</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.7.2
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/blogs/lib/anime.min.js"></script>
+  <script src="/blogs/lib/velocity/velocity.min.js"></script>
+  <script src="/blogs/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/blogs/js/utils.js"></script>
+
+<script src="/blogs/js/motion.js"></script>
+
+
+<script src="/blogs/js/schemes/muse.js"></script>
+
+
+<script src="/blogs/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

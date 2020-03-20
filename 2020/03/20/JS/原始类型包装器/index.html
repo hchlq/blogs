@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/blogs/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blogs/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blogs/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/blogs/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/blogs/css/main.css">
+
+
+<link rel="stylesheet" href="/blogs/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/blogs/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="原始类型包装器原始类型： number string  boolean  undefined Number new Number(值)  返回一个对象  Number{1} Number(值)  返回的是一个原始类型 number  静态成员-Number.isNaN()或者 window.isNaN (window下的可以直接调用isNaN即可) ， 判断一个数是不是NaN ，请注意isNaN（">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS&#x2F;原始类型包装器">
+<meta property="og:url" content="http://yoursite.com/2020/03/20/JS/%E5%8E%9F%E5%A7%8B%E7%B1%BB%E5%9E%8B%E5%8C%85%E8%A3%85%E5%99%A8/index.html">
+<meta property="og:site_name" content="HC">
+<meta property="og:description" content="原始类型包装器原始类型： number string  boolean  undefined Number new Number(值)  返回一个对象  Number{1} Number(值)  返回的是一个原始类型 number  静态成员-Number.isNaN()或者 window.isNaN (window下的可以直接调用isNaN即可) ， 判断一个数是不是NaN ，请注意isNaN（">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-03-20T07:28:05.178Z">
+<meta property="article:modified_time" content="2020-03-20T07:28:35.840Z">
+<meta property="article:author" content="HC">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2020/03/20/JS/%E5%8E%9F%E5%A7%8B%E7%B1%BB%E5%9E%8B%E5%8C%85%E8%A3%85%E5%99%A8/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>JS/原始类型包装器 | HC</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/blogs/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">HC</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/blogs/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/blogs/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/20/JS/%E5%8E%9F%E5%A7%8B%E7%B1%BB%E5%9E%8B%E5%8C%85%E8%A3%85%E5%99%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blogs/images/avatar.gif">
+      <meta itemprop="name" content="HC">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HC">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          JS/原始类型包装器
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-03-20 15:28:05 / Modified: 15:28:35" itemprop="dateCreated datePublished" datetime="2020-03-20T15:28:05+08:00">2020-03-20</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="原始类型包装器"><a href="#原始类型包装器" class="headerlink" title="原始类型包装器"></a>原始类型包装器</h1><p>原始类型： number string  boolean  undefined</p>
+<h2 id="Number"><a href="#Number" class="headerlink" title="Number"></a>Number</h2><ul>
+<li>new Number(值)  返回一个对象  Number{1}</li>
+<li>Number(值)  返回的是一个原始类型 number</li>
+</ul>
+<h3 id="静态成员"><a href="#静态成员" class="headerlink" title="静态成员"></a>静态成员</h3><p>-Number.isNaN()或者 window.isNaN (window下的可以直接调用isNaN即可) ， 判断一个数是不是NaN ，请注意isNaN（）和Number.isNaN（）之间的区别：如果当前值是NaN，或者将其强制转换为数字后将是NaN，则前者将返回true。而后者仅当值当前为NaN时才为true：</p>
+<ul>
+<li>Number.isFinite() 判断是不是有限数,可以在window下使用</li>
+<li>Number.isInteger() 判断是不是整数  ，包括数后面有多个0也算，不可以在全局下使用</li>
+<li>Number.parseFloat()  将数据转为小数，全局window下可以使用,可以传第二个参数，第二个参数表示前一个参数数据的进制类型 </li>
+<li>Number.parseInt()  将数据转为整数 ，直接将小数后删掉，去该整数。可以传第二个参数，表示前一个参数的进制类型，将前一个参数按照第二个参数的进制转为整数,如parseInt(3,8),就会将3看成是8进制，将其转换为十进制。全局window下可以使用</li>
+</ul>
+<p>**parseInt ,parseFloat  都是从左往右开始看，传入的数据要求是字符串类型，如果不是字符串类型，则会先转换为字符串类型，如果传入空字符串，则返回NaN   如parseInt(“33asd”)则会转为33，后面不管了  但是parseFloat(“aa33”)则会返回NaN</p>
+<h3 id="实例成员-var-a-12345-相当于-var-a-new-Number-12345-a就是实例对象"><a href="#实例成员-var-a-12345-相当于-var-a-new-Number-12345-a就是实例对象" class="headerlink" title="实例成员 var a = 12345   相当于 var a = new Number(12345)  a就是实例对象"></a>实例成员 var a = 12345   相当于 var a = new Number(12345)  a就是实例对象</h3><ul>
+<li>a.toFixed()  ，将a精确到小数点后几位</li>
+<li>a.toPrecision(),将a精确几位，包括整数部分</li>
+</ul>
+<h2 id="Boolean-（当值为0、null、undefined、NaN-、””-则判断为false）"><a href="#Boolean-（当值为0、null、undefined、NaN-、””-则判断为false）" class="headerlink" title="Boolean （当值为0、null、undefined、NaN 、””  ,则判断为false）"></a>Boolean （当值为0、null、undefined、NaN 、””  ,则判断为false）</h2><h2 id="String"><a href="#String" class="headerlink" title="String"></a>String</h2><p>**多行字符时  连接用  1.，末尾用 +    2.末尾用\  3.用模板字符串</p>
+<h3 id="静态成员-1"><a href="#静态成员-1" class="headerlink" title="静态成员"></a>静态成员</h3><p>-String.FromCharCode() , 通过unicode编码创建字符串</p>
+<h3 id="实例成员-var-str-“akf”-就是-var-str-new-String-“akf”"><a href="#实例成员-var-str-“akf”-就是-var-str-new-String-“akf”" class="headerlink" title="实例成员  var str = “akf”    就是 var str  = new String(“akf”)"></a>实例成员  var str = “akf”    就是 var str  = new String(“akf”)</h3><p>-str.length  , 字符串的长度 ，字符串相当于数组，有下标<br>-str.charAt() ,传入下标，得到相应的下标对应的字母</p>
+<ul>
+<li>str.charCodeAt() ,得到字符编码  如a =&gt; 97</li>
+<li>str.concat() ，拼接字符串，返回新的字符串</li>
+<li>str.includes() , str是否包含某个字符串</li>
+<li>str.endsWith() ,该字符串是否以传入的值结尾</li>
+<li>str.indexOf() , 返回传入参数对应的索引，从前开始数</li>
+<li>str.lastIndexOf()  ,返回传入参数的对应索引，从后开始数</li>
+<li>str.padEnd(长度,字符串长度不够时填充的)  ，在末尾填充</li>
+<li>str.padStart(长度，字符串长度不够时填充的) ，在首部填充</li>
+<li>str.repeat(重复次数)  </li>
+<li>str.slice（下标1，下标2），前开后闭[  )  下标可以是负数</li>
+<li>str.substr(起始下标，长度)</li>
+<li>str.substring(下标1，下标2)   下标不可以是负数  参数位置可以调换</li>
+<li>str.split() 将字符串分割成为数组</li>
+<li>str.toLowerCase() 将字符串转换小写</li>
+<li>str.toUpperCase()  将字符串转换为大写</li>
+<li>str.trim()  去掉收尾空格</li>
+<li>str.trimStart()</li>
+<li>str.trimEnd()</li>
+<li>str.start()</li>
+<li>str.start()</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/blogs/2020/03/20/JS/%E9%A2%84%E7%BC%96%E8%AF%91%E8%A7%A3%E5%86%B3%E7%9A%84%E6%96%B9%E6%B3%95%E6%AD%A5%E9%AA%A4/" rel="prev" title="JS/预编译解决的方法步骤">
+      <i class="fa fa-chevron-left"></i> JS/预编译解决的方法步骤
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/blogs/2020/03/20/JS/%E5%8E%9F%E5%9E%8B/" rel="next" title="JS/原型">
+      JS/原型 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#原始类型包装器"><span class="nav-number">1.</span> <span class="nav-text">原始类型包装器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Number"><span class="nav-number">1.1.</span> <span class="nav-text">Number</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#静态成员"><span class="nav-number">1.1.1.</span> <span class="nav-text">静态成员</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实例成员-var-a-12345-相当于-var-a-new-Number-12345-a就是实例对象"><span class="nav-number">1.1.2.</span> <span class="nav-text">实例成员 var a &#x3D; 12345   相当于 var a &#x3D; new Number(12345)  a就是实例对象</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Boolean-（当值为0、null、undefined、NaN-、””-则判断为false）"><span class="nav-number">1.2.</span> <span class="nav-text">Boolean （当值为0、null、undefined、NaN 、””  ,则判断为false）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#String"><span class="nav-number">1.3.</span> <span class="nav-text">String</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#静态成员-1"><span class="nav-number">1.3.1.</span> <span class="nav-text">静态成员</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实例成员-var-str-“akf”-就是-var-str-new-String-“akf”"><span class="nav-number">1.3.2.</span> <span class="nav-text">实例成员  var str &#x3D; “akf”    就是 var str  &#x3D; new String(“akf”)</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">HC</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/blogs/archives/">
+        
+          <span class="site-state-item-count">32</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">HC</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.7.2
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/blogs/lib/anime.min.js"></script>
+  <script src="/blogs/lib/velocity/velocity.min.js"></script>
+  <script src="/blogs/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/blogs/js/utils.js"></script>
+
+<script src="/blogs/js/motion.js"></script>
+
+
+<script src="/blogs/js/schemes/muse.js"></script>
+
+
+<script src="/blogs/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
