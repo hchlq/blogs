@@ -28,7 +28,7 @@
 <meta property="og:description" content="基础正则表达式是默认贪婪匹配的  如.  去匹配123   会分别得到1 2 3   .   任意字符 ，一个点只能表示一个  ^  开头标志，在[^]中表示非的意思  $    结尾字符    \n   转行字符  \t  制表符  \s  空白字符  （制表符，空格，换行等）  \S  非空白字符  [\s\S]可以匹配所有  \b 单词边界   一个词有空格等隔开  如\beee   表示e">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-03-20T08:17:39.166Z">
-<meta property="article:modified_time" content="2020-03-20T08:22:41.334Z">
+<meta property="article:modified_time" content="2020-03-20T08:31:28.026Z">
 <meta property="article:author" content="HC">
 <meta name="twitter:card" content="summary">
 
@@ -173,7 +173,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-03-20 16:17:39 / Modified: 16:22:41" itemprop="dateCreated datePublished" datetime="2020-03-20T16:17:39+08:00">2020-03-20</time>
+              <time title="Created: 2020-03-20 16:17:39 / Modified: 16:31:28" itemprop="dateCreated datePublished" datetime="2020-03-20T16:17:39+08:00">2020-03-20</time>
             </span>
 
           
@@ -231,13 +231,9 @@
 </ul>
 <p>中文字符集  4e00-9fa5<br>-[\u4e00-\u9fa5]</p>
 <h2 id="量词"><a href="#量词" class="headerlink" title="量词***"></a>量词***</h2><ul>
-<li><ul>
-<li>匹配0个到多个</li>
-</ul>
+<li><p><code>*</code>  匹配0个到多个</p>
 </li>
-<li><ul>
-<li>匹配1个到多个 </li>
-</ul>
+<li><p><code>+</code>  匹配1个到多个 </p>
 </li>
 <li><p>？匹配0个或者1个</p>
 </li>
