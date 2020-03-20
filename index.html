@@ -145,6 +145,205 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/20/JS/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blogs/images/avatar.gif">
+      <meta itemprop="name" content="HC">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HC">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/blogs/2020/03/20/JS/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="post-title-link" itemprop="url">JS/正则表达式</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-03-20 16:17:39 / Modified: 16:22:41" itemprop="dateCreated datePublished" datetime="2020-03-20T16:17:39+08:00">2020-03-20</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h1><p>正则表达式是默认贪婪匹配的  如.  去匹配123   会分别得到1 2 3 </p>
+<ul>
+<li><p><code>.</code>   任意字符 ，一个点只能表示一个</p>
+</li>
+<li><p>^  开头标志，在[^]中表示非的意思</p>
+</li>
+<li><p>$    结尾字符</p>
+</li>
+</ul>
+<ul>
+<li><p>\n   转行字符</p>
+</li>
+<li><p>\t  制表符</p>
+</li>
+<li><p>\s  空白字符  （制表符，空格，换行等）</p>
+</li>
+<li><p>\S  非空白字符  [\s\S]可以匹配所有</p>
+</li>
+<li><p>\b 单词边界   一个词有空格等隔开  如\beee   表示eee前有空格或eee是开头隔开</p>
+</li>
+<li><p>\B  非单词边界    </p>
+</li>
+<li><p>\d      匹配字符   0-9        贪婪匹配</p>
+</li>
+<li><p>\D   非字符</p>
+</li>
+<li><p>\w  匹配字母 数字  下划线  等价于[A-Za-z0-9]</p>
+</li>
+<li><p>\W  匹配非数字 字母 下滑线</p>
+</li>
+<li><p>\uxxxx     每个字都有四个十六进制  unicode编码</p>
+</li>
+</ul>
+<h2 id="字符集"><a href="#字符集" class="headerlink" title="字符集"></a>字符集</h2><ul>
+<li>[]里边的表示范围</li>
+<li>[a-z]</li>
+<li>[A-Z]</li>
+<li>[0-9]</li>
+<li>[a-zA-Z0-9] 相当于\w</li>
+<li>[^字符范围] 非该字符范围</li>
+<li>[\d\D]+ , [\s\S]+匹配所有字符</li>
+</ul>
+<p>中文字符集  4e00-9fa5<br>-[\u4e00-\u9fa5]</p>
+<h2 id="量词"><a href="#量词" class="headerlink" title="量词***"></a>量词***</h2><ul>
+<li><ul>
+<li>匹配0个到多个</li>
+</ul>
+</li>
+<li><ul>
+<li>匹配1个到多个 </li>
+</ul>
+</li>
+<li><p>？匹配0个或者1个</p>
+</li>
+</ul>
+<p>-{n}   匹配n个</p>
+<p>-{n,}  &gt;=n个   即至少n个</p>
+<p>-{n,m}  匹配n-m个</p>
+<h2 id="或者"><a href="#或者" class="headerlink" title="或者"></a>或者</h2><p>多个规则之间，用  <code>|</code></p>
+<h1 id="正则表达式进阶"><a href="#正则表达式进阶" class="headerlink" title="正则表达式进阶"></a>正则表达式进阶</h1><p>***特别注意的是：在正则表达式中一般都写g 表示全局匹配</p>
+<h3 id="捕获组-也叫子表达式-（想要获得捕获组，要使用reg-exec-str-）"><a href="#捕获组-也叫子表达式-（想要获得捕获组，要使用reg-exec-str-）" class="headerlink" title="捕获组  也叫子表达式 （想要获得捕获组，要使用reg.exec(str)）"></a>捕获组  也叫子表达式 （想要获得捕获组，要使用reg.exec(str)）</h3><ul>
+<li><p>正则表达式中用小括号括起来的部分就叫捕获组，捕获组会出现在匹配结果中（使用reg.exec(str)才有）</p>
+</li>
+<li><p>给捕获组命名：在括号中使用’ ?&lt;名字&gt;’  命名后就有group（调用reg.exec(str)的情况下）</p>
+</li>
+<li><p>非捕获组:   ‘ ?: ‘   （?: abc）只是当成一个小括号，一个整体而已，不用捕获得到这个捕获组的结果</p>
+</li>
+<li><p>使用： a 分类   b str.replace(reg, function($,$1, $2…){})     $是整个正则表达式得到的字符串   ，$1等是正则表达式捕获组   也可以str.replace( reg , ‘$1/$2/$3’)  $1表示第一个捕获组 …</p>
+</li>
+</ul>
+<h2 id="反向引用，在正则表达式中，使用某个捕获组，使用方式-‘-捕获组-捕获组编号’"><a href="#反向引用，在正则表达式中，使用某个捕获组，使用方式-‘-捕获组-捕获组编号’" class="headerlink" title="反向引用，在正则表达式中，使用某个捕获组，使用方式  ‘(捕获组)\捕获组编号’"></a>反向引用，在正则表达式中，使用某个捕获组，使用方式  ‘(捕获组)\捕获组编号’</h2><h2 id="正向预查-检查某个字符后面是否满足某个规则，该规则不成为匹配结果-该捕获组不会成为结果"><a href="#正向预查-检查某个字符后面是否满足某个规则，该规则不成为匹配结果-该捕获组不会成为结果" class="headerlink" title="正向预查   检查某个字符后面是否满足某个规则，该规则不成为匹配结果 ,该捕获组不会成为结果"></a>正向预查   检查某个字符后面是否满足某个规则，该规则不成为匹配结果 ,该捕获组不会成为结果</h2><ul>
+<li>（?=xxx）</li>
+</ul>
+<h2 id="负向预查"><a href="#负向预查" class="headerlink" title="负向预查"></a>负向预查</h2><p>检查某个字符后面是否不满足某个规则，该规则不成为匹配结果，该捕获组不会成为结果</p>
+<ul>
+<li>（?!xx）</li>
+</ul>
+<h1 id="正则表达式在js的运用"><a href="#正则表达式在js的运用" class="headerlink" title="正则表达式在js的运用"></a>正则表达式在js的运用</h1><p>在js中,正则表达式表现为一个对象，该对象是通过构造函数创建的</p>
+<h2 id="创建对象-var-reg-正则-匹配配置-知道规则-即规则固定"><a href="#创建对象-var-reg-正则-匹配配置-知道规则-即规则固定" class="headerlink" title="创建对象       var reg = /正则/匹配配置           知道规则 即规则固定"></a>创建对象       var reg = /正则/匹配配置           知道规则 即规则固定</h2><pre><code>var reg = new RegExp(&apos;正则&apos;,[匹配配置])      不清楚规则的情况下
+var reg = RegExp(&apos;正则&apos;,[匹配配置])</code></pre><h2 id="匹配配置"><a href="#匹配配置" class="headerlink" title="匹配配置"></a>匹配配置</h2><ul>
+<li><p>g 全局匹配  global</p>
+</li>
+<li><p>i 忽略大小写 ignore</p>
+</li>
+<li><p>m 多行匹配</p>
+</li>
+</ul>
+<p>##正则实例成员    var reg = /正则/  等同于 var reg = new RegExp()</p>
+<ul>
+<li><p>reg.test(str)   验证字符串是否满足规则     开启全局匹配时 会有连续性 接着上一次匹配的索引  利用此特性，可以判断匹配了多少次   var n = 0    while(reg.test(str)){n ++}</p>
+</li>
+<li><p>reg.lastIndex  配合全局匹配下的索引</p>
+</li>
+</ul>
+<p><strong><em>只有量词时，正则表达式默认情况下是贪婪模式（尽可能多）    取消贪婪模式时 在量词(</em>+?等)后使用<code>?</code></strong></p>
+<ul>
+<li><p>reg.exec(str)  执行匹配，得到匹配结果 得到真数组   index表示得到的结果在该字符串的下标</p>
+</li>
+<li><p>reg.global   是否开启全局匹配</p>
+</li>
+<li><p>reg.ignoreCase    是否开启忽略大小写</p>
+</li>
+<li><p>reg.multiline    是否开启多行匹配</p>
+</li>
+<li><p>reg.source   得到当前匹配规则</p>
+</li>
+</ul>
+<p>##字符串对象中的正则     var str = ‘aaa’</p>
+<ul>
+<li><p>str.match( reg )         得到匹配结果</p>
+</li>
+<li><p>str.replace ( reg, 替换得到正则结果的内容（主要是函数其作用 function ( $, $1, $2,$… ) {  } ） )  $代表正则表达式的字符串，$1 代表第一个捕获组   $2 代表第二个捕获组 ….</p>
+</li>
+<li><p>str.search ( reg )  搜索得到满足条件的第一个结果的下标 </p>
+</li>
+<li><p>str.split ( reg， [limit] )  按照给定的正则对字符串进行分割 得到匹配结果的数组,limit可以指定分割的数量</p>
+</li>
+</ul>
+<pre><code>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</code></pre>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/20/JS/%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -779,66 +978,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/20/JS/Array%E6%9E%84%E9%80%A0%E5%99%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/blogs/images/avatar.gif">
-      <meta itemprop="name" content="HC">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="HC">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/blogs/2020/03/20/JS/Array%E6%9E%84%E9%80%A0%E5%99%A8/" class="post-title-link" itemprop="url">JS/Array构造器</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-03-20 15:20:50 / Modified: 15:21:06" itemprop="dateCreated datePublished" datetime="2020-03-20T15:20:50+08:00">2020-03-20</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="Array构造器"><a href="#Array构造器" class="headerlink" title="Array构造器"></a>Array构造器</h1><h2 id="静态成员：（通过Array-xxx-直接调用）"><a href="#静态成员：（通过Array-xxx-直接调用）" class="headerlink" title="静态成员：（通过Array.xxx 直接调用）"></a>静态成员：（通过Array.xxx 直接调用）</h2><p>1 Array.from() ,可以将一个伪数组转化为真数组(如函数的arguement就是一个伪数组)<br>2 Array.isArray(), 判断是不是数组<br>3 Array.of() , 传入的参数，创建新的数组</p>
-<h2 id="实例成员：（通过var-arr-new-Array-arr-xxx调用）-gt-Array-property-xxx-arr是Array-new出来的原型就是它"><a href="#实例成员：（通过var-arr-new-Array-arr-xxx调用）-gt-Array-property-xxx-arr是Array-new出来的原型就是它" class="headerlink" title="实例成员：（通过var arr = new Array(),  arr.xxx调用）===&gt;Array.property.xxx   arr是Array new出来的原型就是它"></a>实例成员：（通过var arr = new Array(),  arr.xxx调用）===&gt;Array.property.xxx   arr是Array new出来的原型就是它</h2><p>1 arr.fill()  ,当数组为空时，传入的值全部用来填满数组<br>2 arr.pop() , 将最后一项删除，并返回该值<br>3 arr.push() , 在数组最后一项加值<br>4 arr.reverse() , 颠倒数组中 元素的排列顺序<br>5 arr.shift() ,  删除数组的第一个元素<br>6 arr.unshift() , 在数组的第一项加值<br><em>7 arr.sort(function(){}) , 给数组排序（回调函数的方式）    ,函数返回大于0 时（既大于0时才会交换位置) 升序排列，等于0 不变，小于0 时降序排列<br>当想要将无序变为有序时，返回Math.random()-0.5<br>8 arr.splice(索引，删除数量，添加的数据) ，可以添加和删除元素<br>不会改变数组：<br>9 arr.concat() ,组合若干个数组得到一个新数组<br>10 arr.includes() ,数组中数组中是否包含传入的值,可以传第二个参数，表示从该下标开始找<br>11 arr.join(), 连接数组元素组成一个字符串，可以是一些符号等<br>12 arr.slice(),用于截断数组，传入索引，”左闭右开”[a,b)<br>13 arr.indexOf() , （从左往右）返回数组中第一个与传入值相等的数据的下标，找不到返回-1<br>14 arr,lastIndexOf() ,（从右往左数） 返回数组中第一个与传入值相等的值的下标<br>迭代方法<br>*</em>15 arr.forEach(function(数组元素，下标，数组本身){})  ,遍历数组，有多少元素就遍历多少次<br>16 arr.every(function(){数组元素，索引，数组本身}) ,是否所有元素都满足条件 （如是否所有的同学都及格）<br>17 arr.some(function(数组元素，索引，数组本身){}) ，至少有一个满足<br>*<em>18 arr.filter(function(数组元素，索引，数组本身){}) , 过滤数组，得到所有满足条件的元素组成的数组<br>19 arr.find(function(数组元素，索引，数组本身){}) , 查找第一个满足条件的元素，并返回这个元素   ，找不到则返回undefined<br>20 arr,findIndex(function(数组元素，索引，函数本身){}) ，返回满足元素的下标<br>*</em>21 arr.map(function(数组元素(ele)，索引(index)，数组本身){}) ，返回一个有回调函数的返回值组成的新数组 如return{<br>name: “a”+ index,<br>value: ele<br>}<br>22 arr,reduce(function(a,b){},默认值)，统计函数   如 return a+b或者其他</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -909,7 +1048,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/blogs/archives/">
         
-          <span class="site-state-item-count">32</span>
+          <span class="site-state-item-count">33</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

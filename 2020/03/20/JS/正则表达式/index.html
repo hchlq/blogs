@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/blogs/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blogs/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blogs/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/blogs/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/blogs/css/main.css">
+
+
+<link rel="stylesheet" href="/blogs/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/blogs/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="基础正则表达式是默认贪婪匹配的  如.  去匹配123   会分别得到1 2 3   .   任意字符 ，一个点只能表示一个  ^  开头标志，在[^]中表示非的意思  $    结尾字符    \n   转行字符  \t  制表符  \s  空白字符  （制表符，空格，换行等）  \S  非空白字符  [\s\S]可以匹配所有  \b 单词边界   一个词有空格等隔开  如\beee   表示e">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS&#x2F;正则表达式">
+<meta property="og:url" content="http://yoursite.com/2020/03/20/JS/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/index.html">
+<meta property="og:site_name" content="HC">
+<meta property="og:description" content="基础正则表达式是默认贪婪匹配的  如.  去匹配123   会分别得到1 2 3   .   任意字符 ，一个点只能表示一个  ^  开头标志，在[^]中表示非的意思  $    结尾字符    \n   转行字符  \t  制表符  \s  空白字符  （制表符，空格，换行等）  \S  非空白字符  [\s\S]可以匹配所有  \b 单词边界   一个词有空格等隔开  如\beee   表示e">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-03-20T08:17:39.166Z">
+<meta property="article:modified_time" content="2020-03-20T08:22:41.334Z">
+<meta property="article:author" content="HC">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2020/03/20/JS/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>JS/正则表达式 | HC</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/blogs/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">HC</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/blogs/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/blogs/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/20/JS/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blogs/images/avatar.gif">
+      <meta itemprop="name" content="HC">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HC">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          JS/正则表达式
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-03-20 16:17:39 / Modified: 16:22:41" itemprop="dateCreated datePublished" datetime="2020-03-20T16:17:39+08:00">2020-03-20</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h1><p>正则表达式是默认贪婪匹配的  如.  去匹配123   会分别得到1 2 3 </p>
+<ul>
+<li><p><code>.</code>   任意字符 ，一个点只能表示一个</p>
+</li>
+<li><p>^  开头标志，在[^]中表示非的意思</p>
+</li>
+<li><p>$    结尾字符</p>
+</li>
+</ul>
+<ul>
+<li><p>\n   转行字符</p>
+</li>
+<li><p>\t  制表符</p>
+</li>
+<li><p>\s  空白字符  （制表符，空格，换行等）</p>
+</li>
+<li><p>\S  非空白字符  [\s\S]可以匹配所有</p>
+</li>
+<li><p>\b 单词边界   一个词有空格等隔开  如\beee   表示eee前有空格或eee是开头隔开</p>
+</li>
+<li><p>\B  非单词边界    </p>
+</li>
+<li><p>\d      匹配字符   0-9        贪婪匹配</p>
+</li>
+<li><p>\D   非字符</p>
+</li>
+<li><p>\w  匹配字母 数字  下划线  等价于[A-Za-z0-9]</p>
+</li>
+<li><p>\W  匹配非数字 字母 下滑线</p>
+</li>
+<li><p>\uxxxx     每个字都有四个十六进制  unicode编码</p>
+</li>
+</ul>
+<h2 id="字符集"><a href="#字符集" class="headerlink" title="字符集"></a>字符集</h2><ul>
+<li>[]里边的表示范围</li>
+<li>[a-z]</li>
+<li>[A-Z]</li>
+<li>[0-9]</li>
+<li>[a-zA-Z0-9] 相当于\w</li>
+<li>[^字符范围] 非该字符范围</li>
+<li>[\d\D]+ , [\s\S]+匹配所有字符</li>
+</ul>
+<p>中文字符集  4e00-9fa5<br>-[\u4e00-\u9fa5]</p>
+<h2 id="量词"><a href="#量词" class="headerlink" title="量词***"></a>量词***</h2><ul>
+<li><ul>
+<li>匹配0个到多个</li>
+</ul>
+</li>
+<li><ul>
+<li>匹配1个到多个 </li>
+</ul>
+</li>
+<li><p>？匹配0个或者1个</p>
+</li>
+</ul>
+<p>-{n}   匹配n个</p>
+<p>-{n,}  &gt;=n个   即至少n个</p>
+<p>-{n,m}  匹配n-m个</p>
+<h2 id="或者"><a href="#或者" class="headerlink" title="或者"></a>或者</h2><p>多个规则之间，用  <code>|</code></p>
+<h1 id="正则表达式进阶"><a href="#正则表达式进阶" class="headerlink" title="正则表达式进阶"></a>正则表达式进阶</h1><p>***特别注意的是：在正则表达式中一般都写g 表示全局匹配</p>
+<h3 id="捕获组-也叫子表达式-（想要获得捕获组，要使用reg-exec-str-）"><a href="#捕获组-也叫子表达式-（想要获得捕获组，要使用reg-exec-str-）" class="headerlink" title="捕获组  也叫子表达式 （想要获得捕获组，要使用reg.exec(str)）"></a>捕获组  也叫子表达式 （想要获得捕获组，要使用reg.exec(str)）</h3><ul>
+<li><p>正则表达式中用小括号括起来的部分就叫捕获组，捕获组会出现在匹配结果中（使用reg.exec(str)才有）</p>
+</li>
+<li><p>给捕获组命名：在括号中使用’ ?&lt;名字&gt;’  命名后就有group（调用reg.exec(str)的情况下）</p>
+</li>
+<li><p>非捕获组:   ‘ ?: ‘   （?: abc）只是当成一个小括号，一个整体而已，不用捕获得到这个捕获组的结果</p>
+</li>
+<li><p>使用： a 分类   b str.replace(reg, function($,$1, $2…){})     $是整个正则表达式得到的字符串   ，$1等是正则表达式捕获组   也可以str.replace( reg , ‘$1/$2/$3’)  $1表示第一个捕获组 …</p>
+</li>
+</ul>
+<h2 id="反向引用，在正则表达式中，使用某个捕获组，使用方式-‘-捕获组-捕获组编号’"><a href="#反向引用，在正则表达式中，使用某个捕获组，使用方式-‘-捕获组-捕获组编号’" class="headerlink" title="反向引用，在正则表达式中，使用某个捕获组，使用方式  ‘(捕获组)\捕获组编号’"></a>反向引用，在正则表达式中，使用某个捕获组，使用方式  ‘(捕获组)\捕获组编号’</h2><h2 id="正向预查-检查某个字符后面是否满足某个规则，该规则不成为匹配结果-该捕获组不会成为结果"><a href="#正向预查-检查某个字符后面是否满足某个规则，该规则不成为匹配结果-该捕获组不会成为结果" class="headerlink" title="正向预查   检查某个字符后面是否满足某个规则，该规则不成为匹配结果 ,该捕获组不会成为结果"></a>正向预查   检查某个字符后面是否满足某个规则，该规则不成为匹配结果 ,该捕获组不会成为结果</h2><ul>
+<li>（?=xxx）</li>
+</ul>
+<h2 id="负向预查"><a href="#负向预查" class="headerlink" title="负向预查"></a>负向预查</h2><p>检查某个字符后面是否不满足某个规则，该规则不成为匹配结果，该捕获组不会成为结果</p>
+<ul>
+<li>（?!xx）</li>
+</ul>
+<h1 id="正则表达式在js的运用"><a href="#正则表达式在js的运用" class="headerlink" title="正则表达式在js的运用"></a>正则表达式在js的运用</h1><p>在js中,正则表达式表现为一个对象，该对象是通过构造函数创建的</p>
+<h2 id="创建对象-var-reg-正则-匹配配置-知道规则-即规则固定"><a href="#创建对象-var-reg-正则-匹配配置-知道规则-即规则固定" class="headerlink" title="创建对象       var reg = /正则/匹配配置           知道规则 即规则固定"></a>创建对象       var reg = /正则/匹配配置           知道规则 即规则固定</h2><pre><code>var reg = new RegExp(&apos;正则&apos;,[匹配配置])      不清楚规则的情况下
+var reg = RegExp(&apos;正则&apos;,[匹配配置])</code></pre><h2 id="匹配配置"><a href="#匹配配置" class="headerlink" title="匹配配置"></a>匹配配置</h2><ul>
+<li><p>g 全局匹配  global</p>
+</li>
+<li><p>i 忽略大小写 ignore</p>
+</li>
+<li><p>m 多行匹配</p>
+</li>
+</ul>
+<p>##正则实例成员    var reg = /正则/  等同于 var reg = new RegExp()</p>
+<ul>
+<li><p>reg.test(str)   验证字符串是否满足规则     开启全局匹配时 会有连续性 接着上一次匹配的索引  利用此特性，可以判断匹配了多少次   var n = 0    while(reg.test(str)){n ++}</p>
+</li>
+<li><p>reg.lastIndex  配合全局匹配下的索引</p>
+</li>
+</ul>
+<p><strong><em>只有量词时，正则表达式默认情况下是贪婪模式（尽可能多）    取消贪婪模式时 在量词(</em>+?等)后使用<code>?</code></strong></p>
+<ul>
+<li><p>reg.exec(str)  执行匹配，得到匹配结果 得到真数组   index表示得到的结果在该字符串的下标</p>
+</li>
+<li><p>reg.global   是否开启全局匹配</p>
+</li>
+<li><p>reg.ignoreCase    是否开启忽略大小写</p>
+</li>
+<li><p>reg.multiline    是否开启多行匹配</p>
+</li>
+<li><p>reg.source   得到当前匹配规则</p>
+</li>
+</ul>
+<p>##字符串对象中的正则     var str = ‘aaa’</p>
+<ul>
+<li><p>str.match( reg )         得到匹配结果</p>
+</li>
+<li><p>str.replace ( reg, 替换得到正则结果的内容（主要是函数其作用 function ( $, $1, $2,$… ) {  } ） )  $代表正则表达式的字符串，$1 代表第一个捕获组   $2 代表第二个捕获组 ….</p>
+</li>
+<li><p>str.search ( reg )  搜索得到满足条件的第一个结果的下标 </p>
+</li>
+<li><p>str.split ( reg， [limit] )  按照给定的正则对字符串进行分割 得到匹配结果的数组,limit可以指定分割的数量</p>
+</li>
+</ul>
+<pre><code>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</code></pre>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/blogs/2020/03/20/JS/%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE/" rel="prev" title="JS/作用域链">
+      <i class="fa fa-chevron-left"></i> JS/作用域链
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#基础"><span class="nav-number">1.</span> <span class="nav-text">基础</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#字符集"><span class="nav-number">1.1.</span> <span class="nav-text">字符集</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#量词"><span class="nav-number">1.2.</span> <span class="nav-text">量词***</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#或者"><span class="nav-number">1.3.</span> <span class="nav-text">或者</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#正则表达式进阶"><span class="nav-number">2.</span> <span class="nav-text">正则表达式进阶</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#捕获组-也叫子表达式-（想要获得捕获组，要使用reg-exec-str-）"><span class="nav-number">2.0.1.</span> <span class="nav-text">捕获组  也叫子表达式 （想要获得捕获组，要使用reg.exec(str)）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#反向引用，在正则表达式中，使用某个捕获组，使用方式-‘-捕获组-捕获组编号’"><span class="nav-number">2.1.</span> <span class="nav-text">反向引用，在正则表达式中，使用某个捕获组，使用方式  ‘(捕获组)\捕获组编号’</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#正向预查-检查某个字符后面是否满足某个规则，该规则不成为匹配结果-该捕获组不会成为结果"><span class="nav-number">2.2.</span> <span class="nav-text">正向预查   检查某个字符后面是否满足某个规则，该规则不成为匹配结果 ,该捕获组不会成为结果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#负向预查"><span class="nav-number">2.3.</span> <span class="nav-text">负向预查</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#正则表达式在js的运用"><span class="nav-number">3.</span> <span class="nav-text">正则表达式在js的运用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#创建对象-var-reg-正则-匹配配置-知道规则-即规则固定"><span class="nav-number">3.1.</span> <span class="nav-text">创建对象       var reg &#x3D; &#x2F;正则&#x2F;匹配配置           知道规则 即规则固定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#匹配配置"><span class="nav-number">3.2.</span> <span class="nav-text">匹配配置</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">HC</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/blogs/archives/">
+        
+          <span class="site-state-item-count">33</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">HC</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.7.2
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/blogs/lib/anime.min.js"></script>
+  <script src="/blogs/lib/velocity/velocity.min.js"></script>
+  <script src="/blogs/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/blogs/js/utils.js"></script>
+
+<script src="/blogs/js/motion.js"></script>
+
+
+<script src="/blogs/js/schemes/muse.js"></script>
+
+
+<script src="/blogs/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
