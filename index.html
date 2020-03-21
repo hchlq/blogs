@@ -145,7 +145,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/20/JS/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/20/CSS/%E5%B1%9E%E6%80%A7%E5%80%BC%E7%9A%84%E8%AE%A1%E7%AE%97%E8%BF%87%E7%A8%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/blogs/images/avatar.gif">
@@ -159,7 +159,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/blogs/2020/03/20/JS/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="post-title-link" itemprop="url">JS/正则表达式</a>
+            <a href="/blogs/2020/03/20/CSS/%E5%B1%9E%E6%80%A7%E5%80%BC%E7%9A%84%E8%AE%A1%E7%AE%97%E8%BF%87%E7%A8%8B/" class="post-title-link" itemprop="url">CSS/属性值的计算过程</a>
         </h1>
 
         <div class="post-meta">
@@ -170,7 +170,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-03-20 16:17:39 / Modified: 16:31:28" itemprop="dateCreated datePublished" datetime="2020-03-20T16:17:39+08:00">2020-03-20</time>
+              <time title="Created: 2020-03-20 19:33:35 / Modified: 20:11:25" itemprop="dateCreated datePublished" datetime="2020-03-20T19:33:35+08:00">2020-03-20</time>
             </span>
 
           
@@ -184,206 +184,17 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h1><p>正则表达式是默认贪婪匹配的  如.  去匹配123   会分别得到1 2 3 </p>
+          <h1 id="某个元素的所有属性值都要有值浏览器才能渲染，平时我们只是设置了一点属性值而已，但是浏览器会经过一系列的过程给这个元素附上属性值。以下是简单的属性值计算步骤"><a href="#某个元素的所有属性值都要有值浏览器才能渲染，平时我们只是设置了一点属性值而已，但是浏览器会经过一系列的过程给这个元素附上属性值。以下是简单的属性值计算步骤" class="headerlink" title="某个元素的所有属性值都要有值浏览器才能渲染，平时我们只是设置了一点属性值而已，但是浏览器会经过一系列的过程给这个元素附上属性值。以下是简单的属性值计算步骤"></a>某个元素的所有属性值都要有值浏览器才能渲染，平时我们只是设置了一点属性值而已，但是浏览器会经过一系列的过程给这个元素附上属性值。以下是简单的属性值计算步骤</h1><h1 id="属性值的计算过程：这四步中只要有一步确定了属性的值，就不会再继续找下去了"><a href="#属性值的计算过程：这四步中只要有一步确定了属性的值，就不会再继续找下去了" class="headerlink" title="属性值的计算过程：这四步中只要有一步确定了属性的值，就不会再继续找下去了"></a>属性值的计算过程：这四步中只要有一步确定了属性的值，就不会再继续找下去了</h1><p>1 确定声明值（包括作者样式表和浏览器的对该元素的样式表）</p>
 <ul>
-<li><p><code>.</code>   任意字符 ，一个点只能表示一个</p>
-</li>
-<li><p>^  开头标志，在[^]中表示非的意思</p>
-</li>
-<li><p>$    结尾字符</p>
-</li>
+<li>该步骤主要是确定生明的属性值没有冲突<br>2 属性冲突（重要性  特殊性 原次序）=&gt; 当有冲突时，即对一个元素的一个属性重复设置时</li>
+<li>重要性 (作者样式表(我们写的),(!import), 浏览器默认样式) !import &gt; 作者样式表 &gt; 浏览器默认样式</li>
+<li>特殊性(就是比较权重): 当有多层嵌套时<code>div .nav a 和 div .ddd .nav a</code>同时对一个元素设置时 !import权重是无限 内敛样式(‘<div style="widht: 100px"></div>‘) = 1000   <code>id</code>=100  <code>class类名 伪类选择器 属性选择器</code>=10  <code>标签选择器</code>=1  <code>*</code>=0<br>3 使用继承</li>
+<li>继承父元素的样式 继承只能是跟文字有关的继承， 比如font-size color font-style 等</li>
 </ul>
+<p>4 使用默认值</p>
 <ul>
-<li><p>\n   转行字符</p>
-</li>
-<li><p>\t  制表符</p>
-</li>
-<li><p>\s  空白字符  （制表符，空格，换行等）</p>
-</li>
-<li><p>\S  非空白字符  [\s\S]可以匹配所有</p>
-</li>
-<li><p>\b 单词边界   一个词有空格等隔开  如\beee   表示eee前有空格或eee是开头隔开</p>
-</li>
-<li><p>\B  非单词边界    </p>
-</li>
-<li><p>\d      匹配字符   0-9        贪婪匹配</p>
-</li>
-<li><p>\D   非字符</p>
-</li>
-<li><p>\w  匹配字母 数字  下划线  等价于[A-Za-z0-9]</p>
-</li>
-<li><p>\W  匹配非数字 字母 下滑线</p>
-</li>
-<li><p>\uxxxx     每个字都有四个十六进制  unicode编码</p>
-</li>
+<li>以上都没得到确定的值，就使用浏览器的默认样式，该标签的所有属性都会有了值</li>
 </ul>
-<h2 id="字符集"><a href="#字符集" class="headerlink" title="字符集"></a>字符集</h2><ul>
-<li>[]里边的表示范围</li>
-<li>[a-z]</li>
-<li>[A-Z]</li>
-<li>[0-9]</li>
-<li>[a-zA-Z0-9] 相当于\w</li>
-<li>[^字符范围] 非该字符范围</li>
-<li>[\d\D]+ , [\s\S]+匹配所有字符</li>
-</ul>
-<p>中文字符集  4e00-9fa5<br>-[\u4e00-\u9fa5]</p>
-<h2 id="量词"><a href="#量词" class="headerlink" title="量词***"></a>量词***</h2><ul>
-<li><p><code>*</code>  匹配0个到多个</p>
-</li>
-<li><p><code>+</code>  匹配1个到多个 </p>
-</li>
-<li><p>？匹配0个或者1个</p>
-</li>
-</ul>
-<p>-{n}   匹配n个</p>
-<p>-{n,}  &gt;=n个   即至少n个</p>
-<p>-{n,m}  匹配n-m个</p>
-<h2 id="或者"><a href="#或者" class="headerlink" title="或者"></a>或者</h2><p>多个规则之间，用  <code>|</code></p>
-<h1 id="正则表达式进阶"><a href="#正则表达式进阶" class="headerlink" title="正则表达式进阶"></a>正则表达式进阶</h1><p>***特别注意的是：在正则表达式中一般都写g 表示全局匹配</p>
-<h3 id="捕获组-也叫子表达式-（想要获得捕获组，要使用reg-exec-str-）"><a href="#捕获组-也叫子表达式-（想要获得捕获组，要使用reg-exec-str-）" class="headerlink" title="捕获组  也叫子表达式 （想要获得捕获组，要使用reg.exec(str)）"></a>捕获组  也叫子表达式 （想要获得捕获组，要使用reg.exec(str)）</h3><ul>
-<li><p>正则表达式中用小括号括起来的部分就叫捕获组，捕获组会出现在匹配结果中（使用reg.exec(str)才有）</p>
-</li>
-<li><p>给捕获组命名：在括号中使用’ ?&lt;名字&gt;’  命名后就有group（调用reg.exec(str)的情况下）</p>
-</li>
-<li><p>非捕获组:   ‘ ?: ‘   （?: abc）只是当成一个小括号，一个整体而已，不用捕获得到这个捕获组的结果</p>
-</li>
-<li><p>使用： a 分类   b str.replace(reg, function($,$1, $2…){})     $是整个正则表达式得到的字符串   ，$1等是正则表达式捕获组   也可以str.replace( reg , ‘$1/$2/$3’)  $1表示第一个捕获组 …</p>
-</li>
-</ul>
-<h2 id="反向引用，在正则表达式中，使用某个捕获组，使用方式-‘-捕获组-捕获组编号’"><a href="#反向引用，在正则表达式中，使用某个捕获组，使用方式-‘-捕获组-捕获组编号’" class="headerlink" title="反向引用，在正则表达式中，使用某个捕获组，使用方式  ‘(捕获组)\捕获组编号’"></a>反向引用，在正则表达式中，使用某个捕获组，使用方式  ‘(捕获组)\捕获组编号’</h2><h2 id="正向预查-检查某个字符后面是否满足某个规则，该规则不成为匹配结果-该捕获组不会成为结果"><a href="#正向预查-检查某个字符后面是否满足某个规则，该规则不成为匹配结果-该捕获组不会成为结果" class="headerlink" title="正向预查   检查某个字符后面是否满足某个规则，该规则不成为匹配结果 ,该捕获组不会成为结果"></a>正向预查   检查某个字符后面是否满足某个规则，该规则不成为匹配结果 ,该捕获组不会成为结果</h2><ul>
-<li>（?=xxx）</li>
-</ul>
-<h2 id="负向预查"><a href="#负向预查" class="headerlink" title="负向预查"></a>负向预查</h2><p>检查某个字符后面是否不满足某个规则，该规则不成为匹配结果，该捕获组不会成为结果</p>
-<ul>
-<li>（?!xx）</li>
-</ul>
-<h1 id="正则表达式在js的运用"><a href="#正则表达式在js的运用" class="headerlink" title="正则表达式在js的运用"></a>正则表达式在js的运用</h1><p>在js中,正则表达式表现为一个对象，该对象是通过构造函数创建的</p>
-<h2 id="创建对象-var-reg-正则-匹配配置-知道规则-即规则固定"><a href="#创建对象-var-reg-正则-匹配配置-知道规则-即规则固定" class="headerlink" title="创建对象       var reg = /正则/匹配配置           知道规则 即规则固定"></a>创建对象       var reg = /正则/匹配配置           知道规则 即规则固定</h2><pre><code>var reg = new RegExp(&apos;正则&apos;,[匹配配置])      不清楚规则的情况下
-var reg = RegExp(&apos;正则&apos;,[匹配配置])</code></pre><h2 id="匹配配置"><a href="#匹配配置" class="headerlink" title="匹配配置"></a>匹配配置</h2><ul>
-<li><p>g 全局匹配  global</p>
-</li>
-<li><p>i 忽略大小写 ignore</p>
-</li>
-<li><p>m 多行匹配</p>
-</li>
-</ul>
-<p>##正则实例成员    var reg = /正则/  等同于 var reg = new RegExp()</p>
-<ul>
-<li><p>reg.test(str)   验证字符串是否满足规则     开启全局匹配时 会有连续性 接着上一次匹配的索引  利用此特性，可以判断匹配了多少次   var n = 0    while(reg.test(str)){n ++}</p>
-</li>
-<li><p>reg.lastIndex  配合全局匹配下的索引</p>
-</li>
-</ul>
-<p><strong><em>只有量词时，正则表达式默认情况下是贪婪模式（尽可能多）    取消贪婪模式时 在量词(</em>+?等)后使用<code>?</code></strong></p>
-<ul>
-<li><p>reg.exec(str)  执行匹配，得到匹配结果 得到真数组   index表示得到的结果在该字符串的下标</p>
-</li>
-<li><p>reg.global   是否开启全局匹配</p>
-</li>
-<li><p>reg.ignoreCase    是否开启忽略大小写</p>
-</li>
-<li><p>reg.multiline    是否开启多行匹配</p>
-</li>
-<li><p>reg.source   得到当前匹配规则</p>
-</li>
-</ul>
-<p>##字符串对象中的正则     var str = ‘aaa’</p>
-<ul>
-<li><p>str.match( reg )         得到匹配结果</p>
-</li>
-<li><p>str.replace ( reg, 替换得到正则结果的内容（主要是函数其作用 function ( $, $1, $2,$… ) {  } ） )  $代表正则表达式的字符串，$1 代表第一个捕获组   $2 代表第二个捕获组 ….</p>
-</li>
-<li><p>str.search ( reg )  搜索得到满足条件的第一个结果的下标 </p>
-</li>
-<li><p>str.split ( reg， [limit] )  按照给定的正则对字符串进行分割 得到匹配结果的数组,limit可以指定分割的数量</p>
-</li>
-</ul>
-<pre><code>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</code></pre>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/20/JS/%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/blogs/images/avatar.gif">
-      <meta itemprop="name" content="HC">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="HC">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/blogs/2020/03/20/JS/%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE/" class="post-title-link" itemprop="url">JS/作用域链</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-03-20 15:39:03 / Modified: 15:39:05" itemprop="dateCreated datePublished" datetime="2020-03-20T15:39:03+08:00">2020-03-20</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ol>
-<li>call stack 中除了全局环境外，函数都是在调用时，才会在里面创建AO对象</li>
-<li>每个函数在创建时，会有一个隐藏的属性[[scope]],它指向创建该函数的AO对象</li>
-<li>AO中包含一个额外的属性，该属性指向创建该AO的函数的[[scope]]</li>
-</ol>
 
       
     </div>
@@ -403,7 +214,7 @@ var reg = RegExp(&apos;正则&apos;,[匹配配置])</code></pre><h2 id="匹配�
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/20/JS/%E5%A4%96%E9%83%A8%E5%87%BD%E6%95%B0%E4%BD%BF%E7%94%A8%E5%86%85%E9%83%A8%E5%87%BD%E6%95%B0%E7%9A%84%E6%96%B9%E6%B3%95/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/20/JS/%E5%B1%9E%E6%80%A7%E6%8F%8F%E8%BF%B0%E7%AC%A6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/blogs/images/avatar.gif">
@@ -417,7 +228,7 @@ var reg = RegExp(&apos;正则&apos;,[匹配配置])</code></pre><h2 id="匹配�
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/blogs/2020/03/20/JS/%E5%A4%96%E9%83%A8%E5%87%BD%E6%95%B0%E4%BD%BF%E7%94%A8%E5%86%85%E9%83%A8%E5%87%BD%E6%95%B0%E7%9A%84%E6%96%B9%E6%B3%95/" class="post-title-link" itemprop="url">JS/外部函数使用内部函数的方法</a>
+            <a href="/blogs/2020/03/20/JS/%E5%B1%9E%E6%80%A7%E6%8F%8F%E8%BF%B0%E7%AC%A6/" class="post-title-link" itemprop="url">JS/属性描述符</a>
         </h1>
 
         <div class="post-meta">
@@ -428,7 +239,191 @@ var reg = RegExp(&apos;正则&apos;,[匹配配置])</code></pre><h2 id="匹配�
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-03-20 15:35:14 / Modified: 15:38:17" itemprop="dateCreated datePublished" datetime="2020-03-20T15:35:14+08:00">2020-03-20</time>
+              <time title="Created: 2020-03-20 19:31:46 / Modified: 19:32:13" itemprop="dateCreated datePublished" datetime="2020-03-20T19:31:46+08:00">2020-03-20</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="属性描述符："><a href="#属性描述符：" class="headerlink" title="属性描述符："></a>属性描述符：</h1><p>1 数据属性<br>2 存取器属性：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Object</span>.defineProperty(对象名,<span class="string">"属性名"</span>,&#123;</span><br><span class="line"><span class="keyword">get</span>: function()&#123;&#125;</span><br><span class="line"><span class="keyword">set</span>: function(val)&#123;&#125;</span><br><span class="line">enumerable: <span class="literal">true</span>/<span class="literal">false</span></span><br><span class="line">configurable: <span class="literal">true</span>/<span class="literal">false</span></span><br><span class="line">writable: <span class="literal">true</span>/<span class="literal">false</span></span><br><span class="line"></span><br><span class="line">&#125;)</span><br><span class="line">       <span class="number">1</span> 当给它赋值时，会运行一个函数</span><br><span class="line">        <span class="number">2</span> 当获取值时，会运行一个函数</span><br><span class="line"></span><br><span class="line"><span class="keyword">get</span>: function()&#123;&#125;</span><br><span class="line"><span class="keyword">set</span>: function(val)&#123;&#125;</span><br><span class="line">configurable  重新修改<span class="built_in">Object</span>.defineProperty()</span><br><span class="line">enumerable  遍历该属性名</span><br><span class="line">writable  是否可改</span><br></pre></td></tr></table></figure>
+
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/20/CSS/%E5%AE%B9%E6%98%93%E6%B7%B7%E6%B7%86%E7%9A%84css%E5%B1%9E%E6%80%A7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blogs/images/avatar.gif">
+      <meta itemprop="name" content="HC">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HC">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/blogs/2020/03/20/CSS/%E5%AE%B9%E6%98%93%E6%B7%B7%E6%B7%86%E7%9A%84css%E5%B1%9E%E6%80%A7/" class="post-title-link" itemprop="url">CSS/容易混淆的css属性</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-03-20 19:30:54 / Modified: 19:31:10" itemprop="dateCreated datePublished" datetime="2020-03-20T19:30:54+08:00">2020-03-20</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>text-indent 首行缩进<br>text-decoration 划线（下划线，中划线，上划线）t<br>text-align 文本对齐方式<br>font-style 斜体等<br>list-style 去掉ul和li的点<br>vertical-align:  文本垂直对齐方式</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/20/CSS/%E8%A1%8C%E7%BA%A7%E5%85%83%E7%B4%A0%E5%92%8C%E5%9D%97%E7%BA%A7%E5%85%83%E7%B4%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blogs/images/avatar.gif">
+      <meta itemprop="name" content="HC">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HC">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/blogs/2020/03/20/CSS/%E8%A1%8C%E7%BA%A7%E5%85%83%E7%B4%A0%E5%92%8C%E5%9D%97%E7%BA%A7%E5%85%83%E7%B4%A0/" class="post-title-link" itemprop="url">CSS/行级元素和块级元素</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-03-20 19:27:57 / Modified: 19:30:34" itemprop="dateCreated datePublished" datetime="2020-03-20T19:27:57+08:00">2020-03-20</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="不可替换元素-内容的展现由内容本身决定"><a href="#不可替换元素-内容的展现由内容本身决定" class="headerlink" title="不可替换元素(内容的展现由内容本身决定)"></a>不可替换元素(内容的展现由内容本身决定)</h1><ul>
+<li>块级元素：容器元素(div header footer aside article section) h1~h6 p  ul ol li form address</li>
+<li>行级元素：span strong em a i del<h1 id="可替换元素"><a href="#可替换元素" class="headerlink" title="可替换元素"></a>可替换元素</h1></li>
+<li>行块级元素(内容的展现由元素属性决定)<br>img button input select textarea </li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/20/CSS/%E8%A1%8C%E7%BA%A7%E5%85%83%E7%B4%A0%E7%9A%84%E7%89%B9%E7%82%B9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blogs/images/avatar.gif">
+      <meta itemprop="name" content="HC">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HC">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/blogs/2020/03/20/CSS/%E8%A1%8C%E7%BA%A7%E5%85%83%E7%B4%A0%E7%9A%84%E7%89%B9%E7%82%B9/" class="post-title-link" itemprop="url">CSS/行级元素的特点</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-03-20 19:27:04 / Modified: 19:27:16" itemprop="dateCreated datePublished" datetime="2020-03-20T19:27:04+08:00">2020-03-20</time>
             </span>
 
           
@@ -443,7 +438,10 @@ var reg = RegExp(&apos;正则&apos;,[匹配配置])</code></pre><h2 id="匹配�
 
       
           <ul>
-<li>方法: 在外边声明一个变量，在函数里面将该值或者变量赋给外边的变量<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">let</span> a = <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">b</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> c = <span class="number">11</span>;</span><br><span class="line">    a = c;</span><br><span class="line">&#125;</span><br><span class="line">b()</span><br><span class="line"></span><br><span class="line"><span class="comment">//外部就可以使用b函数内部的c变量</span></span><br></pre></td></tr></table></figure></li>
+<li>水平方向上撑满</li>
+<li>垂直方向上一次排列</li>
+<li>外边距相邻时会合并</li>
+<li>会忽略浮动元素和定位元素</li>
 </ul>
 
       
@@ -464,7 +462,7 @@ var reg = RegExp(&apos;正则&apos;,[匹配配置])</code></pre><h2 id="匹配�
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/20/JS/%E5%8E%9F%E5%9E%8B/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/20/CSS/%E5%AE%9E%E7%8E%B0%E6%BB%91%E5%8A%A8%E6%9D%A1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/blogs/images/avatar.gif">
@@ -478,7 +476,7 @@ var reg = RegExp(&apos;正则&apos;,[匹配配置])</code></pre><h2 id="匹配�
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/blogs/2020/03/20/JS/%E5%8E%9F%E5%9E%8B/" class="post-title-link" itemprop="url">JS/原型</a>
+            <a href="/blogs/2020/03/20/CSS/%E5%AE%9E%E7%8E%B0%E6%BB%91%E5%8A%A8%E6%9D%A1/" class="post-title-link" itemprop="url">CSS/实现滑动条</a>
         </h1>
 
         <div class="post-meta">
@@ -489,7 +487,7 @@ var reg = RegExp(&apos;正则&apos;,[匹配配置])</code></pre><h2 id="匹配�
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-03-20 15:28:56 / Modified: 15:29:21" itemprop="dateCreated datePublished" datetime="2020-03-20T15:28:56+08:00">2020-03-20</time>
+              <time title="Created: 2020-03-20 19:24:29 / Modified: 19:26:30" itemprop="dateCreated datePublished" datetime="2020-03-20T19:24:29+08:00">2020-03-20</time>
             </span>
 
           
@@ -503,16 +501,7 @@ var reg = RegExp(&apos;正则&apos;,[匹配配置])</code></pre><h2 id="匹配�
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="原型"><a href="#原型" class="headerlink" title="原型"></a>原型</h1><p>1 默认情况下，prototype 是object<br>2 默认情况下，constructor指向构造函数本身<br>3 普通对象没有prototype   既  通过函数或Object ，Array new的对象，<br>4 所有的对象都有隐式原型<strong>proto</strong>     介于中间层的如 Array 自定义函数 等，它们的隐式原型指向Object原型</p>
-<h2 id="原型方法"><a href="#原型方法" class="headerlink" title="原型方法"></a>原型方法</h2><p>Object上的方法，只能由Object调用  普通对象不能用，因为继承不了<br>1 Object.create(普通对象或者对象的prototype)  ，以该对象的原型作为创建的新对象的隐式原型 <strong>proto</strong>指向<br>2 Object.getPrototypeOf(对象)  ，获取传入对象的隐式原型</p>
-<p>3 A instanceof B ,  判断B的原型是否在A的原型链上</p>
-<p>Object.prototype上的方法，可以是普通对象，因为会继承Object.prototype上的方法<br>4 Object.prototype.isprototypeOf(对象)，判断当前对象是否在指定对象（Object.prototype）的原型链上<br>5 Object.prototype.hasOwnProperty(属性名)  ，判断该属性是否在指定对象（Object.prototype）上<br>指定对象不一定是Object.prototype,可以是其子对象</p>
-<h2 id="原型的应用："><a href="#原型的应用：" class="headerlink" title="原型的应用："></a>原型的应用：</h2><p>1 将类数组转为真数组 （[].slice.call(类数组)    Array.prototype.slice.call(类数组)  Array.from(类数组)）<br>2 实现继承    如  function User(){}      function Vuser(){}  原来Vuser和User的prototype都指向Object.prototype,现在想要Vuser的prototype指向User的prototype</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">a方法：  <span class="function"><span class="keyword">function</span> <span class="title">inherit</span>(<span class="params">son,father</span>)</span>&#123;</span><br><span class="line">	son.prototype = <span class="built_in">Object</span>.create(father.prototype)  </span><br><span class="line"> 	<span class="comment">//表示创建出来的对象的__proto__指向father.prototype</span></span><br><span class="line">	son.prototype.constructor = son;</span><br><span class="line">	son.prototype.uber = father.prototype;</span><br><span class="line">&#125;</span><br><span class="line">b方法：<span class="function"><span class="keyword">function</span> <span class="title">inherit</span>（<span class="title">son</span>,<span class="title">father</span>）</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> Temp  = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line">	Temp.prototype = father.prototype</span><br><span class="line">	son.prototype = <span class="keyword">new</span> Temp()</span><br><span class="line">	son.prototype.contructor = son</span><br><span class="line">	son.prototype.uber = father.prototype</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">c方法：<span class="keyword">var</span> inherit = ( <span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> Temp = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">son,father</span>)</span>&#123;</span><br><span class="line">	Temp.prototype = father.prototype</span><br><span class="line">	son.prototype = <span class="keyword">new</span> Temp()</span><br><span class="line">	son.prototype.constructor = son</span><br><span class="line">	son.prototype.uber = father.prototype</span><br><span class="line">&#125;</span><br><span class="line">&#125;())</span><br></pre></td></tr></table></figure>
-
-
-
-
+          <p>1 当内容的高度大于盒子的高度时，设置 <code>overflow: auto</code>即可<br>2 设置body的高度或宽度大一点<br>3 实现横向滚动条时，使用 <code>&lt;hr/&gt;</code></p>
 
       
     </div>
@@ -532,7 +521,7 @@ var reg = RegExp(&apos;正则&apos;,[匹配配置])</code></pre><h2 id="匹配�
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/20/JS/%E5%8E%9F%E5%A7%8B%E7%B1%BB%E5%9E%8B%E5%8C%85%E8%A3%85%E5%99%A8/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/20/CSS/%E5%85%B3%E4%BA%8E%E8%A1%8C%E9%AB%98%E7%9A%84%E5%8F%96%E5%80%BC/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/blogs/images/avatar.gif">
@@ -546,7 +535,7 @@ var reg = RegExp(&apos;正则&apos;,[匹配配置])</code></pre><h2 id="匹配�
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/blogs/2020/03/20/JS/%E5%8E%9F%E5%A7%8B%E7%B1%BB%E5%9E%8B%E5%8C%85%E8%A3%85%E5%99%A8/" class="post-title-link" itemprop="url">JS/原始类型包装器</a>
+            <a href="/blogs/2020/03/20/CSS/%E5%85%B3%E4%BA%8E%E8%A1%8C%E9%AB%98%E7%9A%84%E5%8F%96%E5%80%BC/" class="post-title-link" itemprop="url">CSS/关于行高的取值</a>
         </h1>
 
         <div class="post-meta">
@@ -557,7 +546,7 @@ var reg = RegExp(&apos;正则&apos;,[匹配配置])</code></pre><h2 id="匹配�
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-03-20 15:28:05 / Modified: 15:28:35" itemprop="dateCreated datePublished" datetime="2020-03-20T15:28:05+08:00">2020-03-20</time>
+              <time title="Created: 2020-03-20 19:23:09 / Modified: 19:23:58" itemprop="dateCreated datePublished" datetime="2020-03-20T19:23:09+08:00">2020-03-20</time>
             </span>
 
           
@@ -571,47 +560,11 @@ var reg = RegExp(&apos;正则&apos;,[匹配配置])</code></pre><h2 id="匹配�
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="原始类型包装器"><a href="#原始类型包装器" class="headerlink" title="原始类型包装器"></a>原始类型包装器</h1><p>原始类型： number string  boolean  undefined</p>
-<h2 id="Number"><a href="#Number" class="headerlink" title="Number"></a>Number</h2><ul>
-<li>new Number(值)  返回一个对象  Number{1}</li>
-<li>Number(值)  返回的是一个原始类型 number</li>
-</ul>
-<h3 id="静态成员"><a href="#静态成员" class="headerlink" title="静态成员"></a>静态成员</h3><p>-Number.isNaN()或者 window.isNaN (window下的可以直接调用isNaN即可) ， 判断一个数是不是NaN ，请注意isNaN（）和Number.isNaN（）之间的区别：如果当前值是NaN，或者将其强制转换为数字后将是NaN，则前者将返回true。而后者仅当值当前为NaN时才为true：</p>
-<ul>
-<li>Number.isFinite() 判断是不是有限数,可以在window下使用</li>
-<li>Number.isInteger() 判断是不是整数  ，包括数后面有多个0也算，不可以在全局下使用</li>
-<li>Number.parseFloat()  将数据转为小数，全局window下可以使用,可以传第二个参数，第二个参数表示前一个参数数据的进制类型 </li>
-<li>Number.parseInt()  将数据转为整数 ，直接将小数后删掉，去该整数。可以传第二个参数，表示前一个参数的进制类型，将前一个参数按照第二个参数的进制转为整数,如parseInt(3,8),就会将3看成是8进制，将其转换为十进制。全局window下可以使用</li>
-</ul>
-<p>**parseInt ,parseFloat  都是从左往右开始看，传入的数据要求是字符串类型，如果不是字符串类型，则会先转换为字符串类型，如果传入空字符串，则返回NaN   如parseInt(“33asd”)则会转为33，后面不管了  但是parseFloat(“aa33”)则会返回NaN</p>
-<h3 id="实例成员-var-a-12345-相当于-var-a-new-Number-12345-a就是实例对象"><a href="#实例成员-var-a-12345-相当于-var-a-new-Number-12345-a就是实例对象" class="headerlink" title="实例成员 var a = 12345   相当于 var a = new Number(12345)  a就是实例对象"></a>实例成员 var a = 12345   相当于 var a = new Number(12345)  a就是实例对象</h3><ul>
-<li>a.toFixed()  ，将a精确到小数点后几位</li>
-<li>a.toPrecision(),将a精确几位，包括整数部分</li>
-</ul>
-<h2 id="Boolean-（当值为0、null、undefined、NaN-、””-则判断为false）"><a href="#Boolean-（当值为0、null、undefined、NaN-、””-则判断为false）" class="headerlink" title="Boolean （当值为0、null、undefined、NaN 、””  ,则判断为false）"></a>Boolean （当值为0、null、undefined、NaN 、””  ,则判断为false）</h2><h2 id="String"><a href="#String" class="headerlink" title="String"></a>String</h2><p>**多行字符时  连接用  1.，末尾用 +    2.末尾用\  3.用模板字符串</p>
-<h3 id="静态成员-1"><a href="#静态成员-1" class="headerlink" title="静态成员"></a>静态成员</h3><p>-String.FromCharCode() , 通过unicode编码创建字符串</p>
-<h3 id="实例成员-var-str-“akf”-就是-var-str-new-String-“akf”"><a href="#实例成员-var-str-“akf”-就是-var-str-new-String-“akf”" class="headerlink" title="实例成员  var str = “akf”    就是 var str  = new String(“akf”)"></a>实例成员  var str = “akf”    就是 var str  = new String(“akf”)</h3><p>-str.length  , 字符串的长度 ，字符串相当于数组，有下标<br>-str.charAt() ,传入下标，得到相应的下标对应的字母</p>
-<ul>
-<li>str.charCodeAt() ,得到字符编码  如a =&gt; 97</li>
-<li>str.concat() ，拼接字符串，返回新的字符串</li>
-<li>str.includes() , str是否包含某个字符串</li>
-<li>str.endsWith() ,该字符串是否以传入的值结尾</li>
-<li>str.indexOf() , 返回传入参数对应的索引，从前开始数</li>
-<li>str.lastIndexOf()  ,返回传入参数的对应索引，从后开始数</li>
-<li>str.padEnd(长度,字符串长度不够时填充的)  ，在末尾填充</li>
-<li>str.padStart(长度，字符串长度不够时填充的) ，在首部填充</li>
-<li>str.repeat(重复次数)  </li>
-<li>str.slice（下标1，下标2），前开后闭[  )  下标可以是负数</li>
-<li>str.substr(起始下标，长度)</li>
-<li>str.substring(下标1，下标2)   下标不可以是负数  参数位置可以调换</li>
-<li>str.split() 将字符串分割成为数组</li>
-<li>str.toLowerCase() 将字符串转换小写</li>
-<li>str.toUpperCase()  将字符串转换为大写</li>
-<li>str.trim()  去掉收尾空格</li>
-<li>str.trimStart()</li>
-<li>str.trimEnd()</li>
-<li>str.start()</li>
-<li>str.start()</li>
+          <h1 id="关于行高的取值"><a href="#关于行高的取值" class="headerlink" title="关于行高的取值"></a>关于行高的取值</h1><ul>
+<li>取值的类型：直接使用自己的：px <h2 id="继承父元素的-："><a href="#继承父元素的-：" class="headerlink" title="继承父元素的 ："></a>继承父元素的 ：</h2></li>
+<li>em ：先计算出继承父元素的值后 让其子元素继承该值 与子元素的font-size无关</li>
+<li>百分比 ： 与em一样</li>
+<li>数值(1,2…)： 先让其子元素的font-size继承该值，再计算自己继承父级的</li>
 </ul>
 
       
@@ -632,7 +585,7 @@ var reg = RegExp(&apos;正则&apos;,[匹配配置])</code></pre><h2 id="匹配�
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/20/JS/%E9%A2%84%E7%BC%96%E8%AF%91%E8%A7%A3%E5%86%B3%E7%9A%84%E6%96%B9%E6%B3%95%E6%AD%A5%E9%AA%A4/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/20/CSS/inline-block/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/blogs/images/avatar.gif">
@@ -646,7 +599,7 @@ var reg = RegExp(&apos;正则&apos;,[匹配配置])</code></pre><h2 id="匹配�
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/blogs/2020/03/20/JS/%E9%A2%84%E7%BC%96%E8%AF%91%E8%A7%A3%E5%86%B3%E7%9A%84%E6%96%B9%E6%B3%95%E6%AD%A5%E9%AA%A4/" class="post-title-link" itemprop="url">JS/预编译解决的方法步骤</a>
+            <a href="/blogs/2020/03/20/CSS/inline-block/" class="post-title-link" itemprop="url">CSS/inline-block</a>
         </h1>
 
         <div class="post-meta">
@@ -657,7 +610,7 @@ var reg = RegExp(&apos;正则&apos;,[匹配配置])</code></pre><h2 id="匹配�
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-03-20 15:27:09 / Modified: 15:27:44" itemprop="dateCreated datePublished" datetime="2020-03-20T15:27:09+08:00">2020-03-20</time>
+              <time title="Created: 2020-03-20 19:21:37 / Modified: 19:22:18" itemprop="dateCreated datePublished" datetime="2020-03-20T19:21:37+08:00">2020-03-20</time>
             </span>
 
           
@@ -671,9 +624,10 @@ var reg = RegExp(&apos;正则&apos;,[匹配配置])</code></pre><h2 id="匹配�
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="预编译解决步骤"><a href="#预编译解决步骤" class="headerlink" title="预编译解决步骤"></a>预编译解决步骤</h1><p>1 形参实参相统一   仅在函数有效</p>
-<p>2 找var声明的变量  如果在形参中有，则忽略该var变量，如果没有，则值都为underfined     在全局中声明时都为undefined</p>
-<p>3  找函数声明的字面量，值就为该函数，前面有就覆盖值为该值，没有也是该值</p>
+          <h1 id="行块盒-inline-block"><a href="#行块盒-inline-block" class="headerlink" title="行块盒 inline-block:"></a>行块盒 inline-block:</h1><ul>
+<li>不独占一行 </li>
+<li>可以设置宽高 ，也称为可替换元素 可替换元素的展示，是依靠元素内的属性决定的 如<code>img button input select textarea</code>表单的一些元素</li>
+</ul>
 
       
     </div>
@@ -693,7 +647,7 @@ var reg = RegExp(&apos;正则&apos;,[匹配配置])</code></pre><h2 id="匹配�
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/20/JS/for%E5%BE%AA%E7%8E%AF%E4%BA%A7%E7%94%9F%E7%9A%84%E9%97%AD%E5%8C%85%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/20/CSS/%E6%B5%AE%E5%8A%A8%E7%9B%92%E5%AD%90/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/blogs/images/avatar.gif">
@@ -707,7 +661,7 @@ var reg = RegExp(&apos;正则&apos;,[匹配配置])</code></pre><h2 id="匹配�
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/blogs/2020/03/20/JS/for%E5%BE%AA%E7%8E%AF%E4%BA%A7%E7%94%9F%E7%9A%84%E9%97%AD%E5%8C%85%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/" class="post-title-link" itemprop="url">JS/for循环产生的闭包问题解决</a>
+            <a href="/blogs/2020/03/20/CSS/%E6%B5%AE%E5%8A%A8%E7%9B%92%E5%AD%90/" class="post-title-link" itemprop="url">CSS/浮动盒子</a>
         </h1>
 
         <div class="post-meta">
@@ -718,7 +672,7 @@ var reg = RegExp(&apos;正则&apos;,[匹配配置])</code></pre><h2 id="匹配�
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-03-20 15:24:20 / Modified: 15:26:40" itemprop="dateCreated datePublished" datetime="2020-03-20T15:24:20+08:00">2020-03-20</time>
+              <time title="Created: 2020-03-20 19:21:03 / Modified: 19:21:16" itemprop="dateCreated datePublished" datetime="2020-03-20T19:21:03+08:00">2020-03-20</time>
             </span>
 
           
@@ -732,92 +686,8 @@ var reg = RegExp(&apos;正则&apos;,[匹配配置])</code></pre><h2 id="匹配�
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>当for 循环执行保留函数  或者  使用循环注册事件时 会产生闭包事件</p>
-<p>var arr = [];<br>for (var i = 0; i &lt; 10; i ++) {<br>    arr[i] = function () {<br>        console.log(i)<br>    }<br>}</p>
-<p>#通用</p>
-<h2 id="使用立即执行函数"><a href="#使用立即执行函数" class="headerlink" title="使用立即执行函数"></a>使用立即执行函数</h2><p>var arr = []</p>
-<p>for (var i = 0; i &lt; 10; i ++) {<br>    (function (j) {<br>        arr[i] = function () {<br>            console.log(i)<br>        }</p>
-<pre><code>}(i))</code></pre><p>}</p>
-<h2 id="使用es6的-let变量"><a href="#使用es6的-let变量" class="headerlink" title="使用es6的 let变量"></a>使用es6的 let变量</h2><p>var arr = [];<br>for (let i = 0; i &lt; 10; i ++) {<br>    arr[i] = function () {<br>        console.log(i);<br>    }<br>}</p>
-<p>##使用外部函数</p>
-<p>var arr = []<br>for (var i = 0; i &lt; 10; i ++) {<br>    solveTool(i)<br>}</p>
-<p>function solveTool(i) {<br>    arr[i] = function () {<br>        console.log(i);<br>    }<br>}</p>
-<h2 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h2><ul>
-<li>将得到的类数组转为真数组   使用forEach循环注册事件</li>
-</ul>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> divs = <span class="built_in">document</span>.getElmentsByTagName(<span class="string">'div'</span>);<span class="comment">//divs是类数组</span></span><br><span class="line"><span class="keyword">const</span> arr = <span class="built_in">Array</span>.from(divs);</span><br><span class="line">arr.forEach(<span class="function">(<span class="params">ele, index, arr</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// ele.xxx</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<h2 id="设置dom元素的index-属性，-先保存起来-for-var-i-0-i-lt-xxx-length-i-btns-i-index-i；btn-btn-i-index-onclick-function"><a href="#设置dom元素的index-属性，-先保存起来-for-var-i-0-i-lt-xxx-length-i-btns-i-index-i；btn-btn-i-index-onclick-function" class="headerlink" title="设置dom元素的index 属性， 先保存起来     for (var i = 0; i &lt; xxx.length; i ++) {btns[i].index = i；btn[btn[i].index].onclick = function () {} }"></a>设置dom元素的index 属性， 先保存起来     for (var i = 0; i &lt; xxx.length; i ++) {btns[i].index = i；btn[btn[i].index].onclick = function () {} }</h2>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/20/JS/%E5%BC%82%E6%AD%A5%E8%A1%A5%E5%85%85/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/blogs/images/avatar.gif">
-      <meta itemprop="name" content="HC">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="HC">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/blogs/2020/03/20/JS/%E5%BC%82%E6%AD%A5%E8%A1%A5%E5%85%85/" class="post-title-link" itemprop="url">JS/异步补充</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-03-20 15:23:19 / Modified: 15:23:35" itemprop="dateCreated datePublished" datetime="2020-03-20T15:23:19+08:00">2020-03-20</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="前端使用一异步的场景"><a href="#前端使用一异步的场景" class="headerlink" title="前端使用一异步的场景"></a>前端使用一异步的场景</h1><ul>
-<li>setInterval  setTimeOut</li>
-</ul>
-<p>-ajax 网络请求</p>
-<p>-事件注册 绑定</p>
-<h2 id="关于执行栈"><a href="#关于执行栈" class="headerlink" title="关于执行栈"></a>关于执行栈</h2><ul>
-<li>同步会先进入执行栈执行  ， 异步会先放到任务队列中，等到执行栈执行完后到任务队列中依次执行</li>
-</ul>
-<h2 id="实现script加载时异步的方法-不阻塞页面"><a href="#实现script加载时异步的方法-不阻塞页面" class="headerlink" title="实现script加载时异步的方法      不阻塞页面"></a>实现script加载时异步的方法      不阻塞页面</h2><ul>
-<li>defer   只有IE能用   可以在script标签中写代码</li>
-</ul>
-<p>-async    只能加载外部脚本</p>
-<p>-常用 :   按需加载即 创建script标签，插到dom节点中              var script = createElement(‘script’);  script.src = ‘’   document.head.appendChild(script)</p>
+          <h1 id="浮动盒子："><a href="#浮动盒子：" class="headerlink" title="浮动盒子："></a>浮动盒子：</h1><p>1 排列方式：左浮动 向上向左 右浮动 向上向右  并且不得高于上个盒子的高度 且要有位置<br>2 块级元素不考虑浮动盒子 bfc和inline的盒子会考虑浮动盒子<br>3 要清除浮动流，后边的块级盒子才会正常排列</p>
+<p>触发bfc：position：absolute、display：inline-block、float：left/right、overflow：hidden     </p>
 
       
     </div>
@@ -837,7 +707,7 @@ var reg = RegExp(&apos;正则&apos;,[匹配配置])</code></pre><h2 id="匹配�
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/20/JS/%E7%AE%97%E6%9C%AF%E8%BF%90%E7%AE%97%E7%AC%A6/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/20/CSS/bfc/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/blogs/images/avatar.gif">
@@ -851,7 +721,7 @@ var reg = RegExp(&apos;正则&apos;,[匹配配置])</code></pre><h2 id="匹配�
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/blogs/2020/03/20/JS/%E7%AE%97%E6%9C%AF%E8%BF%90%E7%AE%97%E7%AC%A6/" class="post-title-link" itemprop="url">JS/算术运算符</a>
+            <a href="/blogs/2020/03/20/CSS/bfc/" class="post-title-link" itemprop="url">CSS/bfc</a>
         </h1>
 
         <div class="post-meta">
@@ -862,7 +732,7 @@ var reg = RegExp(&apos;正则&apos;,[匹配配置])</code></pre><h2 id="匹配�
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-03-20 15:22:34 / Modified: 15:23:01" itemprop="dateCreated datePublished" datetime="2020-03-20T15:22:34+08:00">2020-03-20</time>
+              <time title="Created: 2020-03-20 19:19:33 / Modified: 19:19:42" itemprop="dateCreated datePublished" datetime="2020-03-20T19:19:33+08:00">2020-03-20</time>
             </span>
 
           
@@ -876,90 +746,9 @@ var reg = RegExp(&apos;正则&apos;,[匹配配置])</code></pre><h2 id="匹配�
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="算数运算符"><a href="#算数运算符" class="headerlink" title="算数运算符"></a>算数运算符</h1><ul>
-<li>% 得到的值的符号主要看前一个数的符号   如  A % B     得到的符号主要看 A 的符号</li>
-</ul>
-<p>-除加号外的其他算术运算符号  - * / % 等 ， 在其他类型的运算时，即string  boolean undefined null  对象时，会先将他们转为number类型，再运算    null =&gt; 0   undefined =&gt; NaN    对象  =&gt;  NaN</p>
-<ul>
-<li>加号</li>
-</ul>
-<p>#两边至少有一边是字符串，则得到的是字符串拼接的结果</p>
-<p>number -&gt; 数字字符串<br>null -&gt; “null”<br>underfined -&gt; “undefined”<br>对象 -&gt; “[object Object]”</p>
-<p>#两边都不是字符串，但是一边是对象，先将对象转为字符串，在进行字符串的拼接</p>
-<p>#其他按照正常数学运算进行运算</p>
-<h1 id="a-的结果不一样-表示将对象转为-number类型的-NaN-a-先将-转为字符串，再按照字符串拼接-“a-object-Object-”"><a href="#a-的结果不一样-表示将对象转为-number类型的-NaN-a-先将-转为字符串，再按照字符串拼接-“a-object-Object-”" class="headerlink" title="+{}      a + {}   的结果不一样   + {}  表示将对象转为 number类型的  NaN     a + {}  先将{} 转为字符串，再按照字符串拼接 “a[object Object]”"></a>+{}      a + {}   的结果不一样   + {}  表示将对象转为 number类型的  NaN     a + {}  先将{} 转为字符串，再按照字符串拼接 “a[object Object]”</h1><ul>
-<li>“” /  “ “   转为number都为0</li>
-</ul>
-<p>-0 / 0 ==&gt; NaN</p>
-<p>-+””  ==&gt; 表示正的意思， 转为number</p>
-<ul>
-<li>= . [] ()  都是常见的表达式                  </li>
-</ul>
-<p>-表达式 = 操作数 +操作符</p>
+          <h1 id="创建bfc："><a href="#创建bfc：" class="headerlink" title="创建bfc："></a>创建bfc：</h1><p>1 position: absolute    2 display: inline-block    3 float: left/right     4   overflow: hidden/auto</p>
+<h1 id="创建了bfc的元素："><a href="#创建了bfc的元素：" class="headerlink" title="创建了bfc的元素："></a>创建了bfc的元素：</h1><p>1 它（父元素）的自动高度要计算浮动元素<br>2 它的排列不会忽视浮动元素<br>3 它不会和它的子元素外边距合并</p>
 
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/20/JS/%E6%95%B0%E7%BB%84%E5%8E%BB%E9%87%8D%E4%B8%89%E7%A7%8D%E6%96%B9%E6%B3%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/blogs/images/avatar.gif">
-      <meta itemprop="name" content="HC">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="HC">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/blogs/2020/03/20/JS/%E6%95%B0%E7%BB%84%E5%8E%BB%E9%87%8D%E4%B8%89%E7%A7%8D%E6%96%B9%E6%B3%95/" class="post-title-link" itemprop="url">JS/数组去重三种方法</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-03-20 15:21:28 / Modified: 15:22:13" itemprop="dateCreated datePublished" datetime="2020-03-20T15:21:28+08:00">2020-03-20</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="利用对象的不可重复性"><a href="#利用对象的不可重复性" class="headerlink" title="利用对象的不可重复性"></a>利用对象的不可重复性</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Array</span>.prototype.unique = <span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;</span><br><span class="line"><span class="keyword">var</span> obj = &#123;&#125;</span><br><span class="line"><span class="keyword">var</span> newArr = []</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="keyword">this</span>.length; i ++) &#123;</span><br><span class="line">	<span class="keyword">if</span> (!obj[<span class="keyword">this</span>[i]])&#123;</span><br><span class="line">		obj[<span class="keyword">this</span>[i]] = <span class="string">'a'</span>;</span><br><span class="line">		newArr.push(<span class="keyword">this</span>[i]);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="利用Set的无重复性"><a href="#利用Set的无重复性" class="headerlink" title="利用Set的无重复性"></a>利用Set的无重复性</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">Array</span>.from(<span class="keyword">new</span> <span class="built_in">Set</span>(arr));</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="利用数组的filter-方法"><a href="#利用数组的filter-方法" class="headerlink" title="利用数组的filter 方法"></a>利用数组的filter 方法</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> newArr = arr.filter(<span class="function"><span class="keyword">function</span>(<span class="params">ele, index, arr</span>) </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> arr.indexOf(ele) === index;</span><br><span class="line">		</span><br><span class="line">	&#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
 
@@ -978,7 +767,7 @@ var reg = RegExp(&apos;正则&apos;,[匹配配置])</code></pre><h2 id="匹配�
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/blogs/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/blogs/page/4/">4</a><a class="extend next" rel="next" href="/blogs/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/blogs/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/blogs/page/6/">6</a><a class="extend next" rel="next" href="/blogs/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -1044,7 +833,7 @@ var reg = RegExp(&apos;正则&apos;,[匹配配置])</code></pre><h2 id="匹配�
       <div class="site-state-item site-state-posts">
           <a href="/blogs/archives/">
         
-          <span class="site-state-item-count">33</span>
+          <span class="site-state-item-count">55</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
