@@ -145,7 +145,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/20/HTML/HTML%E5%AE%9E%E4%BD%93/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/20/CSS/%E5%B8%83%E5%B1%80%E6%80%BB%E7%BB%93/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/blogs/images/avatar.gif">
@@ -159,7 +159,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/blogs/2020/03/20/HTML/HTML%E5%AE%9E%E4%BD%93/" class="post-title-link" itemprop="url">HTML/HTML实体</a>
+            <a href="/blogs/2020/03/20/CSS/%E5%B8%83%E5%B1%80%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">CSS/布局总结</a>
         </h1>
 
         <div class="post-meta">
@@ -168,10 +168,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2020-03-20 19:04:07 / Modified: 19:04:12" itemprop="dateCreated datePublished" datetime="2020-03-20T19:04:07+08:00">2020-03-20</time>
+              <time title="Created: 2020-03-20 19:14:19" itemprop="dateCreated datePublished" datetime="2020-03-20T19:14:19+08:00">2020-03-20</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-03-22 10:42:04" itemprop="dateModified" datetime="2020-03-22T10:42:04+08:00">2020-03-22</time>
+              </span>
 
           
 
@@ -184,13 +190,29 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="html实体"><a href="#html实体" class="headerlink" title="html实体"></a>html实体</h1><p>-实体字符通常用于显示一些特殊符号</p>
-<h3 id="使用-amp-单词"><a href="#使用-amp-单词" class="headerlink" title="使用   &amp;单词"></a>使用   &amp;单词</h3><p>-&lt;   表示小于号</p>
-<p>-&gt;   表示大于号</p>
-<p>-&nbsp; 空格字符</p>
-<ul>
-<li>&copy; 版权符号  ?</li>
-</ul>
+          <h1 id="侧栏一般都定宽"><a href="#侧栏一般都定宽" class="headerlink" title="侧栏一般都定宽"></a>侧栏一般都定宽</h1><h1 id="两栏布局"><a href="#两栏布局" class="headerlink" title="两栏布局"></a>两栏布局</h1><h2 id="float-侧栏左或者右浮动、定宽-，主栏触发-bfc-position-absolute-display-block-overflow-hidden-常用的方法-float-left-避开浮动盒子，可以不设宽，自适应（浮动要写在前面-如果常规流块盒写在前的话，常规流块盒的宽度会撑满父元素-container-并且浮动盒子会避开常规流盒子，跑到下面）"><a href="#float-侧栏左或者右浮动、定宽-，主栏触发-bfc-position-absolute-display-block-overflow-hidden-常用的方法-float-left-避开浮动盒子，可以不设宽，自适应（浮动要写在前面-如果常规流块盒写在前的话，常规流块盒的宽度会撑满父元素-container-并且浮动盒子会避开常规流盒子，跑到下面）" class="headerlink" title="(float): 侧栏左或者右浮动、定宽 ，主栏触发 bfc(position: absolute; display: block; overflow:hidden;(常用的方法) float:left)避开浮动盒子，可以不设宽，自适应（浮动要写在前面, 如果常规流块盒写在前的话，常规流块盒的宽度会撑满父元素 container, 并且浮动盒子会避开常规流盒子，跑到下面）"></a>(float): 侧栏左或者右浮动、定宽 ，主栏触发 bfc(position: absolute; display: block; <code>overflow:hidden;(常用的方法)</code> float:left)避开浮动盒子，可以不设宽，自适应（浮动要写在前面, 如果常规流块盒写在前的话，常规流块盒的宽度会撑满父元素 container, 并且浮动盒子会避开常规流盒子，跑到下面）</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- html --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- float实现两栏布局 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">aside</span> <span class="attr">class</span>=<span class="string">"left"</span>&gt;</span><span class="tag">&lt;/<span class="name">aside</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"main"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* css */</span></span><br><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#ccc</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.left</span> &#123;</span><br><span class="line">  <span class="attribute">float</span>: left;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">300px</span>;</span><br><span class="line">  <span class="attribute">background</span>: orange;</span><br><span class="line">  <span class="attribute">margin-right</span>: <span class="number">20px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.main</span> &#123;</span><br><span class="line">  <span class="attribute">overflow</span>: hidden;</span><br><span class="line">  <span class="attribute">background</span>: lightblue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="（position）：主栏-margin-让出空间-，让侧栏变为-position-（主栏在前）"><a href="#（position）：主栏-margin-让出空间-，让侧栏变为-position-（主栏在前）" class="headerlink" title="（position）：主栏 margin 让出空间 ，让侧栏变为 position （主栏在前）"></a>（position）：主栏 margin 让出空间 ，让侧栏变为 position （主栏在前）</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- position实现两栏布局 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"main"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">aside</span> <span class="attr">class</span>=<span class="string">"left"</span>&gt;</span><span class="tag">&lt;/<span class="name">aside</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.container</span> <span class="selector-class">.main</span> &#123;</span><br><span class="line">  <span class="attribute">margin-left</span>: <span class="number">300px</span>;</span><br><span class="line">  <span class="comment">/* margin-right: 300px; */</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.container</span> <span class="selector-class">.left</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">left</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">top</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">300px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="display-flex-在父级盒子设为弹性盒子-display-flex-更简单，但是要考虑兼容性"><a href="#display-flex-在父级盒子设为弹性盒子-display-flex-更简单，但是要考虑兼容性" class="headerlink" title="(display: flex): 在父级盒子设为弹性盒子(display: flex),更简单，但是要考虑兼容性"></a>(display: flex): 在父级盒子设为弹性盒子(display: flex),更简单，但是要考虑兼容性</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 弹性盒子实现两栏布局 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"main"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">aside</span> <span class="attr">class</span>=<span class="string">"left"</span>&gt;</span><span class="tag">&lt;/<span class="name">aside</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.container</span> <span class="selector-class">.main</span> &#123;</span><br><span class="line">  <span class="attribute">background</span>: orange;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.container</span> <span class="selector-class">.left</span> &#123;</span><br><span class="line">  <span class="attribute">background</span>: deeppink;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="三栏布局"><a href="#三栏布局" class="headerlink" title="三栏布局"></a>三栏布局</h1><h2 id="（float）-两侧栏用左右浮动、定宽，主栏触发-bfc-避开浮动盒子（浮动盒子在前）"><a href="#（float）-两侧栏用左右浮动、定宽，主栏触发-bfc-避开浮动盒子（浮动盒子在前）" class="headerlink" title="（float）: 两侧栏用左右浮动、定宽，主栏触发 bfc 避开浮动盒子（浮动盒子在前）"></a>（float）: 两侧栏用左右浮动、定宽，主栏触发 bfc 避开浮动盒子（浮动盒子在前）</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- float实现三栏布局 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">aside</span> <span class="attr">class</span>=<span class="string">"left"</span>&gt;</span><span class="tag">&lt;/<span class="name">aside</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">aside</span> <span class="attr">class</span>=<span class="string">"right"</span>&gt;</span><span class="tag">&lt;/<span class="name">aside</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"main"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.left</span> &#123;</span><br><span class="line">  <span class="attribute">float</span>: left;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">300px</span>;</span><br><span class="line">  <span class="attribute">background</span>: deeppink;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.right</span> &#123;</span><br><span class="line">  <span class="attribute">float</span>: right;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">300px</span>;</span><br><span class="line">  <span class="attribute">background</span>: lightblue;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.main</span> &#123;</span><br><span class="line">  <span class="attribute">overflow</span>: hidden;</span><br><span class="line">  <span class="attribute">background</span>: orange;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="（position）-主栏左右-margin-让出空间，两侧栏-position-分别居左居右（主栏在前）"><a href="#（position）-主栏左右-margin-让出空间，两侧栏-position-分别居左居右（主栏在前）" class="headerlink" title="（position）: 主栏左右 margin 让出空间，两侧栏 position ,分别居左居右（主栏在前）"></a>（position）: 主栏左右 margin 让出空间，两侧栏 position ,分别居左居右（主栏在前）</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- position实现三栏布局 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"main"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">aside</span> <span class="attr">class</span>=<span class="string">"left"</span>&gt;</span><span class="tag">&lt;/<span class="name">aside</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">aside</span> <span class="attr">class</span>=<span class="string">"right"</span>&gt;</span><span class="tag">&lt;/<span class="name">aside</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.main</span> &#123;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">0</span> <span class="number">300px</span>;</span><br><span class="line">  <span class="attribute">background</span>: orange;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.left</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">left</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">top</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">300px</span>;</span><br><span class="line">  <span class="attribute">background</span>: lightblue;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.right</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">right</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">top</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">300px</span>;</span><br><span class="line">  <span class="attribute">background</span>: deeppink;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="（display-flex）-父级盒子设置为弹性盒子，子盒子用-flex-grow"><a href="#（display-flex）-父级盒子设置为弹性盒子，子盒子用-flex-grow" class="headerlink" title="（display: flex）: 父级盒子设置为弹性盒子，子盒子用 flex-grow"></a>（display: flex）: 父级盒子设置为弹性盒子，子盒子用 flex-grow</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 弹性盒子实现三栏布局，会帮我们自动调为等高 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"main"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"left"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"right"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.main</span> &#123;</span><br><span class="line">  <span class="attribute">background</span>: orange;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.left</span> &#123;</span><br><span class="line">  <span class="attribute">background</span>: deeppink;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.right</span> &#123;</span><br><span class="line">  <span class="attribute">background</span>: lightblue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -210,7 +232,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/20/HTML/a%E5%85%83%E7%B4%A0/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/20/HTML/vscode%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/blogs/images/avatar.gif">
@@ -224,7 +246,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/blogs/2020/03/20/HTML/a%E5%85%83%E7%B4%A0/" class="post-title-link" itemprop="url">HTML/a元素</a>
+            <a href="/blogs/2020/03/20/HTML/vscode%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE/" class="post-title-link" itemprop="url">HTML/vscode常用快捷键</a>
         </h1>
 
         <div class="post-meta">
@@ -235,7 +257,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-03-20 19:03:37 / Modified: 19:03:45" itemprop="dateCreated datePublished" datetime="2020-03-20T19:03:37+08:00">2020-03-20</time>
+              <time title="Created: 2020-03-20 19:13:30 / Modified: 19:13:54" itemprop="dateCreated datePublished" datetime="2020-03-20T19:13:30+08:00">2020-03-20</time>
             </span>
 
           
@@ -249,15 +271,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="a元素"><a href="#a元素" class="headerlink" title="a元素"></a>a元素</h2><p>表示超链接</p>
-<p>属性</p>
-<h3 id="href属性-hyper-reference-引用"><a href="#href属性-hyper-reference-引用" class="headerlink" title="href属性 :  hyper reference 引用"></a>href属性 :  hyper reference 引用</h3><p>作用1： 普通链接 : 跳转到其他页面</p>
-<p>作用2 :   当做锚点，跳转到本页面的其他地方   href= “#其他元素的id”   href=”#” ，回到顶部</p>
-<p>作用3:  功能链接   href = ‘javascript: 代码’    <a href="javascript: alert('aa')">你好</a>   必须是’’</p>
-<p>作用4:  mailto: 邮箱地址</p>
-<p>作用5：拨打电话 ： tel: 号码   </p>
-<h3 id="target属性"><a href="#target属性" class="headerlink" title="target属性"></a>target属性</h3><p>-_blank:  在新页面打开</p>
-<p>-_self : 在当前窗口打开  默认是_self</p>
+          <h1 id="vscode注释"><a href="#vscode注释" class="headerlink" title="vscode注释"></a>vscode注释</h1><p>1 注释：<br>　　a)?单行注释：[ctrl+k,ctrl+c] 或 ctrl+/<br>　　b)?取消单行注释：[ctrl+k,ctrl+u] (按下ctrl不放，再按k + u)<br>　　c)?多行注释：[alt+shift+A]<br>　　d)?多行注释：/**<br>2、移动行：alt+up/down<br>3、显示/隐藏左侧目录栏?ctrl + b<br>4、复制当前行：shift + alt +up/down<br>5、删除当前行：shift + ctrl + k<br>6、控制台终端显示与隐藏：ctrl + ~<br>7、查找文件/安装vs code?插件地址：ctrl + p<br>8、代码格式化：shift + alt +f<br>9、新建一个窗口: ctrl + shift + n<br>10、行增加缩进:?ctrl + [<br>11、行减少缩进:?ctrl + ]<br>12、裁剪尾随空格(去掉一行的末尾那些没用的空格)?: ctrl + shift + x<br>13、字体放大/缩小:?ctrl + ( + 或 - )<br>14、拆分编辑器 :ctrl + 1/2/3<br>15、切换窗口: ?ctrl + shift + left/right<br>16、关闭编辑器窗口: ?ctrl + w<br>17、关闭所有窗口 :?ctrl + k + w<br>18、切换全屏 :F11<br>19、自动换行: ?alt + z<br>20、显示git: ? ctrl + shift + g<br>21、全局查找文件：ctrl + p<br>22、显示相关插件的命令(如：git log)：ctrl + shift + p<br>23、选中文字：shift + left / right / up / down<br>24、折叠代码： ctrl + k + 0-9 (0是完全折叠)<br>25、展开代码： ctrl + k + j (完全展开代码)<br>26、删除行?： ctrl + shift + k<br>27、快速切换主题：ctrl + k / ctrl + t<br>28、快速回到顶部?： ctrl + home<br>29、快速回到底部?: ctrl + end<br>30、格式化选定代码?：ctrl + k / ctrl +f<br>31、选中代码 ：?shift + 鼠标左键<br>32、多行同时添加内容（光标） ：ctrl + alt + up/down<br>33、全局替换：ctrl + shift + h<br>34、当前文件替换：ctrl + h<br>35、打开最近打开的文件：ctrl + r<br>36、打开新的命令窗：ctrl + shift + c<br>二、vs code 的常用插件<br>1、Auto Rename Tag?修改html标签，自动帮你完成尾部闭合标签的同步修改，和webstorm一样。<br>2、Auto Close Tag?自动闭合HTML标签<br>4、Beautiful?格式化代码的工具<br>5、Dash?Dash是MacOS的API文档浏览器和代码段管理器<br>6、Ejs Snippets?ejs 代码提示<br>7、ESLint?检查javascript语法错误与提示<br>8、File Navigator?快速查找文件<br>9、Git History(git log)查看git log<br>10、Gulp Snippets?写gulp时用到，gulp语法提示。<br>11、HTML CSS Support ?在HTML标签上写class智能提示当前项目所支持的样式<br>12、HTML Snippets?超级好用且初级的H5代码片段以及提示<br>13、Debug for Chrome让vs code映射chrome的debug功能，静态页面都可以用vscode来打断点调试、配饰稍微复杂一点<br>14、Document this?Js的注释模板<br>15、jQuery Code Snippets?jquery提示工具<br>16、Html2jade?html模板转pug模板<br>17、JS-CSS-HTML Formatter?格式化<br>18、Npm intellisense?require 时的包提示工具<br>19、Open in browser?打开默认浏览器<br>20、One Dark Theme?一个vs code的主题<br>21、Path Intellisense?自动路径补全、默认不带这个功能<br>22、Project Manager多个项目之间快速切换的工具<br>23、Pug(Jade) snippets?pug语法提示<br>24、React Components?根据文件名创建反应组件代码。<br>25、React Native Tools?reactNative工具类为React Native项目提供了开发环境。<br>26、Stylelintcss/sass代码审查<br>27、Typings auto installer?安装vscode 的代码提示依赖库，基于typtings的<br>28、View In Browser?默认浏览器查看HTML文件（快捷键Ctrl+F1可以修改）</p>
 
       
     </div>
@@ -277,7 +291,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/20/JS/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/20/CSS/margin%E5%A1%8C%E9%99%B7/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/blogs/images/avatar.gif">
@@ -291,7 +305,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/blogs/2020/03/20/JS/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="post-title-link" itemprop="url">JS/正则表达式</a>
+            <a href="/blogs/2020/03/20/CSS/margin%E5%A1%8C%E9%99%B7/" class="post-title-link" itemprop="url">CSS/margin塌陷</a>
         </h1>
 
         <div class="post-meta">
@@ -302,7 +316,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-03-20 16:17:39 / Modified: 16:31:28" itemprop="dateCreated datePublished" datetime="2020-03-20T16:17:39+08:00">2020-03-20</time>
+              <time title="Created: 2020-03-20 19:11:10 / Modified: 19:12:27" itemprop="dateCreated datePublished" datetime="2020-03-20T19:11:10+08:00">2020-03-20</time>
             </span>
 
           
@@ -316,144 +330,14 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h1><p>正则表达式是默认贪婪匹配的  如.  去匹配123   会分别得到1 2 3 </p>
+          <h1 id="父子"><a href="#父子" class="headerlink" title="父子"></a>父子</h1><p>margin塌陷是div里边也有div，子div的垂直margin（top和bottom）看不到父级的border-top，因此无法移动，只有当它的margin-top高于父级的才可以，但是会带着父级一起移动</p>
 <ul>
-<li><p><code>.</code>   任意字符 ，一个点只能表示一个</p>
-</li>
-<li><p>^  开头标志，在[^]中表示非的意思</p>
-</li>
-<li><p>$    结尾字符</p>
-</li>
+<li>解决：<br>1 将子元素的margin-top 改为设置父元素的pidding-top<br>2 触发bfc position: absolute    display :  block      float:  left/right     overflow:  hidden</li>
 </ul>
-<ul>
-<li><p>\n   转行字符</p>
-</li>
-<li><p>\t  制表符</p>
-</li>
-<li><p>\s  空白字符  （制表符，空格，换行等）</p>
-</li>
-<li><p>\S  非空白字符  [\s\S]可以匹配所有</p>
-</li>
-<li><p>\b 单词边界   一个词有空格等隔开  如\beee   表示eee前有空格或eee是开头隔开</p>
-</li>
-<li><p>\B  非单词边界    </p>
-</li>
-<li><p>\d      匹配字符   0-9        贪婪匹配</p>
-</li>
-<li><p>\D   非字符</p>
-</li>
-<li><p>\w  匹配字母 数字  下划线  等价于[A-Za-z0-9]</p>
-</li>
-<li><p>\W  匹配非数字 字母 下滑线</p>
-</li>
-<li><p>\uxxxx     每个字都有四个十六进制  unicode编码</p>
-</li>
+<h1 id="兄弟"><a href="#兄弟" class="headerlink" title="兄弟"></a>兄弟</h1><ul>
+<li>两个兄弟div的垂直方向存在margin合并，这个不须解决，要想这两个在垂直方向有距离，只要将在上的的div的margin-bottom设置为该距离就好  </li>
 </ul>
-<h2 id="字符集"><a href="#字符集" class="headerlink" title="字符集"></a>字符集</h2><ul>
-<li>[]里边的表示范围</li>
-<li>[a-z]</li>
-<li>[A-Z]</li>
-<li>[0-9]</li>
-<li>[a-zA-Z0-9] 相当于\w</li>
-<li>[^字符范围] 非该字符范围</li>
-<li>[\d\D]+ , [\s\S]+匹配所有字符</li>
-</ul>
-<p>中文字符集  4e00-9fa5<br>-[\u4e00-\u9fa5]</p>
-<h2 id="量词"><a href="#量词" class="headerlink" title="量词***"></a>量词***</h2><ul>
-<li><p><code>*</code>  匹配0个到多个</p>
-</li>
-<li><p><code>+</code>  匹配1个到多个 </p>
-</li>
-<li><p>？匹配0个或者1个</p>
-</li>
-</ul>
-<p>-{n}   匹配n个</p>
-<p>-{n,}  &gt;=n个   即至少n个</p>
-<p>-{n,m}  匹配n-m个</p>
-<h2 id="或者"><a href="#或者" class="headerlink" title="或者"></a>或者</h2><p>多个规则之间，用  <code>|</code></p>
-<h1 id="正则表达式进阶"><a href="#正则表达式进阶" class="headerlink" title="正则表达式进阶"></a>正则表达式进阶</h1><p>***特别注意的是：在正则表达式中一般都写g 表示全局匹配</p>
-<h3 id="捕获组-也叫子表达式-（想要获得捕获组，要使用reg-exec-str-）"><a href="#捕获组-也叫子表达式-（想要获得捕获组，要使用reg-exec-str-）" class="headerlink" title="捕获组  也叫子表达式 （想要获得捕获组，要使用reg.exec(str)）"></a>捕获组  也叫子表达式 （想要获得捕获组，要使用reg.exec(str)）</h3><ul>
-<li><p>正则表达式中用小括号括起来的部分就叫捕获组，捕获组会出现在匹配结果中（使用reg.exec(str)才有）</p>
-</li>
-<li><p>给捕获组命名：在括号中使用’ ?&lt;名字&gt;’  命名后就有group（调用reg.exec(str)的情况下）</p>
-</li>
-<li><p>非捕获组:   ‘ ?: ‘   （?: abc）只是当成一个小括号，一个整体而已，不用捕获得到这个捕获组的结果</p>
-</li>
-<li><p>使用： a 分类   b str.replace(reg, function($,$1, $2…){})     $是整个正则表达式得到的字符串   ，$1等是正则表达式捕获组   也可以str.replace( reg , ‘$1/$2/$3’)  $1表示第一个捕获组 …</p>
-</li>
-</ul>
-<h2 id="反向引用，在正则表达式中，使用某个捕获组，使用方式-‘-捕获组-捕获组编号’"><a href="#反向引用，在正则表达式中，使用某个捕获组，使用方式-‘-捕获组-捕获组编号’" class="headerlink" title="反向引用，在正则表达式中，使用某个捕获组，使用方式  ‘(捕获组)\捕获组编号’"></a>反向引用，在正则表达式中，使用某个捕获组，使用方式  ‘(捕获组)\捕获组编号’</h2><h2 id="正向预查-检查某个字符后面是否满足某个规则，该规则不成为匹配结果-该捕获组不会成为结果"><a href="#正向预查-检查某个字符后面是否满足某个规则，该规则不成为匹配结果-该捕获组不会成为结果" class="headerlink" title="正向预查   检查某个字符后面是否满足某个规则，该规则不成为匹配结果 ,该捕获组不会成为结果"></a>正向预查   检查某个字符后面是否满足某个规则，该规则不成为匹配结果 ,该捕获组不会成为结果</h2><ul>
-<li>（?=xxx）</li>
-</ul>
-<h2 id="负向预查"><a href="#负向预查" class="headerlink" title="负向预查"></a>负向预查</h2><p>检查某个字符后面是否不满足某个规则，该规则不成为匹配结果，该捕获组不会成为结果</p>
-<ul>
-<li>（?!xx）</li>
-</ul>
-<h1 id="正则表达式在js的运用"><a href="#正则表达式在js的运用" class="headerlink" title="正则表达式在js的运用"></a>正则表达式在js的运用</h1><p>在js中,正则表达式表现为一个对象，该对象是通过构造函数创建的</p>
-<h2 id="创建对象-var-reg-正则-匹配配置-知道规则-即规则固定"><a href="#创建对象-var-reg-正则-匹配配置-知道规则-即规则固定" class="headerlink" title="创建对象       var reg = /正则/匹配配置           知道规则 即规则固定"></a>创建对象       var reg = /正则/匹配配置           知道规则 即规则固定</h2><pre><code>var reg = new RegExp(&apos;正则&apos;,[匹配配置])      不清楚规则的情况下
-var reg = RegExp(&apos;正则&apos;,[匹配配置])</code></pre><h2 id="匹配配置"><a href="#匹配配置" class="headerlink" title="匹配配置"></a>匹配配置</h2><ul>
-<li><p>g 全局匹配  global</p>
-</li>
-<li><p>i 忽略大小写 ignore</p>
-</li>
-<li><p>m 多行匹配</p>
-</li>
-</ul>
-<p>##正则实例成员    var reg = /正则/  等同于 var reg = new RegExp()</p>
-<ul>
-<li><p>reg.test(str)   验证字符串是否满足规则     开启全局匹配时 会有连续性 接着上一次匹配的索引  利用此特性，可以判断匹配了多少次   var n = 0    while(reg.test(str)){n ++}</p>
-</li>
-<li><p>reg.lastIndex  配合全局匹配下的索引</p>
-</li>
-</ul>
-<p><strong><em>只有量词时，正则表达式默认情况下是贪婪模式（尽可能多）    取消贪婪模式时 在量词(</em>+?等)后使用<code>?</code></strong></p>
-<ul>
-<li><p>reg.exec(str)  执行匹配，得到匹配结果 得到真数组   index表示得到的结果在该字符串的下标</p>
-</li>
-<li><p>reg.global   是否开启全局匹配</p>
-</li>
-<li><p>reg.ignoreCase    是否开启忽略大小写</p>
-</li>
-<li><p>reg.multiline    是否开启多行匹配</p>
-</li>
-<li><p>reg.source   得到当前匹配规则</p>
-</li>
-</ul>
-<p>##字符串对象中的正则     var str = ‘aaa’</p>
-<ul>
-<li><p>str.match( reg )         得到匹配结果</p>
-</li>
-<li><p>str.replace ( reg, 替换得到正则结果的内容（主要是函数其作用 function ( $, $1, $2,$… ) {  } ） )  $代表正则表达式的字符串，$1 代表第一个捕获组   $2 代表第二个捕获组 ….</p>
-</li>
-<li><p>str.search ( reg )  搜索得到满足条件的第一个结果的下标 </p>
-</li>
-<li><p>str.split ( reg， [limit] )  按照给定的正则对字符串进行分割 得到匹配结果的数组,limit可以指定分割的数量</p>
-</li>
-</ul>
-<pre><code>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</code></pre>
+<h1 id="以上两个塌陷两者的距离都是取两个值的最大值"><a href="#以上两个塌陷两者的距离都是取两个值的最大值" class="headerlink" title="以上两个塌陷两者的距离都是取两个值的最大值"></a>以上两个塌陷两者的距离都是取两个值的最大值</h1>
       
     </div>
 
@@ -472,7 +356,7 @@ var reg = RegExp(&apos;正则&apos;,[匹配配置])</code></pre><h2 id="匹配�
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/20/JS/%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/20/HTML/%E5%85%83%E7%B4%A0%E7%9A%84%E5%8C%85%E5%90%AB%E5%85%B3%E7%B3%BB/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/blogs/images/avatar.gif">
@@ -486,7 +370,7 @@ var reg = RegExp(&apos;正则&apos;,[匹配配置])</code></pre><h2 id="匹配�
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/blogs/2020/03/20/JS/%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE/" class="post-title-link" itemprop="url">JS/作用域链</a>
+            <a href="/blogs/2020/03/20/HTML/%E5%85%83%E7%B4%A0%E7%9A%84%E5%8C%85%E5%90%AB%E5%85%B3%E7%B3%BB/" class="post-title-link" itemprop="url">HTML/元素的包含关系</a>
         </h1>
 
         <div class="post-meta">
@@ -497,70 +381,7 @@ var reg = RegExp(&apos;正则&apos;,[匹配配置])</code></pre><h2 id="匹配�
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-03-20 15:39:03 / Modified: 15:39:05" itemprop="dateCreated datePublished" datetime="2020-03-20T15:39:03+08:00">2020-03-20</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ol>
-<li>call stack 中除了全局环境外，函数都是在调用时，才会在里面创建AO对象</li>
-<li>每个函数在创建时，会有一个隐藏的属性[[scope]],它指向创建该函数的AO对象</li>
-<li>AO中包含一个额外的属性，该属性指向创建该AO的函数的[[scope]]</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/20/JS/%E5%A4%96%E9%83%A8%E5%87%BD%E6%95%B0%E4%BD%BF%E7%94%A8%E5%86%85%E9%83%A8%E5%87%BD%E6%95%B0%E7%9A%84%E6%96%B9%E6%B3%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/blogs/images/avatar.gif">
-      <meta itemprop="name" content="HC">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="HC">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/blogs/2020/03/20/JS/%E5%A4%96%E9%83%A8%E5%87%BD%E6%95%B0%E4%BD%BF%E7%94%A8%E5%86%85%E9%83%A8%E5%87%BD%E6%95%B0%E7%9A%84%E6%96%B9%E6%B3%95/" class="post-title-link" itemprop="url">JS/外部函数使用内部函数的方法</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-03-20 15:35:14 / Modified: 15:38:17" itemprop="dateCreated datePublished" datetime="2020-03-20T15:35:14+08:00">2020-03-20</time>
+              <time title="Created: 2020-03-20 19:10:13 / Modified: 19:10:20" itemprop="dateCreated datePublished" datetime="2020-03-20T19:10:13+08:00">2020-03-20</time>
             </span>
 
           
@@ -575,7 +396,10 @@ var reg = RegExp(&apos;正则&apos;,[匹配配置])</code></pre><h2 id="匹配�
 
       
           <ul>
-<li>方法: 在外边声明一个变量，在函数里面将该值或者变量赋给外边的变量<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">let</span> a = <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">b</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> c = <span class="number">11</span>;</span><br><span class="line">    a = c;</span><br><span class="line">&#125;</span><br><span class="line">b()</span><br><span class="line"></span><br><span class="line"><span class="comment">//外部就可以使用b函数内部的c变量</span></span><br></pre></td></tr></table></figure></li>
+<li>容器元素可以包含任何元素</li>
+<li>a元素几乎可以包含任何元素</li>
+<li>某些元素有特定的父子关系  ul li   ol li </li>
+<li>p元素与h1-h6不能相互嵌套</li>
 </ul>
 
       
@@ -596,7 +420,7 @@ var reg = RegExp(&apos;正则&apos;,[匹配配置])</code></pre><h2 id="匹配�
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/20/JS/%E5%8E%9F%E5%9E%8B/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/20/HTML/%E6%96%87%E6%9C%AC%E5%85%83%E7%B4%A0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/blogs/images/avatar.gif">
@@ -610,7 +434,7 @@ var reg = RegExp(&apos;正则&apos;,[匹配配置])</code></pre><h2 id="匹配�
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/blogs/2020/03/20/JS/%E5%8E%9F%E5%9E%8B/" class="post-title-link" itemprop="url">JS/原型</a>
+            <a href="/blogs/2020/03/20/HTML/%E6%96%87%E6%9C%AC%E5%85%83%E7%B4%A0/" class="post-title-link" itemprop="url">HTML/文本元素</a>
         </h1>
 
         <div class="post-meta">
@@ -621,7 +445,7 @@ var reg = RegExp(&apos;正则&apos;,[匹配配置])</code></pre><h2 id="匹配�
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-03-20 15:28:56 / Modified: 15:29:21" itemprop="dateCreated datePublished" datetime="2020-03-20T15:28:56+08:00">2020-03-20</time>
+              <time title="Created: 2020-03-20 19:09:08 / Modified: 19:09:24" itemprop="dateCreated datePublished" datetime="2020-03-20T19:09:08+08:00">2020-03-20</time>
             </span>
 
           
@@ -635,115 +459,159 @@ var reg = RegExp(&apos;正则&apos;,[匹配配置])</code></pre><h2 id="匹配�
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="原型"><a href="#原型" class="headerlink" title="原型"></a>原型</h1><p>1 默认情况下，prototype 是object<br>2 默认情况下，constructor指向构造函数本身<br>3 普通对象没有prototype   既  通过函数或Object ，Array new的对象，<br>4 所有的对象都有隐式原型<strong>proto</strong>     介于中间层的如 Array 自定义函数 等，它们的隐式原型指向Object原型</p>
-<h2 id="原型方法"><a href="#原型方法" class="headerlink" title="原型方法"></a>原型方法</h2><p>Object上的方法，只能由Object调用  普通对象不能用，因为继承不了<br>1 Object.create(普通对象或者对象的prototype)  ，以该对象的原型作为创建的新对象的隐式原型 <strong>proto</strong>指向<br>2 Object.getPrototypeOf(对象)  ，获取传入对象的隐式原型</p>
-<p>3 A instanceof B ,  判断B的原型是否在A的原型链上</p>
-<p>Object.prototype上的方法，可以是普通对象，因为会继承Object.prototype上的方法<br>4 Object.prototype.isprototypeOf(对象)，判断当前对象是否在指定对象（Object.prototype）的原型链上<br>5 Object.prototype.hasOwnProperty(属性名)  ，判断该属性是否在指定对象（Object.prototype）上<br>指定对象不一定是Object.prototype,可以是其子对象</p>
-<h2 id="原型的应用："><a href="#原型的应用：" class="headerlink" title="原型的应用："></a>原型的应用：</h2><p>1 将类数组转为真数组 （[].slice.call(类数组)    Array.prototype.slice.call(类数组)  Array.from(类数组)）<br>2 实现继承    如  function User(){}      function Vuser(){}  原来Vuser和User的prototype都指向Object.prototype,现在想要Vuser的prototype指向User的prototype</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">a方法：  <span class="function"><span class="keyword">function</span> <span class="title">inherit</span>(<span class="params">son,father</span>)</span>&#123;</span><br><span class="line">	son.prototype = <span class="built_in">Object</span>.create(father.prototype)  </span><br><span class="line"> 	<span class="comment">//表示创建出来的对象的__proto__指向father.prototype</span></span><br><span class="line">	son.prototype.constructor = son;</span><br><span class="line">	son.prototype.uber = father.prototype;</span><br><span class="line">&#125;</span><br><span class="line">b方法：<span class="function"><span class="keyword">function</span> <span class="title">inherit</span>（<span class="title">son</span>,<span class="title">father</span>）</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> Temp  = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line">	Temp.prototype = father.prototype</span><br><span class="line">	son.prototype = <span class="keyword">new</span> Temp()</span><br><span class="line">	son.prototype.contructor = son</span><br><span class="line">	son.prototype.uber = father.prototype</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">c方法：<span class="keyword">var</span> inherit = ( <span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> Temp = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">son,father</span>)</span>&#123;</span><br><span class="line">	Temp.prototype = father.prototype</span><br><span class="line">	son.prototype = <span class="keyword">new</span> Temp()</span><br><span class="line">	son.prototype.constructor = son</span><br><span class="line">	son.prototype.uber = father.prototype</span><br><span class="line">&#125;</span><br><span class="line">&#125;())</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/20/JS/%E5%8E%9F%E5%A7%8B%E7%B1%BB%E5%9E%8B%E5%8C%85%E8%A3%85%E5%99%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/blogs/images/avatar.gif">
-      <meta itemprop="name" content="HC">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="HC">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/blogs/2020/03/20/JS/%E5%8E%9F%E5%A7%8B%E7%B1%BB%E5%9E%8B%E5%8C%85%E8%A3%85%E5%99%A8/" class="post-title-link" itemprop="url">JS/原始类型包装器</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-03-20 15:28:05 / Modified: 15:28:35" itemprop="dateCreated datePublished" datetime="2020-03-20T15:28:05+08:00">2020-03-20</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="原始类型包装器"><a href="#原始类型包装器" class="headerlink" title="原始类型包装器"></a>原始类型包装器</h1><p>原始类型： number string  boolean  undefined</p>
-<h2 id="Number"><a href="#Number" class="headerlink" title="Number"></a>Number</h2><ul>
-<li>new Number(值)  返回一个对象  Number{1}</li>
-<li>Number(值)  返回的是一个原始类型 number</li>
-</ul>
-<h3 id="静态成员"><a href="#静态成员" class="headerlink" title="静态成员"></a>静态成员</h3><p>-Number.isNaN()或者 window.isNaN (window下的可以直接调用isNaN即可) ， 判断一个数是不是NaN ，请注意isNaN（）和Number.isNaN（）之间的区别：如果当前值是NaN，或者将其强制转换为数字后将是NaN，则前者将返回true。而后者仅当值当前为NaN时才为true：</p>
+          <p>文本元素</p>
 <ul>
-<li>Number.isFinite() 判断是不是有限数,可以在window下使用</li>
-<li>Number.isInteger() 判断是不是整数  ，包括数后面有多个0也算，不可以在全局下使用</li>
-<li>Number.parseFloat()  将数据转为小数，全局window下可以使用,可以传第二个参数，第二个参数表示前一个参数数据的进制类型 </li>
-<li>Number.parseInt()  将数据转为整数 ，直接将小数后删掉，去该整数。可以传第二个参数，表示前一个参数的进制类型，将前一个参数按照第二个参数的进制转为整数,如parseInt(3,8),就会将3看成是8进制，将其转换为十进制。全局window下可以使用</li>
+<li><p>h<br>h1-h6 : 表示1级标题-6级标题</p>
+</li>
+<li><p>p<br>表示段落</p>
+</li>
+<li><p>span(无语义)  可以套文本</p>
+</li>
+<li><p>块级元素在显示时独占一行，行级元素不会独占一行，到了HTML5，已经弃用这种说法，因为元素代表的是某种含义，与显示无关</p>
+</li>
+<li><p>pre</p>
+</li>
 </ul>
-<p>**parseInt ,parseFloat  都是从左往右开始看，传入的数据要求是字符串类型，如果不是字符串类型，则会先转换为字符串类型，如果传入空字符串，则返回NaN   如parseInt(“33asd”)则会转为33，后面不管了  但是parseFloat(“aa33”)则会返回NaN</p>
-<h3 id="实例成员-var-a-12345-相当于-var-a-new-Number-12345-a就是实例对象"><a href="#实例成员-var-a-12345-相当于-var-a-new-Number-12345-a就是实例对象" class="headerlink" title="实例成员 var a = 12345   相当于 var a = new Number(12345)  a就是实例对象"></a>实例成员 var a = 12345   相当于 var a = new Number(12345)  a就是实例对象</h3><ul>
-<li>a.toFixed()  ，将a精确到小数点后几位</li>
-<li>a.toPrecision(),将a精确几位，包括整数部分</li>
+<p>与格式化文本元素。  空白折叠，在源代码中出现的连续空白字符(空格，换行，制表), 在页面显示时，会被折叠为空格</p>
+<p>在pre 元素中，不会出现空白折叠 通常用于显示代码  现实代码时，通常在外面套code元素，code表示代码区域</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/20/HTML/%E5%AE%B9%E5%99%A8%E5%85%83%E7%B4%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blogs/images/avatar.gif">
+      <meta itemprop="name" content="HC">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HC">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/blogs/2020/03/20/HTML/%E5%AE%B9%E5%99%A8%E5%85%83%E7%B4%A0/" class="post-title-link" itemprop="url">HTML/容器元素</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-03-20 19:08:36 / Modified: 19:08:50" itemprop="dateCreated datePublished" datetime="2020-03-20T19:08:36+08:00">2020-03-20</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="容器元素"><a href="#容器元素" class="headerlink" title="容器元素"></a>容器元素</h1><h2 id="div-无语义"><a href="#div-无语义" class="headerlink" title="div  无语义"></a>div  无语义</h2><p>语义化容器元素</p>
+<h2 id="header-用于表示页头"><a href="#header-用于表示页头" class="headerlink" title="header   用于表示页头"></a>header   用于表示页头</h2><h2 id="footer-用于表示页脚"><a href="#footer-用于表示页脚" class="headerlink" title="footer  用于表示页脚"></a>footer  用于表示页脚</h2><h2 id="aside-表示侧边栏"><a href="#aside-表示侧边栏" class="headerlink" title="aside 表示侧边栏"></a>aside 表示侧边栏</h2><h2 id="article-用于表示文章正文"><a href="#article-用于表示文章正文" class="headerlink" title="article  用于表示文章正文"></a>article  用于表示文章正文</h2><h2 id="section-用于表示文章的部分"><a href="#section-用于表示文章的部分" class="headerlink" title="section  用于表示文章的部分"></a>section  用于表示文章的部分</h2><h2 id="nav-表示导航"><a href="#nav-表示导航" class="headerlink" title="nav 表示导航"></a>nav 表示导航</h2>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/20/HTML/%E5%88%97%E8%A1%A8%E5%85%83%E7%B4%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blogs/images/avatar.gif">
+      <meta itemprop="name" content="HC">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HC">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/blogs/2020/03/20/HTML/%E5%88%97%E8%A1%A8%E5%85%83%E7%B4%A0/" class="post-title-link" itemprop="url">HTML/列表元素</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-03-20 19:07:21 / Modified: 19:07:53" itemprop="dateCreated datePublished" datetime="2020-03-20T19:07:21+08:00">2020-03-20</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>##列表元素</p>
+<h3 id="有序列表"><a href="#有序列表" class="headerlink" title="有序列表"></a>有序列表</h3><ul>
+<li>ol : ordered list<br>配合 li : list item</li>
 </ul>
-<h2 id="Boolean-（当值为0、null、undefined、NaN-、””-则判断为false）"><a href="#Boolean-（当值为0、null、undefined、NaN-、””-则判断为false）" class="headerlink" title="Boolean （当值为0、null、undefined、NaN 、””  ,则判断为false）"></a>Boolean （当值为0、null、undefined、NaN 、””  ,则判断为false）</h2><h2 id="String"><a href="#String" class="headerlink" title="String"></a>String</h2><p>**多行字符时  连接用  1.，末尾用 +    2.末尾用\  3.用模板字符串</p>
-<h3 id="静态成员-1"><a href="#静态成员-1" class="headerlink" title="静态成员"></a>静态成员</h3><p>-String.FromCharCode() , 通过unicode编码创建字符串</p>
-<h3 id="实例成员-var-str-“akf”-就是-var-str-new-String-“akf”"><a href="#实例成员-var-str-“akf”-就是-var-str-new-String-“akf”" class="headerlink" title="实例成员  var str = “akf”    就是 var str  = new String(“akf”)"></a>实例成员  var str = “akf”    就是 var str  = new String(“akf”)</h3><p>-str.length  , 字符串的长度 ，字符串相当于数组，有下标<br>-str.charAt() ,传入下标，得到相应的下标对应的字母</p>
+<p>属性</p>
 <ul>
-<li>str.charCodeAt() ,得到字符编码  如a =&gt; 97</li>
-<li>str.concat() ，拼接字符串，返回新的字符串</li>
-<li>str.includes() , str是否包含某个字符串</li>
-<li>str.endsWith() ,该字符串是否以传入的值结尾</li>
-<li>str.indexOf() , 返回传入参数对应的索引，从前开始数</li>
-<li>str.lastIndexOf()  ,返回传入参数的对应索引，从后开始数</li>
-<li>str.padEnd(长度,字符串长度不够时填充的)  ，在末尾填充</li>
-<li>str.padStart(长度，字符串长度不够时填充的) ，在首部填充</li>
-<li>str.repeat(重复次数)  </li>
-<li>str.slice（下标1，下标2），前开后闭[  )  下标可以是负数</li>
-<li>str.substr(起始下标，长度)</li>
-<li>str.substring(下标1，下标2)   下标不可以是负数  参数位置可以调换</li>
-<li>str.split() 将字符串分割成为数组</li>
-<li>str.toLowerCase() 将字符串转换小写</li>
-<li>str.toUpperCase()  将字符串转换为大写</li>
-<li>str.trim()  去掉收尾空格</li>
-<li>str.trimStart()</li>
-<li>str.trimEnd()</li>
-<li>str.start()</li>
-<li>str.start()</li>
+<li>type    用css的list-style-type代替</li>
+<li>reverse 反向</li>
+</ul>
+<p>###无序列表</p>
+<ul>
+<li>ul<br>配合li</li>
+</ul>
+<p>使用:    1导航栏  2 新闻列表</p>
+<h3 id="定义列表"><a href="#定义列表" class="headerlink" title="定义列表"></a>定义列表</h3><ul>
+<li><p>dl   defined list</p>
+</li>
+<li><p>dt   defined title</p>
+</li>
+<li><p>dd  defined decription</p>
+</li>
 </ul>
 
       
@@ -764,7 +632,7 @@ var reg = RegExp(&apos;正则&apos;,[匹配配置])</code></pre><h2 id="匹配�
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/20/JS/%E9%A2%84%E7%BC%96%E8%AF%91%E8%A7%A3%E5%86%B3%E7%9A%84%E6%96%B9%E6%B3%95%E6%AD%A5%E9%AA%A4/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/20/HTML/%E5%A4%9A%E5%AA%92%E4%BD%93%E5%85%83%E7%B4%A0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/blogs/images/avatar.gif">
@@ -778,7 +646,7 @@ var reg = RegExp(&apos;正则&apos;,[匹配配置])</code></pre><h2 id="匹配�
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/blogs/2020/03/20/JS/%E9%A2%84%E7%BC%96%E8%AF%91%E8%A7%A3%E5%86%B3%E7%9A%84%E6%96%B9%E6%B3%95%E6%AD%A5%E9%AA%A4/" class="post-title-link" itemprop="url">JS/预编译解决的方法步骤</a>
+            <a href="/blogs/2020/03/20/HTML/%E5%A4%9A%E5%AA%92%E4%BD%93%E5%85%83%E7%B4%A0/" class="post-title-link" itemprop="url">HTML/多媒体元素</a>
         </h1>
 
         <div class="post-meta">
@@ -789,7 +657,7 @@ var reg = RegExp(&apos;正则&apos;,[匹配配置])</code></pre><h2 id="匹配�
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-03-20 15:27:09 / Modified: 15:27:44" itemprop="dateCreated datePublished" datetime="2020-03-20T15:27:09+08:00">2020-03-20</time>
+              <time title="Created: 2020-03-20 19:06:29 / Modified: 19:06:49" itemprop="dateCreated datePublished" datetime="2020-03-20T19:06:29+08:00">2020-03-20</time>
             </span>
 
           
@@ -803,9 +671,33 @@ var reg = RegExp(&apos;正则&apos;,[匹配配置])</code></pre><h2 id="匹配�
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="预编译解决步骤"><a href="#预编译解决步骤" class="headerlink" title="预编译解决步骤"></a>预编译解决步骤</h1><p>1 形参实参相统一   仅在函数有效</p>
-<p>2 找var声明的变量  如果在形参中有，则忽略该var变量，如果没有，则值都为underfined     在全局中声明时都为undefined</p>
-<p>3  找函数声明的字面量，值就为该函数，前面有就覆盖值为该值，没有也是该值</p>
+          <h2 id="多媒体元素"><a href="#多媒体元素" class="headerlink" title="多媒体元素"></a>多媒体元素</h2><h3 id="video"><a href="#video" class="headerlink" title="video"></a>video</h3><p>属性 </p>
+<p>-src :  地址</p>
+<p>以下是布尔属性，可以不用书写属性值</p>
+<ul>
+<li><p>controls      控制视频的显示控件</p>
+</li>
+<li><p>autoplay: 自动播放  浏览器不支持自动播放，配合静音的属性muted才可以</p>
+</li>
+<li><p>muted  静音播放</p>
+</li>
+<li><p>loop 循环播放</p>
+</li>
+</ul>
+<h3 id="audio"><a href="#audio" class="headerlink" title="audio"></a>audio</h3><p>与视频完全一致</p>
+<ul>
+<li><p>scr:  地址</p>
+</li>
+<li><p>controls</p>
+</li>
+<li><p>autoplay</p>
+</li>
+<li><p>muted</p>
+</li>
+<li><p>loop</p>
+</li>
+</ul>
+<p>为了兼容webm / mp4  两种格式，通常不写 video / audio 的src 属性，使用其子元素 两个source，写webm 和 mp4的地址</p>
 
       
     </div>
@@ -825,7 +717,7 @@ var reg = RegExp(&apos;正则&apos;,[匹配配置])</code></pre><h2 id="匹配�
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/20/JS/for%E5%BE%AA%E7%8E%AF%E4%BA%A7%E7%94%9F%E7%9A%84%E9%97%AD%E5%8C%85%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/20/HTML/%E8%A1%A8%E6%A0%BC%E5%85%83%E7%B4%A0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/blogs/images/avatar.gif">
@@ -839,7 +731,7 @@ var reg = RegExp(&apos;正则&apos;,[匹配配置])</code></pre><h2 id="匹配�
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/blogs/2020/03/20/JS/for%E5%BE%AA%E7%8E%AF%E4%BA%A7%E7%94%9F%E7%9A%84%E9%97%AD%E5%8C%85%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/" class="post-title-link" itemprop="url">JS/for循环产生的闭包问题解决</a>
+            <a href="/blogs/2020/03/20/HTML/%E8%A1%A8%E6%A0%BC%E5%85%83%E7%B4%A0/" class="post-title-link" itemprop="url">HTML/表格元素</a>
         </h1>
 
         <div class="post-meta">
@@ -850,7 +742,7 @@ var reg = RegExp(&apos;正则&apos;,[匹配配置])</code></pre><h2 id="匹配�
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-03-20 15:24:20 / Modified: 15:26:40" itemprop="dateCreated datePublished" datetime="2020-03-20T15:24:20+08:00">2020-03-20</time>
+              <time title="Created: 2020-03-20 19:05:12 / Modified: 19:06:04" itemprop="dateCreated datePublished" datetime="2020-03-20T19:05:12+08:00">2020-03-20</time>
             </span>
 
           
@@ -864,22 +756,25 @@ var reg = RegExp(&apos;正则&apos;,[匹配配置])</code></pre><h2 id="匹配�
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>当for 循环执行保留函数  或者  使用循环注册事件时 会产生闭包事件</p>
-<p>var arr = [];<br>for (var i = 0; i &lt; 10; i ++) {<br>    arr[i] = function () {<br>        console.log(i)<br>    }<br>}</p>
-<p>#通用</p>
-<h2 id="使用立即执行函数"><a href="#使用立即执行函数" class="headerlink" title="使用立即执行函数"></a>使用立即执行函数</h2><p>var arr = []</p>
-<p>for (var i = 0; i &lt; 10; i ++) {<br>    (function (j) {<br>        arr[i] = function () {<br>            console.log(i)<br>        }</p>
-<pre><code>}(i))</code></pre><p>}</p>
-<h2 id="使用es6的-let变量"><a href="#使用es6的-let变量" class="headerlink" title="使用es6的 let变量"></a>使用es6的 let变量</h2><p>var arr = [];<br>for (let i = 0; i &lt; 10; i ++) {<br>    arr[i] = function () {<br>        console.log(i);<br>    }<br>}</p>
-<p>##使用外部函数</p>
-<p>var arr = []<br>for (var i = 0; i &lt; 10; i ++) {<br>    solveTool(i)<br>}</p>
-<p>function solveTool(i) {<br>    arr[i] = function () {<br>        console.log(i);<br>    }<br>}</p>
-<h2 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h2><ul>
-<li>将得到的类数组转为真数组   使用forEach循环注册事件</li>
+          <h1 id="表格元素"><a href="#表格元素" class="headerlink" title="表格元素"></a>表格元素</h1><ul>
+<li><p>table 表格</p>
+</li>
+<li><p>article 正文</p>
+</li>
+<li><p>thead 表头</p>
+</li>
+<li><p>tbody 表体</p>
+</li>
+<li><p>tfoot 表脚</p>
+</li>
+<li><p>tr 行 </p>
+</li>
+<li><p>td 单元格 (数据)</p>
+</li>
+<li><p>th 单元格 (标题)</p>
+</li>
 </ul>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> divs = <span class="built_in">document</span>.getElmentsByTagName(<span class="string">'div'</span>);<span class="comment">//divs是类数组</span></span><br><span class="line"><span class="keyword">const</span> arr = <span class="built_in">Array</span>.from(divs);</span><br><span class="line">arr.forEach(<span class="function">(<span class="params">ele, index, arr</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// ele.xxx</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 
-<h2 id="设置dom元素的index-属性，-先保存起来-for-var-i-0-i-lt-xxx-length-i-btns-i-index-i；btn-btn-i-index-onclick-function"><a href="#设置dom元素的index-属性，-先保存起来-for-var-i-0-i-lt-xxx-length-i-btns-i-index-i；btn-btn-i-index-onclick-function" class="headerlink" title="设置dom元素的index 属性， 先保存起来     for (var i = 0; i &lt; xxx.length; i ++) {btns[i].index = i；btn[btn[i].index].onclick = function () {} }"></a>设置dom元素的index 属性， 先保存起来     for (var i = 0; i &lt; xxx.length; i ++) {btns[i].index = i；btn[btn[i].index].onclick = function () {} }</h2>
       
     </div>
 
@@ -898,7 +793,7 @@ var reg = RegExp(&apos;正则&apos;,[匹配配置])</code></pre><h2 id="匹配�
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/20/JS/%E5%BC%82%E6%AD%A5%E8%A1%A5%E5%85%85/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/20/HTML/img%E5%85%83%E7%B4%A0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/blogs/images/avatar.gif">
@@ -912,7 +807,7 @@ var reg = RegExp(&apos;正则&apos;,[匹配配置])</code></pre><h2 id="匹配�
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/blogs/2020/03/20/JS/%E5%BC%82%E6%AD%A5%E8%A1%A5%E5%85%85/" class="post-title-link" itemprop="url">JS/异步补充</a>
+            <a href="/blogs/2020/03/20/HTML/img%E5%85%83%E7%B4%A0/" class="post-title-link" itemprop="url">HTML/img元素</a>
         </h1>
 
         <div class="post-meta">
@@ -923,7 +818,7 @@ var reg = RegExp(&apos;正则&apos;,[匹配配置])</code></pre><h2 id="匹配�
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-03-20 15:23:19 / Modified: 15:23:35" itemprop="dateCreated datePublished" datetime="2020-03-20T15:23:19+08:00">2020-03-20</time>
+              <time title="Created: 2020-03-20 19:04:26 / Modified: 19:04:46" itemprop="dateCreated datePublished" datetime="2020-03-20T19:04:26+08:00">2020-03-20</time>
             </span>
 
           
@@ -937,19 +832,16 @@ var reg = RegExp(&apos;正则&apos;,[匹配配置])</code></pre><h2 id="匹配�
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="前端使用一异步的场景"><a href="#前端使用一异步的场景" class="headerlink" title="前端使用一异步的场景"></a>前端使用一异步的场景</h1><ul>
-<li>setInterval  setTimeOut</li>
+          <h2 id="img"><a href="#img" class="headerlink" title="img"></a>img</h2><h3 id="属性"><a href="#属性" class="headerlink" title="属性:"></a>属性:</h3><p>-src   图片地址</p>
+<p>-alt  当图片资源失效时，用该属性的内容代替文字</p>
+<h3 id="与其他元素连用"><a href="#与其他元素连用" class="headerlink" title="与其他元素连用"></a>与其他元素连用</h3><p>-与a元素连用,  即点击图片时跳转到其他网址</p>
+<ul>
+<li><p>与map元素连用 map提供名字name ,  其子元素area提供其他（点击图片的某个区域跳转到指定的链接）</p>
+</li>
+<li><p>与figure连用</p>
+</li>
 </ul>
-<p>-ajax 网络请求</p>
-<p>-事件注册 绑定</p>
-<h2 id="关于执行栈"><a href="#关于执行栈" class="headerlink" title="关于执行栈"></a>关于执行栈</h2><ul>
-<li>同步会先进入执行栈执行  ， 异步会先放到任务队列中，等到执行栈执行完后到任务队列中依次执行</li>
-</ul>
-<h2 id="实现script加载时异步的方法-不阻塞页面"><a href="#实现script加载时异步的方法-不阻塞页面" class="headerlink" title="实现script加载时异步的方法      不阻塞页面"></a>实现script加载时异步的方法      不阻塞页面</h2><ul>
-<li>defer   只有IE能用   可以在script标签中写代码</li>
-</ul>
-<p>-async    只能加载外部脚本</p>
-<p>-常用 :   按需加载即 创建script标签，插到dom节点中              var script = createElement(‘script’);  script.src = ‘’   document.head.appendChild(script)</p>
+<p>通常将img元素包起来  img的相关信息的其他元素用figure元素包起来</p>
 
       
     </div>
@@ -969,7 +861,7 @@ var reg = RegExp(&apos;正则&apos;,[匹配配置])</code></pre><h2 id="匹配�
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/blogs/page/2/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/blogs/">1</a><a class="page-number" href="/blogs/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/blogs/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/blogs/page/6/">6</a><a class="extend next" rel="next" href="/blogs/page/4/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/blogs/page/2/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/blogs/">1</a><a class="page-number" href="/blogs/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/blogs/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/blogs/page/7/">7</a><a class="extend next" rel="next" href="/blogs/page/4/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -1035,7 +927,7 @@ var reg = RegExp(&apos;正则&apos;,[匹配配置])</code></pre><h2 id="匹配�
       <div class="site-state-item site-state-posts">
           <a href="/blogs/archives/">
         
-          <span class="site-state-item-count">55</span>
+          <span class="site-state-item-count">65</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

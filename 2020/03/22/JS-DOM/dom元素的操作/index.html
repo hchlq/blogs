@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/blogs/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blogs/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blogs/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/blogs/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/blogs/css/main.css">
+
+
+<link rel="stylesheet" href="/blogs/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/blogs/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="dom元素操作获取和设置元素的属性 通用方式：getAttribute()   setAttribute(属性名，改的值)  &#x3D;&#x3D;&#x3D;&gt;一般用于自定义属性  细节：      原始写到元素上的，不可以不赋值    一般用用于自定义的属性 可识别属性 正常的html属性  如input 的value，type等  dom对象.属性名  推荐使用该方法操作html属性   细节： 正常的属型即使没">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS-DOM&#x2F;dom元素的操作">
+<meta property="og:url" content="http://yoursite.com/2020/03/22/JS-DOM/dom%E5%85%83%E7%B4%A0%E7%9A%84%E6%93%8D%E4%BD%9C/index.html">
+<meta property="og:site_name" content="HC">
+<meta property="og:description" content="dom元素操作获取和设置元素的属性 通用方式：getAttribute()   setAttribute(属性名，改的值)  &#x3D;&#x3D;&#x3D;&gt;一般用于自定义属性  细节：      原始写到元素上的，不可以不赋值    一般用用于自定义的属性 可识别属性 正常的html属性  如input 的value，type等  dom对象.属性名  推荐使用该方法操作html属性   细节： 正常的属型即使没">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-03-22T06:22:35.027Z">
+<meta property="article:modified_time" content="2020-03-22T07:52:29.782Z">
+<meta property="article:author" content="HC">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2020/03/22/JS-DOM/dom%E5%85%83%E7%B4%A0%E7%9A%84%E6%93%8D%E4%BD%9C/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>JS-DOM/dom元素的操作 | HC</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/blogs/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">HC</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/blogs/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/blogs/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/22/JS-DOM/dom%E5%85%83%E7%B4%A0%E7%9A%84%E6%93%8D%E4%BD%9C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blogs/images/avatar.gif">
+      <meta itemprop="name" content="HC">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HC">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          JS-DOM/dom元素的操作
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-03-22 14:22:35 / Modified: 15:52:29" itemprop="dateCreated datePublished" datetime="2020-03-22T14:22:35+08:00">2020-03-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="dom元素操作"><a href="#dom元素操作" class="headerlink" title="dom元素操作"></a>dom元素操作</h1><h2 id="获取和设置元素的属性"><a href="#获取和设置元素的属性" class="headerlink" title="获取和设置元素的属性"></a>获取和设置元素的属性</h2><ul>
+<li>通用方式：getAttribute()   setAttribute(属性名，改的值)  ===&gt;一般用于自定义属性</li>
+</ul>
+<p>细节：      原始写到元素上的，不可以不赋值<br>    一般用用于自定义的属性</p>
+<h3 id="可识别属性"><a href="#可识别属性" class="headerlink" title="可识别属性"></a>可识别属性</h3><ul>
+<li><p>正常的html属性  如input 的value，type等</p>
+</li>
+<li><p><strong>dom对象.属性名</strong>  推荐使用该方法操作html属性</p>
+</li>
+</ul>
+<p>细节： 正常的属型即使没有赋值（即没有直接在元素上写），但是也有默认值<br>           某些表单元素可以获取到该元素不存在的属性<br>           某些属性的名字与js的保留字冲突   （如 class==&gt;className、for==&gt;htmlFor）<br>           布尔属性在dom对象中，得到的是boolean</p>
+<h3 id="自定义属性"><a href="#自定义属性" class="headerlink" title="自定义属性"></a>自定义属性</h3><ul>
+<li>自定义属性使用** data-属性名 = “ xxx” 为格式  即以data作为前缀，遵从该规范后可以用 <strong>dom对象.dataset.属性名</strong>获取<br>如<div data-test='abc'></div>  获取dom对象后就可以使用document.getElementsByTagName</li>
+</ul>
+<p>删除属性名</p>
+<ul>
+<li>removeAttribute(“属性名”)</li>
+<li>delete dom.dataset.属性名  <strong>建议使用这种</strong></li>
+</ul>
+<h2 id="设置和获取元素的内容"><a href="#设置和获取元素的内容" class="headerlink" title="设置和获取元素的内容"></a>设置和获取元素的内容</h2><ul>
+<li>dom对象.innerHTML，获取和设置dom对象的文本内容 可以添加元素</li>
+<li>dom对象.innerText，获取纯文本，仅得到内部显示出来的文本，添加元素时会成为文本，不会成为元素</li>
+<li>dom对象.textContent,得到内部所有源代码的文本，包括隐藏的元素也可以得到该文本(IE浏览器)</li>
+</ul>
+<ul>
+<li>可以将style写到body中，将style的样式设为display：block  white-space: pre 和加上属性  contenteditable= “true”  ,就可以将该style显示在页面上 ,并且可以修改</li>
+</ul>
+<h2 id="元素结构重构"><a href="#元素结构重构" class="headerlink" title="元素结构重构"></a>元素结构重构</h2><ul>
+<li>父元素.appendChild(加入的元素) : 在该元素的末尾加上一个子元素(只能一个)</li>
+<li>父元素.append(加入的元素)  可以加多个  不建议使用</li>
+<li>父元素.insertBefore(插入的元素,插入的元素之前)</li>
+<li>父元素.replaceChild(替换的元素 ，被替换的元素)</li>
+</ul>
+<h2 id="创建和删除元"><a href="#创建和删除元" class="headerlink" title="创建和删除元"></a>创建和删除元</h2><p>创建  <strong>document.createxxx()</strong></p>
+<h3 id="创建元素"><a href="#创建元素" class="headerlink" title="创建元素"></a>创建元素</h3><ul>
+<li><p>document.createElement(“元素名称”)</p>
+</li>
+<li><p>document.createDocumentFlagment()  相当于一个容器，无参数</p>
+</li>
+</ul>
+<h3 id="克隆元素"><a href="#克隆元素" class="headerlink" title="克隆元素"></a>克隆元素</h3><ul>
+<li>dom对象.cloneNode(是否深度克隆)  赋值一个新的dom对象  如果是深度克隆，则将元素的文本内容等都赋值过来</li>
+</ul>
+<h3 id="删除元素"><a href="#删除元素" class="headerlink" title="删除元素"></a>删除元素</h3><p>-父元素.removeChild(父元素的子元素)    删除后对象还在，只是在页面消失而已（”谋杀”）<br>-dom对象.remove()  ,无参数，删除自己（”自杀”）</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/blogs/2020/03/22/JS-DOM/%E8%8E%B7%E5%8F%96%E8%8A%82%E7%82%B9%E6%96%B9%E5%BC%8F&dom%E5%85%83%E7%B4%A0%E7%9A%84%E7%BB%A7%E6%89%BF&dom%E6%A0%91/" rel="prev" title="JS-DOM/获取节点方式&dom元素的继承&dom树">
+      <i class="fa fa-chevron-left"></i> JS-DOM/获取节点方式&dom元素的继承&dom树
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/blogs/2020/03/22/JS-DOM/dom%E5%85%83%E7%B4%A0%E6%A0%B7%E5%BC%8F/" rel="next" title="JS-DOM/dom元素样式">
+      JS-DOM/dom元素样式 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#dom元素操作"><span class="nav-number">1.</span> <span class="nav-text">dom元素操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#获取和设置元素的属性"><span class="nav-number">1.1.</span> <span class="nav-text">获取和设置元素的属性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#可识别属性"><span class="nav-number">1.1.1.</span> <span class="nav-text">可识别属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义属性"><span class="nav-number">1.1.2.</span> <span class="nav-text">自定义属性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置和获取元素的内容"><span class="nav-number">1.2.</span> <span class="nav-text">设置和获取元素的内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#元素结构重构"><span class="nav-number">1.3.</span> <span class="nav-text">元素结构重构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建和删除元"><span class="nav-number">1.4.</span> <span class="nav-text">创建和删除元</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建元素"><span class="nav-number">1.4.1.</span> <span class="nav-text">创建元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#克隆元素"><span class="nav-number">1.4.2.</span> <span class="nav-text">克隆元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除元素"><span class="nav-number">1.4.3.</span> <span class="nav-text">删除元素</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">HC</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/blogs/archives/">
+        
+          <span class="site-state-item-count">65</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">HC</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.7.2
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/blogs/lib/anime.min.js"></script>
+  <script src="/blogs/lib/velocity/velocity.min.js"></script>
+  <script src="/blogs/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/blogs/js/utils.js"></script>
+
+<script src="/blogs/js/motion.js"></script>
+
+
+<script src="/blogs/js/schemes/muse.js"></script>
+
+
+<script src="/blogs/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

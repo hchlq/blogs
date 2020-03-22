@@ -145,7 +145,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/20/CSS/%E5%B1%9E%E6%80%A7%E5%80%BC%E7%9A%84%E8%AE%A1%E7%AE%97%E8%BF%87%E7%A8%8B/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/22/CSS/css%E6%9D%83%E9%87%8D/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/blogs/images/avatar.gif">
@@ -159,7 +159,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/blogs/2020/03/20/CSS/%E5%B1%9E%E6%80%A7%E5%80%BC%E7%9A%84%E8%AE%A1%E7%AE%97%E8%BF%87%E7%A8%8B/" class="post-title-link" itemprop="url">CSS/属性值的计算过程</a>
+            <a href="/blogs/2020/03/22/CSS/css%E6%9D%83%E9%87%8D/" class="post-title-link" itemprop="url">CSS/css权重</a>
         </h1>
 
         <div class="post-meta">
@@ -170,7 +170,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-03-20 19:33:35 / Modified: 20:11:25" itemprop="dateCreated datePublished" datetime="2020-03-20T19:33:35+08:00">2020-03-20</time>
+              <time title="Created: 2020-03-22 18:48:25 / Modified: 19:29:12" itemprop="dateCreated datePublished" datetime="2020-03-22T18:48:25+08:00">2020-03-22</time>
             </span>
 
           
@@ -184,16 +184,168 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="某个元素的所有属性值都要有值浏览器才能渲染，平时我们只是设置了一点属性值而已，但是浏览器会经过一系列的过程给这个元素附上属性值。以下是简单的属性值计算步骤"><a href="#某个元素的所有属性值都要有值浏览器才能渲染，平时我们只是设置了一点属性值而已，但是浏览器会经过一系列的过程给这个元素附上属性值。以下是简单的属性值计算步骤" class="headerlink" title="某个元素的所有属性值都要有值浏览器才能渲染，平时我们只是设置了一点属性值而已，但是浏览器会经过一系列的过程给这个元素附上属性值。以下是简单的属性值计算步骤"></a>某个元素的所有属性值都要有值浏览器才能渲染，平时我们只是设置了一点属性值而已，但是浏览器会经过一系列的过程给这个元素附上属性值。以下是简单的属性值计算步骤</h1><h1 id="属性值的计算过程：这四步中只要有一步确定了属性的值，就不会再继续找下去了"><a href="#属性值的计算过程：这四步中只要有一步确定了属性的值，就不会再继续找下去了" class="headerlink" title="属性值的计算过程：这四步中只要有一步确定了属性的值，就不会再继续找下去了"></a>属性值的计算过程：这四步中只要有一步确定了属性的值，就不会再继续找下去了</h1><p>1 确定声明值（包括作者样式表和浏览器的对该元素的样式表）</p>
+          <h1 id="css权重"><a href="#css权重" class="headerlink" title="css权重"></a>css权重</h1><ul>
+<li><p>当我们对同一个标签的一个属性设置多个值时，我们可能会困惑，这个标签的这个属性最后的值是多少。这篇博客会告诉你答案。</p>
+</li>
+<li><p>简单的例子</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">'only'</span> <span class="attr">class</span>=<span class="string">'demo'</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;!<span class="selector-tag">--</span> 当我们同时对<span class="selector-tag">div</span>的<span class="selector-tag">color</span>属性使用不同的选择器设置不同的值时，它最终的<span class="selector-tag">color</span>值会是哪个<span class="selector-tag">--</span>&gt;</span><br><span class="line"><span class="selector-class">.div</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: orange</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.demo</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-id">#only</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: blue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>下面来一个比较复杂的</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">'demo'</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">'oP'</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> <span class="selector-tag">p</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.demo</span> <span class="selector-tag">p</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: blue;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.demo</span> <span class="selector-class">.op</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: deeppink;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="下面我说一下权重问题，这个是有人专门测试过的，是成立的，看到这里的伙伴可以自己测试一下"><a href="#下面我说一下权重问题，这个是有人专门测试过的，是成立的，看到这里的伙伴可以自己测试一下" class="headerlink" title="下面我说一下权重问题，这个是有人专门测试过的，是成立的，看到这里的伙伴可以自己测试一下"></a>下面我说一下权重问题，这个是有人专门测试过的，是成立的，看到这里的伙伴可以自己测试一下</h2><ul>
+<li>行间样式就是<div style="color: #f40"></div></li>
+<li>属性选择器 [class=’demo’] 表示选择class等于demo的标签</li>
+<li>通配符选择器 <code>*</code>, 表示将所有元素全选</li>
+</ul>
+<p><code>!important</code> infinity(无限大)<br><code>行间样式</code> 1000<br><code>id</code> 100<br><code>class|属性选择器|伪元素选择器</code> 10<br><code>标签选择器|伪元素选择器</code> 1<br><code>通配符选择器</code> 0</p>
 <ul>
-<li>该步骤主要是确定生明的属性值没有冲突<br>2 属性冲突（重要性  特殊性 原次序）=&gt; 当有冲突时，即对一个元素的一个属性重复设置时</li>
-<li>重要性 (作者样式表(我们写的),(!import), 浏览器默认样式) !import &gt; 作者样式表 &gt; 浏览器默认样式</li>
-<li>特殊性(就是比较权重): 当有多层嵌套时<code>div .nav a 和 div .ddd .nav a</code>同时对一个元素设置时 !import权重是无限 内敛样式(‘<div style="widht: 100px"></div>‘) = 1000   <code>id</code>=100  <code>class类名 伪类选择器 属性选择器</code>=10  <code>标签选择器</code>=1  <code>*</code>=0<br>3 使用继承</li>
-<li>继承父元素的样式 继承只能是跟文字有关的继承， 比如font-size color font-style 等</li>
+<li><p>当在样式表中遇到这种冲突时，可以使用权重很好的解决, 当有多个选择器时可以叠加</p>
+</li>
+<li><p>现在我们可以解释上边的情况了</p>
+</li>
 </ul>
-<p>4 使用默认值</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.demo</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-id">#only</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: blue;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/* 类选择器.demo的权重是10, id选择器#only的权重是100, 因此div的文字颜色是blue */</span></span><br><span class="line"></span><br><span class="line">`</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> <span class="selector-tag">p</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.demo</span> <span class="selector-tag">p</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: blue;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.demo</span> <span class="selector-class">.op</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: deeppink;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* div p的权重是 1 + 1 = 2  .demo p 的权重是 10 + 1 = 11 .demo .oP的权重是 10 + 10 = 20 , 所以p元素的文字元素是deeppink*/</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/22/HTML/%E4%B8%BB%E6%B5%81%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E4%BB%8B%E7%BB%8D/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blogs/images/avatar.gif">
+      <meta itemprop="name" content="HC">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HC">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/blogs/2020/03/22/HTML/%E4%B8%BB%E6%B5%81%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E4%BB%8B%E7%BB%8D/" class="post-title-link" itemprop="url">HTML/主流浏览器的介绍</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-03-22 16:20:29 / Modified: 16:35:12" itemprop="dateCreated datePublished" datetime="2020-03-22T16:20:29+08:00">2020-03-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="主流浏览器"><a href="#主流浏览器" class="headerlink" title="主流浏览器"></a>主流浏览器</h1><ul>
+<li>主流浏览器要满足两个条件<br>  1 有一定的市场份额<br>  2 有独立研发的内核</li>
+</ul>
+<h2 id="现在的主流浏览器及其内核"><a href="#现在的主流浏览器及其内核" class="headerlink" title="现在的主流浏览器及其内核"></a>现在的主流浏览器及其内核</h2><p>1 IE: trident<br>2 Google chrome : Webkit 2014后改为blink<br>3 Firefox: Gecko<br>4 Opera: presto<br>5 Safari: Webkit</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/22/JS-DOM/window%E5%AF%B9%E8%B1%A1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blogs/images/avatar.gif">
+      <meta itemprop="name" content="HC">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HC">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/blogs/2020/03/22/JS-DOM/window%E5%AF%B9%E8%B1%A1/" class="post-title-link" itemprop="url">JS-DOM/window对象</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-03-22 15:59:24 / Modified: 16:02:18" itemprop="dateCreated datePublished" datetime="2020-03-22T15:59:24+08:00">2020-03-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="window对象"><a href="#window对象" class="headerlink" title="window对象"></a>window对象</h1><ul>
+<li>可以直接使用document.xxx 是因为document 是window对象的属性</li>
+</ul>
+<h2 id="自身方法"><a href="#自身方法" class="headerlink" title="自身方法"></a>自身方法</h2><p>可以省略window</p>
 <ul>
-<li>以上都没得到确定的值，就使用浏览器的默认样式，该标签的所有属性都会有了值</li>
+<li>open 打开一个新窗口 使用方法 window.open(“页面路径”，”打开方法（_self/_blank）”,”配置”)</li>
+<li>alert   弹窗   window.alert()    </li>
+<li>comfirm    弹窗  window.comfirm()</li>
+<li>prompt    弹窗   window.prompt</li>
+</ul>
+<h2 id="对象属性"><a href="#对象属性" class="headerlink" title="对象属性"></a>对象属性</h2><ul>
+<li>document.write    在当前文件流中写入   可以利用它加html元素 </li>
+<li>location   地址栏   location.href   得到当前网页的地址</li>
+<li>navigator  有关浏览器的</li>
+<li>history  : 得到历史记录  只能获取当前网站的历史记录   history.back() 后退  history.go()   history.forward() 前进一个网站</li>
+<li>console<br>console.log()  打印valueOf的返回值<br>console.dir()   打印对象结构<br>console.time() + 代码+console.timeEnd()   查看代码运行时间<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//查看运行该函数运行的时间</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.time();</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'fjakslj'</span>);</span><br><span class="line">&#125;</span><br><span class="line">a()</span><br><span class="line"><span class="built_in">console</span>.timeEnd()</span><br></pre></td></tr></table></figure></li>
 </ul>
 
       
@@ -214,7 +366,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/20/JS/%E5%B1%9E%E6%80%A7%E6%8F%8F%E8%BF%B0%E7%AC%A6/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/22/JS-DOM/dom%E5%85%83%E7%B4%A0%E6%A0%B7%E5%BC%8F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/blogs/images/avatar.gif">
@@ -228,7 +380,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/blogs/2020/03/20/JS/%E5%B1%9E%E6%80%A7%E6%8F%8F%E8%BF%B0%E7%AC%A6/" class="post-title-link" itemprop="url">JS/属性描述符</a>
+            <a href="/blogs/2020/03/22/JS-DOM/dom%E5%85%83%E7%B4%A0%E6%A0%B7%E5%BC%8F/" class="post-title-link" itemprop="url">JS-DOM/dom元素样式</a>
         </h1>
 
         <div class="post-meta">
@@ -239,7 +391,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-03-20 19:31:46 / Modified: 19:32:13" itemprop="dateCreated datePublished" datetime="2020-03-20T19:31:46+08:00">2020-03-20</time>
+              <time title="Created: 2020-03-22 15:52:55 / Modified: 15:58:35" itemprop="dateCreated datePublished" datetime="2020-03-22T15:52:55+08:00">2020-03-22</time>
             </span>
 
           
@@ -253,132 +405,29 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="属性描述符："><a href="#属性描述符：" class="headerlink" title="属性描述符："></a>属性描述符：</h1><p>1 数据属性<br>2 存取器属性：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Object</span>.defineProperty(对象名,<span class="string">"属性名"</span>,&#123;</span><br><span class="line"><span class="keyword">get</span>: function()&#123;&#125;</span><br><span class="line"><span class="keyword">set</span>: function(val)&#123;&#125;</span><br><span class="line">enumerable: <span class="literal">true</span>/<span class="literal">false</span></span><br><span class="line">configurable: <span class="literal">true</span>/<span class="literal">false</span></span><br><span class="line">writable: <span class="literal">true</span>/<span class="literal">false</span></span><br><span class="line"></span><br><span class="line">&#125;)</span><br><span class="line">       <span class="number">1</span> 当给它赋值时，会运行一个函数</span><br><span class="line">        <span class="number">2</span> 当获取值时，会运行一个函数</span><br><span class="line"></span><br><span class="line"><span class="keyword">get</span>: function()&#123;&#125;</span><br><span class="line"><span class="keyword">set</span>: function(val)&#123;&#125;</span><br><span class="line">configurable  重新修改<span class="built_in">Object</span>.defineProperty()</span><br><span class="line">enumerable  遍历该属性名</span><br><span class="line">writable  是否可改</span><br></pre></td></tr></table></figure>
-
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/20/CSS/%E5%AE%B9%E6%98%93%E6%B7%B7%E6%B7%86%E7%9A%84css%E5%B1%9E%E6%80%A7/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/blogs/images/avatar.gif">
-      <meta itemprop="name" content="HC">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="HC">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/blogs/2020/03/20/CSS/%E5%AE%B9%E6%98%93%E6%B7%B7%E6%B7%86%E7%9A%84css%E5%B1%9E%E6%80%A7/" class="post-title-link" itemprop="url">CSS/容易混淆的css属性</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-03-20 19:30:54 / Modified: 19:31:10" itemprop="dateCreated datePublished" datetime="2020-03-20T19:30:54+08:00">2020-03-20</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>text-indent 首行缩进<br>text-decoration 划线（下划线，中划线，上划线）t<br>text-align 文本对齐方式<br>font-style 斜体等<br>list-style 去掉ul和li的点<br>vertical-align:  文本垂直对齐方式</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/20/CSS/%E8%A1%8C%E7%BA%A7%E5%85%83%E7%B4%A0%E5%92%8C%E5%9D%97%E7%BA%A7%E5%85%83%E7%B4%A0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/blogs/images/avatar.gif">
-      <meta itemprop="name" content="HC">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="HC">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/blogs/2020/03/20/CSS/%E8%A1%8C%E7%BA%A7%E5%85%83%E7%B4%A0%E5%92%8C%E5%9D%97%E7%BA%A7%E5%85%83%E7%B4%A0/" class="post-title-link" itemprop="url">CSS/行级元素和块级元素</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-03-20 19:27:57 / Modified: 19:30:34" itemprop="dateCreated datePublished" datetime="2020-03-20T19:27:57+08:00">2020-03-20</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="不可替换元素-内容的展现由内容本身决定"><a href="#不可替换元素-内容的展现由内容本身决定" class="headerlink" title="不可替换元素(内容的展现由内容本身决定)"></a>不可替换元素(内容的展现由内容本身决定)</h1><ul>
-<li>块级元素：容器元素(div header footer aside article section) h1~h6 p  ul ol li form address</li>
-<li>行级元素：span strong em a i del<h1 id="可替换元素"><a href="#可替换元素" class="headerlink" title="可替换元素"></a>可替换元素</h1></li>
-<li>行块级元素(内容的展现由元素属性决定)<br>img button input select textarea </li>
+          <h1 id="dom元素样式"><a href="#dom元素样式" class="headerlink" title="dom元素样式"></a>dom元素样式</h1><h2 id="控制dom元素的类样式"><a href="#控制dom元素的类样式" class="headerlink" title="控制dom元素的类样式"></a>控制dom元素的类样式</h2><ul>
+<li>className: 获取或设置元素的类名</li>
+<li>classList : dom4新属性，使用于控制元素类名的对象(调用方式：dom对象.classList.xxx())<ul>
+<li>add： 用于添加类名</li>
+<li>remove： 用于移除类名</li>
+<li>toggle: 用于添加或移除类名(有类名的时候就除，无类名的时候就加）</li>
+<li>contains： 判断一个类名是否存（’类名’，true/false）true表示强制添加，false表示强制删除</li>
 </ul>
+</li>
+</ul>
+<h2 id="获取样式"><a href="#获取样式" class="headerlink" title="获取样式"></a>获取样式</h2><ul>
+<li><p>有两种方式</p>
+</li>
+<li><p>dom.style.xxx : 得到行内样式某对象   只能得到行内样式</p>
+</li>
+<li><p>window.getComputedStyle(dom对象)：   得到最终计算后的样式也就是属性计算后（确定声明值，层叠冲突，使用继承，使用默认）的值  ， 由于是window的对象，所以可以直接调用 <strong>可以有第二个参数，用于得到伪元素对象</strong> 如  getComputedStyle(dom对象,该对象的伪类元素名)    <strong>注意该函数返回得到的是字符串形式，一般要转化为number类型的</strong>  用parseInt转换</p>
+</li>
+</ul>
+<h2 id="设置样式"><a href="#设置样式" class="headerlink" title="设置样式"></a>设置样式</h2><ul>
+<li>dom对象.style.xxx =” 值”     该值要用双引号括起来  只有这个可以写</li>
+</ul>
+<h2 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h2><p><strong>css中的段横线命名法在js中换为小驼峰式</strong> ,如<strong>background-color</strong>, 在js种设置改样式时要用小驼峰命名法<strong>backgroundColor</strong></p>
+<p><strong>注意区分获得和设置样式   用 dom.style.xxx 获取是只能获取行间样式(如<div class='abc'></div>的class属性)   用dom对象.style.xxx = “”设置时可以设置全部该对象的样式</strong></p>
 
       
     </div>
@@ -398,7 +447,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/20/CSS/%E8%A1%8C%E7%BA%A7%E5%85%83%E7%B4%A0%E7%9A%84%E7%89%B9%E7%82%B9/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/22/JS-DOM/dom%E5%85%83%E7%B4%A0%E7%9A%84%E6%93%8D%E4%BD%9C/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/blogs/images/avatar.gif">
@@ -412,7 +461,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/blogs/2020/03/20/CSS/%E8%A1%8C%E7%BA%A7%E5%85%83%E7%B4%A0%E7%9A%84%E7%89%B9%E7%82%B9/" class="post-title-link" itemprop="url">CSS/行级元素的特点</a>
+            <a href="/blogs/2020/03/22/JS-DOM/dom%E5%85%83%E7%B4%A0%E7%9A%84%E6%93%8D%E4%BD%9C/" class="post-title-link" itemprop="url">JS-DOM/dom元素的操作</a>
         </h1>
 
         <div class="post-meta">
@@ -423,7 +472,185 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-03-20 19:27:04 / Modified: 19:27:16" itemprop="dateCreated datePublished" datetime="2020-03-20T19:27:04+08:00">2020-03-20</time>
+              <time title="Created: 2020-03-22 14:22:35 / Modified: 15:52:29" itemprop="dateCreated datePublished" datetime="2020-03-22T14:22:35+08:00">2020-03-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="dom元素操作"><a href="#dom元素操作" class="headerlink" title="dom元素操作"></a>dom元素操作</h1><h2 id="获取和设置元素的属性"><a href="#获取和设置元素的属性" class="headerlink" title="获取和设置元素的属性"></a>获取和设置元素的属性</h2><ul>
+<li>通用方式：getAttribute()   setAttribute(属性名，改的值)  ===&gt;一般用于自定义属性</li>
+</ul>
+<p>细节：      原始写到元素上的，不可以不赋值<br>    一般用用于自定义的属性</p>
+<h3 id="可识别属性"><a href="#可识别属性" class="headerlink" title="可识别属性"></a>可识别属性</h3><ul>
+<li><p>正常的html属性  如input 的value，type等</p>
+</li>
+<li><p><strong>dom对象.属性名</strong>  推荐使用该方法操作html属性</p>
+</li>
+</ul>
+<p>细节： 正常的属型即使没有赋值（即没有直接在元素上写），但是也有默认值<br>           某些表单元素可以获取到该元素不存在的属性<br>           某些属性的名字与js的保留字冲突   （如 class==&gt;className、for==&gt;htmlFor）<br>           布尔属性在dom对象中，得到的是boolean</p>
+<h3 id="自定义属性"><a href="#自定义属性" class="headerlink" title="自定义属性"></a>自定义属性</h3><ul>
+<li>自定义属性使用** data-属性名 = “ xxx” 为格式  即以data作为前缀，遵从该规范后可以用 <strong>dom对象.dataset.属性名</strong>获取<br>如<div data-test='abc'></div>  获取dom对象后就可以使用document.getElementsByTagName</li>
+</ul>
+<p>删除属性名</p>
+<ul>
+<li>removeAttribute(“属性名”)</li>
+<li>delete dom.dataset.属性名  <strong>建议使用这种</strong></li>
+</ul>
+<h2 id="设置和获取元素的内容"><a href="#设置和获取元素的内容" class="headerlink" title="设置和获取元素的内容"></a>设置和获取元素的内容</h2><ul>
+<li>dom对象.innerHTML，获取和设置dom对象的文本内容 可以添加元素</li>
+<li>dom对象.innerText，获取纯文本，仅得到内部显示出来的文本，添加元素时会成为文本，不会成为元素</li>
+<li>dom对象.textContent,得到内部所有源代码的文本，包括隐藏的元素也可以得到该文本(IE浏览器)</li>
+</ul>
+<ul>
+<li>可以将style写到body中，将style的样式设为display：block  white-space: pre 和加上属性  contenteditable= “true”  ,就可以将该style显示在页面上 ,并且可以修改</li>
+</ul>
+<h2 id="元素结构重构"><a href="#元素结构重构" class="headerlink" title="元素结构重构"></a>元素结构重构</h2><ul>
+<li>父元素.appendChild(加入的元素) : 在该元素的末尾加上一个子元素(只能一个)</li>
+<li>父元素.append(加入的元素)  可以加多个  不建议使用</li>
+<li>父元素.insertBefore(插入的元素,插入的元素之前)</li>
+<li>父元素.replaceChild(替换的元素 ，被替换的元素)</li>
+</ul>
+<h2 id="创建和删除元"><a href="#创建和删除元" class="headerlink" title="创建和删除元"></a>创建和删除元</h2><p>创建  <strong>document.createxxx()</strong></p>
+<h3 id="创建元素"><a href="#创建元素" class="headerlink" title="创建元素"></a>创建元素</h3><ul>
+<li><p>document.createElement(“元素名称”)</p>
+</li>
+<li><p>document.createDocumentFlagment()  相当于一个容器，无参数</p>
+</li>
+</ul>
+<h3 id="克隆元素"><a href="#克隆元素" class="headerlink" title="克隆元素"></a>克隆元素</h3><ul>
+<li>dom对象.cloneNode(是否深度克隆)  赋值一个新的dom对象  如果是深度克隆，则将元素的文本内容等都赋值过来</li>
+</ul>
+<h3 id="删除元素"><a href="#删除元素" class="headerlink" title="删除元素"></a>删除元素</h3><p>-父元素.removeChild(父元素的子元素)    删除后对象还在，只是在页面消失而已（”谋杀”）<br>-dom对象.remove()  ,无参数，删除自己（”自杀”）</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/22/JS-DOM/%E8%8E%B7%E5%8F%96%E8%8A%82%E7%82%B9%E6%96%B9%E5%BC%8F&dom%E5%85%83%E7%B4%A0%E7%9A%84%E7%BB%A7%E6%89%BF&dom%E6%A0%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blogs/images/avatar.gif">
+      <meta itemprop="name" content="HC">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HC">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/blogs/2020/03/22/JS-DOM/%E8%8E%B7%E5%8F%96%E8%8A%82%E7%82%B9%E6%96%B9%E5%BC%8F&dom%E5%85%83%E7%B4%A0%E7%9A%84%E7%BB%A7%E6%89%BF&dom%E6%A0%91/" class="post-title-link" itemprop="url">JS-DOM/获取节点方式&dom元素的继承&dom树</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-03-22 14:15:14 / Modified: 14:22:09" itemprop="dateCreated datePublished" datetime="2020-03-22T14:15:14+08:00">2020-03-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="获取节点方式即dom元素的继承"><a href="#获取节点方式即dom元素的继承" class="headerlink" title="获取节点方式即dom元素的继承"></a>获取节点方式即dom元素的继承</h1><h2 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h2><ul>
+<li><p>document —&gt; HTMLD ocument—&gt;Document—&gt;Node—&gt;targetEvent—&gt;Object</p>
+</li>
+<li><p>body —&gt; HTMLBodyElement—&gt; HTMLElment—&gt; Element—&gt;Node—&gt;targetEvent—&gt;Object    其他元素类似</p>
+</li>
+</ul>
+<h2 id="获取节点方式"><a href="#获取节点方式" class="headerlink" title="获取节点方式"></a>获取节点方式</h2><ul>
+<li><p>docuemnt.getElementsByTagName()    既挂在Document.prototype 也挂在 Element.prototype身上</p>
+</li>
+<li><p>document.getElementById()    挂在Document.prototype身上</p>
+</li>
+</ul>
+<p>-document.getElementsByClassName()   既挂在Document.prototype 也挂在 Element.prototype身上</p>
+<p>-document.getElementsByName()  HTMLDocument.prototype</p>
+<p>-docuemnt.querySelector()   既挂在Document.prototype 身上，也挂在Element.prototype身上</p>
+<p>-document.querySelectorAll()   既挂在Document.prototype身上，也挂在Element.prototype身上</p>
+<h1 id="dom树"><a href="#dom树" class="headerlink" title="dom树"></a>dom树</h1><p>-dom树的解析完成，并不代表节点的加载完毕</p>
+<p>-domTree(1) + cssTree(2) = randerTree(3)    </p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/22/CSS/%E6%9C%89%E4%BB%B7%E5%80%BC%E7%9A%84css%E7%BB%86%E8%8A%82/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blogs/images/avatar.gif">
+      <meta itemprop="name" content="HC">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HC">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/blogs/2020/03/22/CSS/%E6%9C%89%E4%BB%B7%E5%80%BC%E7%9A%84css%E7%BB%86%E8%8A%82/" class="post-title-link" itemprop="url">CSS/有价值的css细节</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-03-22 14:04:09 / Modified: 14:08:17" itemprop="dateCreated datePublished" datetime="2020-03-22T14:04:09+08:00">2020-03-22</time>
             </span>
 
           
@@ -438,10 +665,28 @@
 
       
           <ul>
-<li>水平方向上撑满</li>
-<li>垂直方向上一次排列</li>
-<li>外边距相邻时会合并</li>
-<li>会忽略浮动元素和定位元素</li>
+<li><p>一个盒子的包含块，就是父元素的内容区，即(width + height)  , 该盒子的宽（width + padding + border + margin）相加一定等于父元素的内容区，即总宽度占满父元素的内容区  width 和margin为auto时  width 吸收能力大于 margin</p>
+</li>
+<li><p>常规流: 块盒独占一行，行盒一次排列</p>
+</li>
+<li><p>行盒的宽高取决于内容的宽高</p>
+</li>
+<li><p>盒子的组成出height除外，百分比设置都是相对于父元素的宽度</p>
+</li>
+<li><p>当一个盒子浮动后，一定为block</p>
+</li>
+<li><p>浮动元素的包含块，与常规流一样，为父元素的内容盒。</p>
+</li>
+<li><p>浮动元素的宽度和高度为auto时，适应内容的高度，margin为auto时为0</p>
+</li>
+<li><p>reletive没有脱离常规流，absolute和fixed脱离了常规流</p>
+</li>
+<li><p>定位元素的包含块是父元素的填充盒  padding + content</p>
+</li>
+<li><p>常见的块盒:   容器元素 、h1-h6、 p元素   form  adress</p>
+</li>
+<li><p>常见的行盒:  span strong em del a i</p>
+</li>
 </ul>
 
       
@@ -462,7 +707,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/20/CSS/%E5%AE%9E%E7%8E%B0%E6%BB%91%E5%8A%A8%E6%9D%A1/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/22/CSS/%E6%A0%B7%E5%BC%8F%E8%A1%A5%E5%85%85/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/blogs/images/avatar.gif">
@@ -476,7 +721,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/blogs/2020/03/20/CSS/%E5%AE%9E%E7%8E%B0%E6%BB%91%E5%8A%A8%E6%9D%A1/" class="post-title-link" itemprop="url">CSS/实现滑动条</a>
+            <a href="/blogs/2020/03/22/CSS/%E6%A0%B7%E5%BC%8F%E8%A1%A5%E5%85%85/" class="post-title-link" itemprop="url">CSS/样式补充</a>
         </h1>
 
         <div class="post-meta">
@@ -487,7 +732,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-03-20 19:24:29 / Modified: 19:26:30" itemprop="dateCreated datePublished" datetime="2020-03-20T19:24:29+08:00">2020-03-20</time>
+              <time title="Created: 2020-03-22 14:03:20 / Modified: 14:03:39" itemprop="dateCreated datePublished" datetime="2020-03-22T14:03:20+08:00">2020-03-22</time>
             </span>
 
           
@@ -501,70 +746,17 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>1 当内容的高度大于盒子的高度时，设置 <code>overflow: auto</code>即可<br>2 设置body的高度或宽度大一点<br>3 实现横向滚动条时，使用 <code>&lt;hr/&gt;</code></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/20/CSS/%E5%85%B3%E4%BA%8E%E8%A1%8C%E9%AB%98%E7%9A%84%E5%8F%96%E5%80%BC/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/blogs/images/avatar.gif">
-      <meta itemprop="name" content="HC">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="HC">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/blogs/2020/03/20/CSS/%E5%85%B3%E4%BA%8E%E8%A1%8C%E9%AB%98%E7%9A%84%E5%8F%96%E5%80%BC/" class="post-title-link" itemprop="url">CSS/关于行高的取值</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-03-20 19:23:09 / Modified: 19:23:58" itemprop="dateCreated datePublished" datetime="2020-03-20T19:23:09+08:00">2020-03-20</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="关于行高的取值"><a href="#关于行高的取值" class="headerlink" title="关于行高的取值"></a>关于行高的取值</h1><ul>
-<li>取值的类型：直接使用自己的：px <h2 id="继承父元素的-："><a href="#继承父元素的-：" class="headerlink" title="继承父元素的 ："></a>继承父元素的 ：</h2></li>
-<li>em ：先计算出继承父元素的值后 让其子元素继承该值 与子元素的font-size无关</li>
-<li>百分比 ： 与em一样</li>
-<li>数值(1,2…)： 先让其子元素的font-size继承该值，再计算自己继承父级的</li>
+          <ul>
+<li>display: list-items;  表示带有次盒子 与li 一样    去掉次盒子时只需设置 list-style : none; </li>
+<li>img引入图片失效时设置宽高无效</li>
+<li>行盒的高度与它内部的行块盒或可替换元素的高度无关</li>
+<li>text-align 对齐方式</li>
+<li>left</li>
+<li>right</li>
+<li>center</li>
+<li>justify:分散对齐,最后一行除外   要想最后一行也分散对齐，则设置伪元素after</li>
+<li>direction: 排列方向</li>
+<li>writing-mode: 文字书写方向</li>
 </ul>
 
       
@@ -585,7 +777,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/20/CSS/inline-block/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/22/CSS/%E6%9C%89%E5%85%B3%E6%96%87%E5%AD%97%E7%8E%AF%E7%BB%95%E5%9B%BE%E7%89%87%E7%9A%84%E7%BB%86%E8%8A%82/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/blogs/images/avatar.gif">
@@ -599,7 +791,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/blogs/2020/03/20/CSS/inline-block/" class="post-title-link" itemprop="url">CSS/inline-block</a>
+            <a href="/blogs/2020/03/22/CSS/%E6%9C%89%E5%85%B3%E6%96%87%E5%AD%97%E7%8E%AF%E7%BB%95%E5%9B%BE%E7%89%87%E7%9A%84%E7%BB%86%E8%8A%82/" class="post-title-link" itemprop="url">CSS/有关文字环绕图片的细节</a>
         </h1>
 
         <div class="post-meta">
@@ -610,7 +802,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-03-20 19:21:37 / Modified: 19:22:18" itemprop="dateCreated datePublished" datetime="2020-03-20T19:21:37+08:00">2020-03-20</time>
+              <time title="Created: 2020-03-22 13:56:57 / Modified: 14:02:55" itemprop="dateCreated datePublished" datetime="2020-03-22T13:56:57+08:00">2020-03-22</time>
             </span>
 
           
@@ -624,9 +816,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="行块盒-inline-block"><a href="#行块盒-inline-block" class="headerlink" title="行块盒 inline-block:"></a>行块盒 inline-block:</h1><ul>
-<li>不独占一行 </li>
-<li>可以设置宽高 ，也称为可替换元素 可替换元素的展示，是依靠元素内的属性决定的 如<code>img button input select textarea</code>表单的一些元素</li>
+          <h1 id="有关文字环绕图片的细节："><a href="#有关文字环绕图片的细节：" class="headerlink" title="有关文字环绕图片的细节："></a>有关文字环绕图片的细节：</h1><ul>
+<li>图片是左浮动或则右浮动，文字就会围绕在其周围，<strong>包裹文字的容器如果是块级元素会避开图片，因为文字默认是用一个行盒包裹，行盒会避开浮动盒子，但是包裹容器的还是块级元素，因此它的实际距离仍然是到它父元素的边距，如果想设置图片和文字的距离，要设置图片的margin-left(图片是左浮动的情况下)或设置图片的margin-right(图片是右浮动的情况下) 因为如果设置块级的margin-left/right,他是从它父级的边距距离开始算</strong></li>
 </ul>
 
       
@@ -647,7 +838,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/20/CSS/%E6%B5%AE%E5%8A%A8%E7%9B%92%E5%AD%90/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/22/CSS/%E6%B0%B4%E5%B9%B3%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD%E6%80%BB%E7%BB%93/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/blogs/images/avatar.gif">
@@ -661,7 +852,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/blogs/2020/03/20/CSS/%E6%B5%AE%E5%8A%A8%E7%9B%92%E5%AD%90/" class="post-title-link" itemprop="url">CSS/浮动盒子</a>
+            <a href="/blogs/2020/03/22/CSS/%E6%B0%B4%E5%B9%B3%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">CSS/水平垂直居中总结</a>
         </h1>
 
         <div class="post-meta">
@@ -672,7 +863,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-03-20 19:21:03 / Modified: 19:21:16" itemprop="dateCreated datePublished" datetime="2020-03-20T19:21:03+08:00">2020-03-20</time>
+              <time title="Created: 2020-03-22 13:46:22 / Modified: 14:08:40" itemprop="dateCreated datePublished" datetime="2020-03-22T13:46:22+08:00">2020-03-22</time>
             </span>
 
           
@@ -686,68 +877,20 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="浮动盒子："><a href="#浮动盒子：" class="headerlink" title="浮动盒子："></a>浮动盒子：</h1><p>1 排列方式：左浮动 向上向左 右浮动 向上向右  并且不得高于上个盒子的高度 且要有位置<br>2 块级元素不考虑浮动盒子 bfc和inline的盒子会考虑浮动盒子<br>3 要清除浮动流，后边的块级盒子才会正常排列</p>
-<p>触发bfc：position：absolute、display：inline-block、float：left/right、overflow：hidden     </p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/20/CSS/bfc/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/blogs/images/avatar.gif">
-      <meta itemprop="name" content="HC">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="HC">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/blogs/2020/03/20/CSS/bfc/" class="post-title-link" itemprop="url">CSS/bfc</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-03-20 19:19:33 / Modified: 19:19:42" itemprop="dateCreated datePublished" datetime="2020-03-20T19:19:33+08:00">2020-03-20</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="创建bfc："><a href="#创建bfc：" class="headerlink" title="创建bfc："></a>创建bfc：</h1><p>1 position: absolute    2 display: inline-block    3 float: left/right     4   overflow: hidden/auto</p>
-<h1 id="创建了bfc的元素："><a href="#创建了bfc的元素：" class="headerlink" title="创建了bfc的元素："></a>创建了bfc的元素：</h1><p>1 它（父元素）的自动高度要计算浮动元素<br>2 它的排列不会忽视浮动元素<br>3 它不会和它的子元素外边距合并</p>
+          <h1 id="css的水平垂直居中总结-都是有包含块的前提之下"><a href="#css的水平垂直居中总结-都是有包含块的前提之下" class="headerlink" title="css的水平垂直居中总结(都是有包含块的前提之下)"></a>css的水平垂直居中总结(都是有包含块的前提之下)</h1><p><strong>浮动元素没有水平垂直居中</strong></p>
+<h2 id="水平居中："><a href="#水平居中：" class="headerlink" title="水平居中："></a>水平居中：</h2><ul>
+<li>单行文本的水平居中：在其父元素加 text-align: center;</li>
+<li>常规流块盒的水平居中： 本身使用 已知宽 +margin: 0 auto;(常规流块盒不可以垂直居中)</li>
+<li>定位元素的水平居中（absolute 和 fixed） left:0 right:0 margin: 0 auto</li>
+</ul>
+<h2 id="垂直居中："><a href="#垂直居中：" class="headerlink" title="垂直居中："></a>垂直居中：</h2><ul>
+<li>单行文本： 设置 line-height: 等于父级的 height</li>
+<li>多行文本： 在文本再包上容器，让该容器变为定位 或者文本的父级使用 padding 设置成垂直居中的样式</li>
+<li>定位元素的垂直居中：<br>一 定高 top : 0 bottom: 0 margin: auto 0;<br>二 定高 top: 50% margin-top: -height;<br>三 定高 top: 50% transform: translate(0, -50%); 高度不确定也行，高度可以任意改变</li>
+</ul>
+<h2 id="目前关于定位元素的水平垂直居中的三个方案"><a href="#目前关于定位元素的水平垂直居中的三个方案" class="headerlink" title="目前关于定位元素的水平垂直居中的三个方案"></a>目前关于定位元素的水平垂直居中的三个方案</h2><p>要定死宽高的 height: 200px; width: 200px; position：absolute; top: 50%; left:50%; margin-left: - 100px(二分之一宽); margin-top: -100px（二分之一高）;</p>
+<p>宽高自适应的，不用定死 可以自定义 ：<br>1 position: absolute; left: 0; bottom: 0; left: 0; right: 0; margin: auto;</p>
+<p>2 position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%)</p>
 
       
     </div>
@@ -767,7 +910,7 @@
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/blogs/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/blogs/page/6/">6</a><a class="extend next" rel="next" href="/blogs/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/blogs/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/blogs/page/7/">7</a><a class="extend next" rel="next" href="/blogs/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -833,7 +976,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/blogs/archives/">
         
-          <span class="site-state-item-count">55</span>
+          <span class="site-state-item-count">65</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
