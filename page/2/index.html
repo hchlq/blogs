@@ -145,6 +145,139 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/22/CSS/%E6%9C%89%E5%85%B3%E6%96%87%E5%AD%97%E7%8E%AF%E7%BB%95%E5%9B%BE%E7%89%87%E7%9A%84%E7%BB%86%E8%8A%82/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blogs/images/avatar.gif">
+      <meta itemprop="name" content="HC">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HC">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/blogs/2020/03/22/CSS/%E6%9C%89%E5%85%B3%E6%96%87%E5%AD%97%E7%8E%AF%E7%BB%95%E5%9B%BE%E7%89%87%E7%9A%84%E7%BB%86%E8%8A%82/" class="post-title-link" itemprop="url">CSS/有关文字环绕图片的细节</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-03-22 13:56:57 / Modified: 14:02:55" itemprop="dateCreated datePublished" datetime="2020-03-22T13:56:57+08:00">2020-03-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="有关文字环绕图片的细节："><a href="#有关文字环绕图片的细节：" class="headerlink" title="有关文字环绕图片的细节："></a>有关文字环绕图片的细节：</h1><ul>
+<li>图片是左浮动或则右浮动，文字就会围绕在其周围，<strong>包裹文字的容器如果是块级元素会避开图片，因为文字默认是用一个行盒包裹，行盒会避开浮动盒子，但是包裹容器的还是块级元素，因此它的实际距离仍然是到它父元素的边距，如果想设置图片和文字的距离，要设置图片的margin-left(图片是左浮动的情况下)或设置图片的margin-right(图片是右浮动的情况下) 因为如果设置块级的margin-left/right,他是从它父级的边距距离开始算</strong></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/22/CSS/%E6%B0%B4%E5%B9%B3%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blogs/images/avatar.gif">
+      <meta itemprop="name" content="HC">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HC">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/blogs/2020/03/22/CSS/%E6%B0%B4%E5%B9%B3%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">CSS/水平垂直居中总结</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-03-22 13:46:22 / Modified: 14:08:40" itemprop="dateCreated datePublished" datetime="2020-03-22T13:46:22+08:00">2020-03-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="css的水平垂直居中总结-都是有包含块的前提之下"><a href="#css的水平垂直居中总结-都是有包含块的前提之下" class="headerlink" title="css的水平垂直居中总结(都是有包含块的前提之下)"></a>css的水平垂直居中总结(都是有包含块的前提之下)</h1><p><strong>浮动元素没有水平垂直居中</strong></p>
+<h2 id="水平居中："><a href="#水平居中：" class="headerlink" title="水平居中："></a>水平居中：</h2><ul>
+<li>单行文本的水平居中：在其父元素加 text-align: center;</li>
+<li>常规流块盒的水平居中： 本身使用 已知宽 +margin: 0 auto;(常规流块盒不可以垂直居中)</li>
+<li>定位元素的水平居中（absolute 和 fixed） left:0 right:0 margin: 0 auto</li>
+</ul>
+<h2 id="垂直居中："><a href="#垂直居中：" class="headerlink" title="垂直居中："></a>垂直居中：</h2><ul>
+<li>单行文本： 设置 line-height: 等于父级的 height</li>
+<li>多行文本： 在文本再包上容器，让该容器变为定位 或者文本的父级使用 padding 设置成垂直居中的样式</li>
+<li>定位元素的垂直居中：<br>一 定高 top : 0 bottom: 0 margin: auto 0;<br>二 定高 top: 50% margin-top: -height;<br>三 定高 top: 50% transform: translate(0, -50%); 高度不确定也行，高度可以任意改变</li>
+</ul>
+<h2 id="目前关于定位元素的水平垂直居中的三个方案"><a href="#目前关于定位元素的水平垂直居中的三个方案" class="headerlink" title="目前关于定位元素的水平垂直居中的三个方案"></a>目前关于定位元素的水平垂直居中的三个方案</h2><p>要定死宽高的 height: 200px; width: 200px; position：absolute; top: 50%; left:50%; margin-left: - 100px(二分之一宽); margin-top: -100px（二分之一高）;</p>
+<p>宽高自适应的，不用定死 可以自定义 ：<br>1 position: absolute; left: 0; bottom: 0; left: 0; right: 0; margin: auto;</p>
+<p>2 position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%)</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/20/CSS/%E5%B1%9E%E6%80%A7%E5%80%BC%E7%9A%84%E8%AE%A1%E7%AE%97%E8%BF%87%E7%A8%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -643,126 +776,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/20/CSS/%E6%B5%AE%E5%8A%A8%E7%9B%92%E5%AD%90/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/blogs/images/avatar.gif">
-      <meta itemprop="name" content="HC">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="HC">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/blogs/2020/03/20/CSS/%E6%B5%AE%E5%8A%A8%E7%9B%92%E5%AD%90/" class="post-title-link" itemprop="url">CSS/浮动盒子</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-03-20 19:21:03 / Modified: 19:21:16" itemprop="dateCreated datePublished" datetime="2020-03-20T19:21:03+08:00">2020-03-20</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="浮动盒子："><a href="#浮动盒子：" class="headerlink" title="浮动盒子："></a>浮动盒子：</h1><p>1 排列方式：左浮动 向上向左 右浮动 向上向右  并且不得高于上个盒子的高度 且要有位置<br>2 块级元素不考虑浮动盒子 bfc和inline的盒子会考虑浮动盒子<br>3 要清除浮动流，后边的块级盒子才会正常排列</p>
-<p>触发bfc：position：absolute、display：inline-block、float：left/right、overflow：hidden     </p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/20/CSS/bfc/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/blogs/images/avatar.gif">
-      <meta itemprop="name" content="HC">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="HC">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/blogs/2020/03/20/CSS/bfc/" class="post-title-link" itemprop="url">CSS/bfc</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-03-20 19:19:33 / Modified: 19:19:42" itemprop="dateCreated datePublished" datetime="2020-03-20T19:19:33+08:00">2020-03-20</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="创建bfc："><a href="#创建bfc：" class="headerlink" title="创建bfc："></a>创建bfc：</h1><p>1 position: absolute    2 display: inline-block    3 float: left/right     4   overflow: hidden/auto</p>
-<h1 id="创建了bfc的元素："><a href="#创建了bfc的元素：" class="headerlink" title="创建了bfc的元素："></a>创建了bfc的元素：</h1><p>1 它（父元素）的自动高度要计算浮动元素<br>2 它的排列不会忽视浮动元素<br>3 它不会和它的子元素外边距合并</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -833,7 +846,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/blogs/archives/">
         
-          <span class="site-state-item-count">65</span>
+          <span class="site-state-item-count">67</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
