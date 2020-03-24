@@ -145,6 +145,255 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/20/JS/%E9%97%AD%E5%8C%85/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blogs/images/avatar.gif">
+      <meta itemprop="name" content="HC">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HC">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/blogs/2020/03/20/JS/%E9%97%AD%E5%8C%85/" class="post-title-link" itemprop="url">JS/闭包</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-03-20 14:50:13 / Modified: 15:59:53" itemprop="dateCreated datePublished" datetime="2020-03-20T14:50:13+08:00">2020-03-20</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="闭包是一种现象"><a href="#闭包是一种现象" class="headerlink" title="闭包是一种现象"></a>闭包是一种现象</h1><p>-从广义上说,函数内部使用外部的变量<br>-从狭义上说，外部函数执行完啦，从执行栈中弹出栈，但是该函数内返回的函数仍然保留该函数内的变量，延长了该变量的生命周期<br>闭包： 是一种现象，是指内部函数可以使用外部的变量等。</p>
+<ul>
+<li>例子: <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> aa = <span class="number">11</span>;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">b</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> b</span><br><span class="line">&#125;</span><br><span class="line">a()</span><br><span class="line"></span><br><span class="line"><span class="comment">//这就是一个简单的闭包现象, 当执行函数时，return b函数的同时相当于a函数的从执行栈中弹出，a消亡，但是b函数被返回出来，他会保留a函数的执行上下文。</span></span><br><span class="line"><span class="comment">// 广义的就是b函数可以使用外部函数的变量aa</span></span><br><span class="line"><span class="comment">// 狭义就是a函数已经消亡了，但是它的变量aa没有被消亡，被b函数保留出来，因此b函数可以使用a函数的上下文中的变量aa，</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/20/JS/this%E6%8C%87%E5%90%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blogs/images/avatar.gif">
+      <meta itemprop="name" content="HC">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HC">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/blogs/2020/03/20/JS/this%E6%8C%87%E5%90%91/" class="post-title-link" itemprop="url">JS/this指向</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-03-20 14:49:44 / Modified: 14:49:56" itemprop="dateCreated datePublished" datetime="2020-03-20T14:49:44+08:00">2020-03-20</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="this的指向：函数调用时才知道this的指向"><a href="#this的指向：函数调用时才知道this的指向" class="headerlink" title="this的指向：函数调用时才知道this的指向"></a>this的指向：函数调用时才知道this的指向</h1><p>1 在全局作用域中，this指向全局对象window<br>2 在函数作用域中，this的指向取决于调用的对象<br>                         a.直接调用，指向全局对象window       如b();（也叫预编译）<br>             b.通过对象（数组的下标arr[index] 或者是对象{}）的属性调用则指向该数组或对象<br>             c.构造函数创建的对象，函数内部的this指向该新对象<br>3 箭头函数的this ， 没有自己的this, 找外层是否有函数，如果有，离他最近的外层函数就是它的this, 没有外层函数的话this就指向window</p>
+<p>4 call apply  第一个参数就是它的this </p>
+<h1 id="一些注意事项："><a href="#一些注意事项：" class="headerlink" title="一些注意事项："></a>一些注意事项：</h1><p>1 arguements.callee      指向函数本身<br>2 注意区分console.log(this.name)  和 console.log(name)  前者是找对象，要找到this的指向，后者是访问对象 ，一层一层的找<br>3 注意在写AO和GO时要考虑this进去，同时找到this的指向<br>4 new 构造函数时 函数的AO中的隐式this中的变量与函数中的var 变量无关<br>如 function test() {<br>var foo = 2;<br>console.log(this.foo);<br>}<br>new test();<br>中的this.foo 是new新对象的this,与var foo 无关</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/20/JS/Function%20&%20Object/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blogs/images/avatar.gif">
+      <meta itemprop="name" content="HC">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HC">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/blogs/2020/03/20/JS/Function%20&%20Object/" class="post-title-link" itemprop="url">JS/Function & Object</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-03-20 14:49:01 / Modified: 14:49:18" itemprop="dateCreated datePublished" datetime="2020-03-20T14:49:01+08:00">2020-03-20</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>标准库:  库liberary     API应用程序编程语言  Application Programing Interface    标准: EMCA script标准<br>typeof(Number)   和typeof(new  Number)有区别</p>
+<p>#Object 用于创建对象，任意对象都是通过Object 创建的<br>-如果创建时传入的为null 或者underfined   则返回一个空对象，相当于new Object()  什么都不传<br>-new Object(123)  相当于new Number(123)     new Object(“a”)，相当于new String(“a”)  new Object(ture)相当于new Boolean(true)     new Object([])相当于new Array([])<br>-new Object({})  相当于var obj = {}<br>##静态属性<br>-Object.prototype    为Object new 出来的对象添加属性和方法，该对象可以继承  因为<strong>proto</strong>指向Object.prototype<br>-Object.length   值为1<br>##静态方法:<br>-Object.keys(对象)  得到所有属性名组成的数组<br>-Object.values(对象)  得到所有属性值的数组<br>-Object.entries(对象)得到属性名和属性值的数组 </p>
+<p>##实例方法  var obj = {}  或者  var obj = new Object()</p>
+<p>***所有的对象，都拥有object的所有实例成员</p>
+<p>-obj.toString()   返回该对象的字符串格式  如 利用Object.prototype.toString.call(对象)，并且对象是new 出来的 （如果不是new出来的，直接传Number 就会得到[object Function]）就可以得到 [object Object]  [object Array]  [object Number]  [object String]  [object Boolean]     Number Boolean Array  String 都重写了toString() 方法  var num = new Number(123) ,num.toString()==&gt; “123”<br>-obj.valueOf()  得到某个对象的值  默认情况下，返回该对象本身<br>**作用: 当进行自动转换时 ，先调用valueOf()  在调用toString()     如var obj = {a: “aa”}   obj + 1   相当于obj.valueOf().toString()    如果调用valueOf()  得到了原始类型（number string boolean undefined），就不会再调用toString()      例如  var obj = {valueOf(){return 111}}<br>则 obj + 1 ==&gt;112    因为已经的到得到了原始类型 不会在调用toString()</p>
+<p>#Function  凡是通过它创建的对象，都是普通函数</p>
+<p>**所有的函数都具有Function中所有的实例成员<br>-关键字arguments   获得所有参数的类数组 类数组没有通过Array创建出来，因此不会拥有Array的实例方法  参数和argumens会一一映射  一个变都会改变</p>
+<p>-test.length   得到形参数量<br>-test.call(xxx，参数1，参数2)   *<em>执行test函数 ，test的this指向xxx  *</em>  参数一数组传递<br>-test.apply(xxx,[参数1 ，…])   执行test函数，test的指向为xxx</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/20/JS/Math/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blogs/images/avatar.gif">
+      <meta itemprop="name" content="HC">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HC">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/blogs/2020/03/20/JS/Math/" class="post-title-link" itemprop="url">JS/Math</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-03-20 14:48:17 / Modified: 14:48:20" itemprop="dateCreated datePublished" datetime="2020-03-20T14:48:17+08:00">2020-03-20</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>1 Math.random()  ,得到一个0-1之间的随机数 可以不用传参<br>2 Math.ceil()   ,向上取整<br>3 Math.floor()  ,向下取整<br>4 Math.abs()  ,去绝对值<br>5 Math.max() ,得到一组数据的最大值，如果不传参，则为-infinity<br>6 Math.min()  ,得到一组数据的最小值，如果不传参，则为infinity<br>7 Math.pow() ,得到xx的xx次方<br>8 Math.round() , 返回四舍五入的整数  找大于该小数的整数</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/20/JS/JS%E8%A1%A5%E5%85%85%E7%AC%94%E8%AE%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -518,82 +767,11 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/20/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/blogs/images/avatar.gif">
-      <meta itemprop="name" content="HC">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="HC">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/blogs/2020/03/20/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-03-20 08:59:32 / Modified: 09:35:36" itemprop="dateCreated datePublished" datetime="2020-03-20T08:59:32+08:00">2020-03-20</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$$$</span><br><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/blogs/page/6/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/blogs/">1</a><span class="space">&hellip;</span><a class="page-number" href="/blogs/page/6/">6</a><span class="page-number current">7</span>
+    <a class="extend prev" rel="prev" href="/blogs/page/6/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/blogs/">1</a><span class="space">&hellip;</span><a class="page-number" href="/blogs/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/blogs/page/8/">8</a><a class="extend next" rel="next" href="/blogs/page/8/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -659,7 +837,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/blogs/archives/">
         
-          <span class="site-state-item-count">67</span>
+          <span class="site-state-item-count">71</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
