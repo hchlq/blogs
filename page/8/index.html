@@ -168,10 +168,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2020-03-20 13:58:14 / Modified: 14:21:57" itemprop="dateCreated datePublished" datetime="2020-03-20T13:58:14+08:00">2020-03-20</time>
+              <time title="Created: 2020-03-20 13:58:14" itemprop="dateCreated datePublished" datetime="2020-03-20T13:58:14+08:00">2020-03-20</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-04-14 21:01:06" itemprop="dateModified" datetime="2020-04-14T21:01:06+08:00">2020-04-14</time>
+              </span>
 
           
 
@@ -184,12 +190,27 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="获取对象的隐式原型"><a href="#获取对象的隐式原型" class="headerlink" title="获取对象的隐式原型"></a>获取对象的隐式原型</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#96;&#96;&#96;js</span><br><span class="line">function A() &#123;&#125;</span><br><span class="line"></span><br><span class="line">const a &#x3D; new A();</span><br><span class="line"></span><br><span class="line">console.log(Object.getPrototypeOf(a));</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;就可以获取到a的隐式原型</span><br></pre></td></tr></table></figure>
-<h1 id="判断该对象-Object-prototype-是否在指定对象的原型链上"><a href="#判断该对象-Object-prototype-是否在指定对象的原型链上" class="headerlink" title="判断该对象(Object.prototype)是否在指定对象的原型链上"></a>判断该对象(Object.prototype)是否在指定对象的原型链上</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">- 任何对象或者函数的prototype都可以使用该方法&#96;Object.prototype&#96;, 因为他们都继承自Object.prototype </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#96;&#96;&#96;js</span><br><span class="line">function A() &#123;&#125;</span><br><span class="line"></span><br><span class="line">const a &#x3D; new A()</span><br><span class="line"></span><br><span class="line">console.log(A.prototype.isPrototypeOf(a)) &#x2F;&#x2F;输出true</span><br></pre></td></tr></table></figure>
+          <h1 id="获取对象的隐式原型"><a href="#获取对象的隐式原型" class="headerlink" title="获取对象的隐式原型"></a>获取对象的隐式原型</h1><ul>
+<li><code>Object.getPrototypeOf(对象)</code></li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">A</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> a = <span class="keyword">new</span> A();</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.getPrototypeOf(a));</span><br><span class="line"></span><br><span class="line"><span class="comment">//就可以获取到a的隐式原型</span></span><br></pre></td></tr></table></figure>
+<h1 id="判断该对象-Object-prototype-是否在指定对象的原型链上"><a href="#判断该对象-Object-prototype-是否在指定对象的原型链上" class="headerlink" title="判断该对象(Object.prototype)是否在指定对象的原型链上"></a>判断该对象(Object.prototype)是否在指定对象的原型链上</h1><ul>
+<li><code>Object.prototype.isPrototypeOf(对象)</code></li>
+<li>任何对象或者函数的prototype都可以使用该方法<code>Object.prototype</code>, 因为他们都继承自Object.prototype </li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">A</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> a = <span class="keyword">new</span> A()</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(A.prototype.isPrototypeOf(a)) <span class="comment">//输出true</span></span><br></pre></td></tr></table></figure>
 
-<h1 id="判断函数的原型是否在对象的原型链上"><a href="#判断函数的原型是否在对象的原型链上" class="headerlink" title="判断函数的原型是否在对象的原型链上"></a>判断函数的原型是否在对象的原型链上</h1><figure class="highlight plain"><figcaption><span>instanceof 函数```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## 介绍定义</span><br><span class="line">1 任何对象都是通过&#96;&#96;&#96;new 函数 &#96;&#96;&#96;产生的. 我们为什么可以使用const a &#x3D; &#123;&#125;  实际上系统会帮我们const a &#x3D; new Object(), 我们用的是它的语法糖</span><br><span class="line">2 任何函数也都是对象</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#96;&#96;&#96;js</span><br><span class="line">const obj &#x3D; &#123;&#125;;</span><br><span class="line"></span><br><span class="line">console.log(obj instanceof Object)&#x2F;&#x2F;意思是Object.prototype是否在obj的原型链上</span><br></pre></td></tr></table></figure>
+<h1 id="判断函数的原型是否在对象的原型链上"><a href="#判断函数的原型是否在对象的原型链上" class="headerlink" title="判断函数的原型是否在对象的原型链上"></a>判断函数的原型是否在对象的原型链上</h1><ul>
+<li><code>对象 instanceof 函数</code></li>
+</ul>
+<h2 id="介绍定义"><a href="#介绍定义" class="headerlink" title="介绍定义"></a>介绍定义</h2><p>1 任何对象都是通过<code>new 函数</code>产生的. 我们为什么可以使用const a = {}  实际上系统会帮我们const a = new Object(), 我们用的是它的语法糖<br>2 任何函数也都是对象</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123;&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(obj <span class="keyword">instanceof</span> <span class="built_in">Object</span>)<span class="comment">//意思是Object.prototype是否在obj的原型链上</span></span><br></pre></td></tr></table></figure>
 
-<h1 id="判断属性是不是自己的"><a href="#判断属性是不是自己的" class="headerlink" title="判断属性是不是自己的"></a>判断属性是不是自己的</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">- 有时候一个对象使用的可能是继承过来的属性, 不是本身的，所以提供给我们判断该属性是不是自己的 </span><br><span class="line">&#96;&#96;&#96;js</span><br><span class="line">A.prototype.b &#x3D; 123</span><br><span class="line"></span><br><span class="line">function A() &#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const a &#x3D; new A();</span><br><span class="line">&#x2F;&#x2F;我们可以访问a.b 是因为继承了A.prototype</span><br><span class="line"></span><br><span class="line">console.log(a.hasOwnProperty(&quot;b&quot;))&#x2F;&#x2F;a继承Object.prototype, 因此可以使用该方法</span><br></pre></td></tr></table></figure>
+<h1 id="判断属性是不是自己的"><a href="#判断属性是不是自己的" class="headerlink" title="判断属性是不是自己的"></a>判断属性是不是自己的</h1><ul>
+<li><code>Object.prototype.hasOwnProperty(属性名)</code></li>
+<li>有时候一个对象使用的可能是继承过来的属性, 不是本身的，所以提供给我们判断该属性是不是自己的 </li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">A.prototype.b = <span class="number">123</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">A</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> a = <span class="keyword">new</span> A();</span><br><span class="line"><span class="comment">//我们可以访问a.b 是因为继承了A.prototype</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(a.hasOwnProperty(<span class="string">"b"</span>))<span class="comment">//a继承Object.prototype, 因此可以使用该方法</span></span><br></pre></td></tr></table></figure>
       
     </div>
 
