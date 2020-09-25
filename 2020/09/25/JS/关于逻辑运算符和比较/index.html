@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/blogs/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blogs/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blogs/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/blogs/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/blogs/css/main.css">
+
+
+<link rel="stylesheet" href="/blogs/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/blogs/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="开发中可能用不到, 但是面试可能常考的有关逻辑运算符的计算关于如果将常见的各类型转为字符串的规则 number: 直接加字符串  boolean: 直接加字符串  null: 直接加字符串  undefined: 直接加字符串   对象: 规则见如下1-1  数组: 规则见如下1-1   关于常见的类型转换为number的规则 string: 如果字符串是一个有效的数字，转为数字是有效的如”123">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS&#x2F;关于逻辑运算符和比较">
+<meta property="og:url" content="http://yoursite.com/2020/09/25/JS/%E5%85%B3%E4%BA%8E%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E7%AC%A6%E5%92%8C%E6%AF%94%E8%BE%83/index.html">
+<meta property="og:site_name" content="HC">
+<meta property="og:description" content="开发中可能用不到, 但是面试可能常考的有关逻辑运算符的计算关于如果将常见的各类型转为字符串的规则 number: 直接加字符串  boolean: 直接加字符串  null: 直接加字符串  undefined: 直接加字符串   对象: 规则见如下1-1  数组: 规则见如下1-1   关于常见的类型转换为number的规则 string: 如果字符串是一个有效的数字，转为数字是有效的如”123">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-09-25T05:12:21.294Z">
+<meta property="article:modified_time" content="2020-09-25T05:56:53.772Z">
+<meta property="article:author" content="HC">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2020/09/25/JS/%E5%85%B3%E4%BA%8E%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E7%AC%A6%E5%92%8C%E6%AF%94%E8%BE%83/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>JS/关于逻辑运算符和比较 | HC</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/blogs/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">HC</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/blogs/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/blogs/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/25/JS/%E5%85%B3%E4%BA%8E%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E7%AC%A6%E5%92%8C%E6%AF%94%E8%BE%83/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blogs/images/avatar.gif">
+      <meta itemprop="name" content="HC">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HC">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          JS/关于逻辑运算符和比较
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-09-25 13:12:21 / Modified: 13:56:53" itemprop="dateCreated datePublished" datetime="2020-09-25T13:12:21+08:00">2020-09-25</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="开发中可能用不到-但是面试可能常考的有关逻辑运算符的计算"><a href="#开发中可能用不到-但是面试可能常考的有关逻辑运算符的计算" class="headerlink" title="开发中可能用不到, 但是面试可能常考的有关逻辑运算符的计算"></a>开发中可能用不到, 但是面试可能常考的有关逻辑运算符的计算</h1><h4 id="关于如果将常见的各类型转为字符串的规则"><a href="#关于如果将常见的各类型转为字符串的规则" class="headerlink" title="关于如果将常见的各类型转为字符串的规则"></a>关于如果将常见的各类型转为字符串的规则</h4><ul>
+<li><p>number: 直接加字符串</p>
+</li>
+<li><p>boolean: 直接加字符串</p>
+</li>
+<li><p>null: 直接加字符串</p>
+</li>
+<li><p>undefined: 直接加字符串 </p>
+</li>
+<li><p>对象: 规则见如下1-1</p>
+</li>
+<li><p>数组: 规则见如下1-1</p>
+</li>
+</ul>
+<h4 id="关于常见的类型转换为number的规则"><a href="#关于常见的类型转换为number的规则" class="headerlink" title="关于常见的类型转换为number的规则"></a>关于常见的类型转换为number的规则</h4><ul>
+<li><p>string: 如果字符串是一个有效的数字，转为数字是有效的如”123” =&gt; 123,如果是”123abc”,那么就不是有效的;</p>
+</li>
+<li><p>boolean: true转为1, false转为0;</p>
+</li>
+<li><p>null: 为0</p>
+</li>
+<li><p>undefined: 为NaN</p>
+</li>
+<li><p>对象: 如{},先将对象转为字符串(规则如1-1)，得到基本类型后强制转为number;为<code>NaN</code></p>
+</li>
+<li><p>数组: 先将数组转为字符串(规则如1-1)，由于数组toString()的到的是各元素转成的字符串，如[1, 2, 3] 得到的是”1, 2, 3”。最后进行转换成number类型</p>
+</li>
+</ul>
+<h2 id="逻辑运算符-等"><a href="#逻辑运算符-等" class="headerlink" title="逻辑运算符 + - * / % 等"></a>逻辑运算符 + - * / % 等</h2><h3 id="除加号之外的运算符"><a href="#除加号之外的运算符" class="headerlink" title="除加号之外的运算符"></a>除加号之外的运算符</h3><ul>
+<li>强制转换为number类型再计算</li>
+</ul>
+<h3 id="加号的运算"><a href="#加号的运算" class="headerlink" title="加号的运算"></a>加号的运算</h3><ul>
+<li>至少有一个字符串: 这种情况就是进行字符串的拼接<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">"abc"</span> + <span class="number">123</span>); <span class="comment">// abc123</span></span><br></pre></td></tr></table></figure></li>
+<li>没有字符串，至少有一个对象<br>(1-1)先调用该字符串的valueOf()方法, 如果没有返回基本类型，valueOf返回了基本类型，就不会继续往下调用toString()方法，否则继续调用toString()方法。</li>
+</ul>
+<p><strong>一种特殊的情况式如果使用<code>Object.create(null);</code>创建的对象，那么该对象没有valueOf和toString方法</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(&#123;&#125; + <span class="string">'abc'</span>); <span class="comment">// [object, Object]abc</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="自加和自减"><a href="#自加和自减" class="headerlink" title="自加和自减"></a>自加和自减</h2><ul>
+<li>a++: a自加1, 表达式(a++)返回运算之前的值。<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="number">1</span>;</span><br><span class="line"><span class="built_in">console</span>.log(a++);<span class="comment">// 1</span></span><br></pre></td></tr></table></figure></li>
+<li>++a: a自加1, 表达式(++a)返回运算之后的值<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="number">1</span>;</span><br><span class="line"><span class="built_in">console</span>.log(++a); <span class="comment">// 2</span></span><br></pre></td></tr></table></figure></li>
+<li>a–: a自减1, 表达式(a–)返回运算之前的值<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="number">1</span>;</span><br><span class="line"><span class="built_in">console</span>.log(a--); <span class="comment">// 1</span></span><br></pre></td></tr></table></figure></li>
+<li>–a: a自减1, 表达式(–a)返回运算之后的值<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="number">1</span>;</span><br><span class="line"><span class="built_in">console</span>.log(--a); <span class="comment">// 0</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="比较运算符"><a href="#比较运算符" class="headerlink" title="比较运算符"></a>比较运算符</h2><h3 id="lt-gt-lt-gt"><a href="#lt-gt-lt-gt" class="headerlink" title="&lt;= &gt;= &lt; &gt;"></a>&lt;= &gt;= &lt; &gt;</h3><ul>
+<li>两边都是字符串: 从左到右一一进行字符串的ascll码的比较<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">'13'</span> &gt; <span class="string">'2'</span>); <span class="comment">// false 2的ascll码比1大</span></span><br></pre></td></tr></table></figure></li>
+<li>剩下的转为number类型进行比较，规则见上</li>
+</ul>
+<h3 id="相等比较"><a href="#相等比较" class="headerlink" title="== === 相等比较"></a>== === 相等比较</h3><p>区别: == 和 === 的区别是前者可以隐式进行类型转换，后者不行</p>
+<h4 id=""><a href="#" class="headerlink" title="=="></a>==</h4><ul>
+<li>相等类型的比较: 原始类型就按原始类型比较，对象则比较引用</li>
+<li>不同类型的比较<ul>
+<li>null和undefined: <strong>null==undefined</strong>， 除此之外，null和undefined不等于任何值</li>
+<li>其他类型转为number进行比较，规则见上</li>
+</ul>
+</li>
+</ul>
+<h2 id="细节"><a href="#细节" class="headerlink" title="细节"></a>细节</h2><ul>
+<li>NaN跟任何类型比较都不相等<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 判断NaN的四种方法</span></span><br><span class="line"><span class="comment">// 1 </span></span><br><span class="line"><span class="built_in">Object</span>.is(target, <span class="literal">NaN</span>);</span><br><span class="line"><span class="comment">// 2</span></span><br><span class="line"><span class="built_in">Number</span>.isNaN(target);</span><br><span class="line"><span class="comment">// 3</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">oNaN</span>(<span class="params">target</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">typeof</span> target == <span class="string">'number &amp;&amp; window.isNaN(target);</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">// 4 </span></span><br><span class="line"><span class="string">function oNaN2(target) &#123;</span></span><br><span class="line"><span class="string">    return target !== target;</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure></li>
+<li>infinity和-infinity<code>== ===</code>只能和自己比较</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/blogs/2020/09/17/BooksRead/javascriptYoudonnot1/" rel="prev" title="BooksRead/javascriptYoudonnot1">
+      <i class="fa fa-chevron-left"></i> BooksRead/javascriptYoudonnot1
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#开发中可能用不到-但是面试可能常考的有关逻辑运算符的计算"><span class="nav-number">1.</span> <span class="nav-text">开发中可能用不到, 但是面试可能常考的有关逻辑运算符的计算</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#关于如果将常见的各类型转为字符串的规则"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">关于如果将常见的各类型转为字符串的规则</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#关于常见的类型转换为number的规则"><span class="nav-number">1.0.0.2.</span> <span class="nav-text">关于常见的类型转换为number的规则</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#逻辑运算符-等"><span class="nav-number">1.1.</span> <span class="nav-text">逻辑运算符 + - * &#x2F; % 等</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#除加号之外的运算符"><span class="nav-number">1.1.1.</span> <span class="nav-text">除加号之外的运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#加号的运算"><span class="nav-number">1.1.2.</span> <span class="nav-text">加号的运算</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自加和自减"><span class="nav-number">1.2.</span> <span class="nav-text">自加和自减</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#比较运算符"><span class="nav-number">1.3.</span> <span class="nav-text">比较运算符</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#lt-gt-lt-gt"><span class="nav-number">1.3.1.</span> <span class="nav-text">&lt;&#x3D; &gt;&#x3D; &lt; &gt;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相等比较"><span class="nav-number">1.3.2.</span> <span class="nav-text">&#x3D;&#x3D; &#x3D;&#x3D;&#x3D; 相等比较</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">&#x3D;&#x3D;</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#细节"><span class="nav-number">1.4.</span> <span class="nav-text">细节</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">HC</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/blogs/archives/">
+        
+          <span class="site-state-item-count">75</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">HC</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.7.2
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/blogs/lib/anime.min.js"></script>
+  <script src="/blogs/lib/velocity/velocity.min.js"></script>
+  <script src="/blogs/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/blogs/js/utils.js"></script>
+
+<script src="/blogs/js/motion.js"></script>
+
+
+<script src="/blogs/js/schemes/muse.js"></script>
+
+
+<script src="/blogs/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

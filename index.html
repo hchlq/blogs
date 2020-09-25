@@ -145,6 +145,360 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/25/JS/%E5%85%B3%E4%BA%8E%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E7%AC%A6%E5%92%8C%E6%AF%94%E8%BE%83/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blogs/images/avatar.gif">
+      <meta itemprop="name" content="HC">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HC">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/blogs/2020/09/25/JS/%E5%85%B3%E4%BA%8E%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E7%AC%A6%E5%92%8C%E6%AF%94%E8%BE%83/" class="post-title-link" itemprop="url">JS/关于逻辑运算符和比较</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-09-25 13:12:21 / Modified: 13:56:53" itemprop="dateCreated datePublished" datetime="2020-09-25T13:12:21+08:00">2020-09-25</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="开发中可能用不到-但是面试可能常考的有关逻辑运算符的计算"><a href="#开发中可能用不到-但是面试可能常考的有关逻辑运算符的计算" class="headerlink" title="开发中可能用不到, 但是面试可能常考的有关逻辑运算符的计算"></a>开发中可能用不到, 但是面试可能常考的有关逻辑运算符的计算</h1><h4 id="关于如果将常见的各类型转为字符串的规则"><a href="#关于如果将常见的各类型转为字符串的规则" class="headerlink" title="关于如果将常见的各类型转为字符串的规则"></a>关于如果将常见的各类型转为字符串的规则</h4><ul>
+<li><p>number: 直接加字符串</p>
+</li>
+<li><p>boolean: 直接加字符串</p>
+</li>
+<li><p>null: 直接加字符串</p>
+</li>
+<li><p>undefined: 直接加字符串 </p>
+</li>
+<li><p>对象: 规则见如下1-1</p>
+</li>
+<li><p>数组: 规则见如下1-1</p>
+</li>
+</ul>
+<h4 id="关于常见的类型转换为number的规则"><a href="#关于常见的类型转换为number的规则" class="headerlink" title="关于常见的类型转换为number的规则"></a>关于常见的类型转换为number的规则</h4><ul>
+<li><p>string: 如果字符串是一个有效的数字，转为数字是有效的如”123” =&gt; 123,如果是”123abc”,那么就不是有效的;</p>
+</li>
+<li><p>boolean: true转为1, false转为0;</p>
+</li>
+<li><p>null: 为0</p>
+</li>
+<li><p>undefined: 为NaN</p>
+</li>
+<li><p>对象: 如{},先将对象转为字符串(规则如1-1)，得到基本类型后强制转为number;为<code>NaN</code></p>
+</li>
+<li><p>数组: 先将数组转为字符串(规则如1-1)，由于数组toString()的到的是各元素转成的字符串，如[1, 2, 3] 得到的是”1, 2, 3”。最后进行转换成number类型</p>
+</li>
+</ul>
+<h2 id="逻辑运算符-等"><a href="#逻辑运算符-等" class="headerlink" title="逻辑运算符 + - * / % 等"></a>逻辑运算符 + - * / % 等</h2><h3 id="除加号之外的运算符"><a href="#除加号之外的运算符" class="headerlink" title="除加号之外的运算符"></a>除加号之外的运算符</h3><ul>
+<li>强制转换为number类型再计算</li>
+</ul>
+<h3 id="加号的运算"><a href="#加号的运算" class="headerlink" title="加号的运算"></a>加号的运算</h3><ul>
+<li>至少有一个字符串: 这种情况就是进行字符串的拼接<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">"abc"</span> + <span class="number">123</span>); <span class="comment">// abc123</span></span><br></pre></td></tr></table></figure></li>
+<li>没有字符串，至少有一个对象<br>(1-1)先调用该字符串的valueOf()方法, 如果没有返回基本类型，valueOf返回了基本类型，就不会继续往下调用toString()方法，否则继续调用toString()方法。</li>
+</ul>
+<p><strong>一种特殊的情况式如果使用<code>Object.create(null);</code>创建的对象，那么该对象没有valueOf和toString方法</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(&#123;&#125; + <span class="string">'abc'</span>); <span class="comment">// [object, Object]abc</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="自加和自减"><a href="#自加和自减" class="headerlink" title="自加和自减"></a>自加和自减</h2><ul>
+<li>a++: a自加1, 表达式(a++)返回运算之前的值。<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="number">1</span>;</span><br><span class="line"><span class="built_in">console</span>.log(a++);<span class="comment">// 1</span></span><br></pre></td></tr></table></figure></li>
+<li>++a: a自加1, 表达式(++a)返回运算之后的值<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="number">1</span>;</span><br><span class="line"><span class="built_in">console</span>.log(++a); <span class="comment">// 2</span></span><br></pre></td></tr></table></figure></li>
+<li>a–: a自减1, 表达式(a–)返回运算之前的值<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="number">1</span>;</span><br><span class="line"><span class="built_in">console</span>.log(a--); <span class="comment">// 1</span></span><br></pre></td></tr></table></figure></li>
+<li>–a: a自减1, 表达式(–a)返回运算之后的值<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="number">1</span>;</span><br><span class="line"><span class="built_in">console</span>.log(--a); <span class="comment">// 0</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="比较运算符"><a href="#比较运算符" class="headerlink" title="比较运算符"></a>比较运算符</h2><h3 id="lt-gt-lt-gt"><a href="#lt-gt-lt-gt" class="headerlink" title="&lt;= &gt;= &lt; &gt;"></a>&lt;= &gt;= &lt; &gt;</h3><ul>
+<li>两边都是字符串: 从左到右一一进行字符串的ascll码的比较<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">'13'</span> &gt; <span class="string">'2'</span>); <span class="comment">// false 2的ascll码比1大</span></span><br></pre></td></tr></table></figure></li>
+<li>剩下的转为number类型进行比较，规则见上</li>
+</ul>
+<h3 id="相等比较"><a href="#相等比较" class="headerlink" title="== === 相等比较"></a>== === 相等比较</h3><p>区别: == 和 === 的区别是前者可以隐式进行类型转换，后者不行</p>
+<h4 id=""><a href="#" class="headerlink" title="=="></a>==</h4><ul>
+<li>相等类型的比较: 原始类型就按原始类型比较，对象则比较引用</li>
+<li>不同类型的比较<ul>
+<li>null和undefined: <strong>null==undefined</strong>， 除此之外，null和undefined不等于任何值</li>
+<li>其他类型转为number进行比较，规则见上</li>
+</ul>
+</li>
+</ul>
+<h2 id="细节"><a href="#细节" class="headerlink" title="细节"></a>细节</h2><ul>
+<li>NaN跟任何类型比较都不相等<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 判断NaN的四种方法</span></span><br><span class="line"><span class="comment">// 1 </span></span><br><span class="line"><span class="built_in">Object</span>.is(target, <span class="literal">NaN</span>);</span><br><span class="line"><span class="comment">// 2</span></span><br><span class="line"><span class="built_in">Number</span>.isNaN(target);</span><br><span class="line"><span class="comment">// 3</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">oNaN</span>(<span class="params">target</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">typeof</span> target == <span class="string">'number &amp;&amp; window.isNaN(target);</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">// 4 </span></span><br><span class="line"><span class="string">function oNaN2(target) &#123;</span></span><br><span class="line"><span class="string">    return target !== target;</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure></li>
+<li>infinity和-infinity<code>== ===</code>只能和自己比较</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/17/BooksRead/javascriptYoudonnot1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blogs/images/avatar.gif">
+      <meta itemprop="name" content="HC">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HC">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/blogs/2020/09/17/BooksRead/javascriptYoudonnot1/" class="post-title-link" itemprop="url">BooksRead/javascriptYoudonnot1</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-09-17 22:20:32" itemprop="dateCreated datePublished" datetime="2020-09-17T22:20:32+08:00">2020-09-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-09-24 23:38:18" itemprop="dateModified" datetime="2020-09-24T23:38:18+08:00">2020-09-24</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ul>
+<li>for..of循环只能是数组，对象不行，因为会默认存在迭代器对象</li>
+</ul>
+<h2 id="this的指向（由大到小）"><a href="#this的指向（由大到小）" class="headerlink" title="this的指向（由大到小）"></a>this的指向（由大到小）</h2><ul>
+<li>默认绑定: 全局调用this，函数直接调用</li>
+<li>隐式绑定: 调用函数的上下文对象</li>
+<li>显示绑定: 使用call,apply,bind</li>
+<li>new构造函数: 指向新创建的对象</li>
+</ul>
+<h3 id="他们的优先级"><a href="#他们的优先级" class="headerlink" title="他们的优先级"></a>他们的优先级</h3><p>1 new构造函数</p>
+<p>2 显示绑定</p>
+<p>3 隐式绑定</p>
+<p>4 默认绑定</p>
+<h2 id="javaScript中的类型"><a href="#javaScript中的类型" class="headerlink" title="javaScript中的类型"></a>javaScript中的类型</h2><ul>
+<li><p>number string boolean null undefined object symbol</p>
+</li>
+<li><p>typeof中的类型: number string boolean undefind object function  symbol</p>
+<p><strong>注意的是，<code>typeof null === &#39;object&#39;</code> 判断null的类型要用符合条件去判断: <code>(!a &amp;&amp; typeof a === &#39;object&#39;)</code></strong></p>
+</li>
+</ul>
+<h2 id="常量对象"><a href="#常量对象" class="headerlink" title="常量对象"></a>常量对象</h2><ul>
+<li><p>设置常量不可以删改查, 用<code>Object.defineProperty</code>设置<code>writable:false; configurable: false</code></p>
+</li>
+<li><p>禁止扩展: 禁止一个对象添加新属性并且保留已有属性</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Object</span>.preventExtensions(obj)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>密封: 密封一个对象，会在现有对象上调用<code>Object.preventExtensions()</code>,并把现有属性标记为configurable: false, 密封后不能增和删，但是能改</p>
+</li>
+<li><p>冻结:  创建一个冻结对象，实际上调用<code>Object,seal()</code>,属性标记为writable: false;,这样久无法修改值，即无法增删改查</p>
+</li>
+</ul>
+<h2 id="小细节"><a href="#小细节" class="headerlink" title="小细节"></a>小细节</h2><ul>
+<li><p><code>null == undefined</code>为true, 但是<code>null === undefined</code>为false;</p>
+</li>
+<li><p>NaN啥也不等，就连<code>NaN === NaN</code>都为false</p>
+</li>
+<li><p>一个未声明的变量typeof不会报错，得到的是undefined</p>
+</li>
+<li><p>数组赋值时如果不是用数字索引赋值时，虽然可以访问，但是数组的长度不会变 如:<code>const arr = [] arr[&#39;a&#39;] = &#39;aa&#39;</code>这样得到的数组长度仍然为0,但是可以通过arr[‘a’]访问到值’aa’；<strong>特别注意的是，如果arr[‘数字’] = ‘…’ 这样赋值的话，数组的长度就是数字+1了</strong></p>
+</li>
+<li><p>字符串借用数组的方法处理时有一项是不会改变的</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> str = <span class="string">'abc'</span>;</span><br><span class="line"><span class="keyword">let</span> result = <span class="built_in">Array</span>.prototype.reverse(str);</span><br><span class="line"><span class="comment">// 返回的还是'abc'字符串</span></span><br><span class="line"><span class="comment">// 如果实在是像这样做,可以先将字符串用split转为数组，然后调用reverse,最后调用join拼接起来</span></span><br><span class="line">str.split(<span class="string">''</span>).reverse().join(<span class="string">''</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>将很大的数字转为指数形式</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> num = <span class="number">60000000000</span></span><br><span class="line">num.toExponential() <span class="comment">// 转为指数</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>显示有效的位数</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="number">42.59</span>;</span><br><span class="line">a.toPrecision(<span class="number">1</span>) <span class="comment">// 4e+1</span></span><br><span class="line">a.toPrecision(<span class="number">2</span>) <span class="comment">// 43</span></span><br><span class="line"><span class="comment">// 特别注意的是，不能直接使用数字去点方法 如21.xxx(), 要有两个小数点</span></span><br><span class="line"><span class="comment">//但是可以使用(21).xxx() || 21..xxx() ||</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>js中进制的表示: <code>ob11(二进制) o066(八进制) oxaa(十六进制)</code></p>
+</li>
+<li><p>判断一个数字是否值整数</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// es6之前</span></span><br><span class="line"><span class="built_in">Number</span>.isInteger = <span class="function"><span class="keyword">function</span> (<span class="params">number</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">typeof</span> number === <span class="string">'number'</span> &amp;&amp; num % <span class="number">1</span> === <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// est之后</span></span><br><span class="line"><span class="built_in">Number</span>.isInteger(number);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>js中安全的数字 -(2^53 - 1) –&gt; 2^53 - 1</p>
+</li>
+<li><p>undefined和null的区别: </p>
+<ul>
+<li>undefined从未赋值过，但是null表示赋值过，但是现在是空值</li>
+<li>undefined可以当作变量来使用，null不行。<strong>但是强烈推荐不要这样做</strong></li>
+</ul>
+</li>
+<li><p><code>typeof NaN === ‘number&#39;</code>，可称NaN是无效数值，失败数值或者坏数值</p>
+</li>
+<li><p><code>window.isNaN(num)</code>有一个bug，就是如果是字符串，也返回true, 因此可以使用Es6的<code>Number.isNaN(num)</code>来判断</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// es5 polyfill代码为</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isNaN</span>(<span class="params">number</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">typeof</span> number === <span class="string">'number'</span> &amp;&amp; <span class="built_in">window</span>.isNaN(number)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 或者可以这样 利用NaN不等于自己的特性</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isNaN</span>(<span class="params">number</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> number !== number;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>es6提供了工具方法<code>Object.is(n1, n2)</code>一般用来判断两个特殊的值是否绝对相等 判断<code>NaN  -0 和 0</code>。<strong>能使用 == 和 === （参见第 4 章）时就尽量不要使用 Object.is(..) ，因为前者效率更高、<br>更为通用。 Object.is(..) 主要用来处理那些特殊的相等比较</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Object</span>.is(n1, n2);</span><br><span class="line"><span class="keyword">let</span> str = <span class="number">2</span> / <span class="string">'foo'</span>;</span><br><span class="line"><span class="built_in">Object</span>.is(str, <span class="literal">NaN</span>); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">Object</span>.is(<span class="string">'abc'</span>, <span class="literal">NaN</span>) <span class="comment">// false</span></span><br><span class="line"><span class="built_in">Object</span>.is(<span class="number">0</span>, <span class="number">-0</span>)  <span class="comment">// false</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Object.is()的polyfill代码</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isObject</span>(<span class="params">v1, v2</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 比较0和-0</span></span><br><span class="line">    <span class="keyword">if</span> (v1 === <span class="number">0</span> &amp;&amp; v2 === <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span> / v1 === <span class="number">1</span> / v2;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 比较NaN</span></span><br><span class="line">    <span class="keyword">if</span> (v1 !== v1) &#123;</span><br><span class="line">        <span class="keyword">return</span> v2 !== v2</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 其他情况</span></span><br><span class="line">    <span class="keyword">return</span> v1 === v2;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>判断一个数是不是NaN的四种有效方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 1</span><br><span class="line">Object.is(n1, NaN);</span><br><span class="line">&#x2F;&#x2F; 2</span><br><span class="line">Number.isNaN(n1);</span><br><span class="line">&#x2F;&#x2F; 3</span><br><span class="line">function isNaN(number) &#123;</span><br><span class="line">	return typeof number &#x3D;&#x3D;&#x3D; &#39;number&#39; &amp;&amp; window.isNaN(number);</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F; 4 </span><br><span class="line">function isNaN2(number) &#123;</span><br><span class="line">	reture number !&#x3D;&#x3D; number; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>\n对应的十六进制为0x0a，\r对应的十六进制为0x0d。window系统换行是会有\n和\r，但是mac系统只有\r</p>
+</li>
+</ul>
+<h2 id="原生函数-javascript的内建函数"><a href="#原生函数-javascript的内建函数" class="headerlink" title="原生函数(javascript的内建函数)"></a>原生函数(javascript的内建函数)</h2><ul>
+<li>Number()</li>
+<li>String()</li>
+<li>Boolean()</li>
+<li>Object()</li>
+<li>Array()</li>
+<li>Function()</li>
+<li>RegExp()</li>
+<li>Date()</li>
+<li>Error()</li>
+<li>Symbol()</li>
+</ul>
+<h2 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h2><ul>
+<li><p>(?:xx) 表示匹配不捕获</p>
+</li>
+<li><p>(?=xx) 正向预查,<strong>一次正向预查(?=xx)就对整个字符串预</strong></p>
+<p>匹配任何其后紧接指定字符串 xx的字符串。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> reg = <span class="regexp">/(?=k)kd/</span>; <span class="comment">// 这样才能匹配到</span></span><br><span class="line"><span class="keyword">const</span> str = <span class="string">'jfsdkd'</span> </span><br><span class="line"><span class="keyword">const</span> reg2 = <span class="regexp">/jfs(?=k)/</span>; <span class="comment">// 这样就行了</span></span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ul>
+<li><p>(?!xx) 反向预查  <strong>一次正向预查(?!xx)就对整个字符串预查</strong></p>
+<p>匹配任何其后没有紧接指定字符串 n 的字符串。</p>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/16/ajax/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blogs/images/avatar.gif">
+      <meta itemprop="name" content="HC">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HC">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/blogs/2020/04/16/ajax/" class="post-title-link" itemprop="url">ajax</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-04-16 15:44:30" itemprop="dateCreated datePublished" datetime="2020-04-16T15:44:30+08:00">2020-04-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-04-19 22:07:48" itemprop="dateModified" datetime="2020-04-19T22:07:48+08:00">2020-04-19</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="封装的-ajax-函数"><a href="#封装的-ajax-函数" class="headerlink" title="封装的 ajax 函数"></a>封装的 ajax 函数</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">*<span class="doctag">@param <span class="type">&#123;*&#125;</span> </span>method  方式Get POST...</span></span><br><span class="line"><span class="comment">*<span class="doctag">@param <span class="type">&#123;*&#125;</span> </span>url 请求的地址</span></span><br><span class="line"><span class="comment">*<span class="doctag">@param <span class="type">&#123;*&#125;</span> </span>callback 成功后调用这个函数，并且把请求回来的数据传给这个回调函数</span></span><br><span class="line"><span class="comment">*<span class="doctag">@param <span class="type">&#123;*&#125;</span> </span>flag 是否异步</span></span><br><span class="line"><span class="comment">*<span class="doctag">@param <span class="type">&#123;*&#125;</span> </span>data 请求的参数</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">ajaxFunc</span>(<span class="params">method, url, callback, flag, data</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> xhr;</span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">window</span>.XMLHttpRequest) &#123;</span><br><span class="line">    xhr = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    xhr = <span class="keyword">new</span> ActiveXObject(<span class="string">"Microsoft.XMLHttp"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  method = method.toUpperCase();</span><br><span class="line">  <span class="keyword">if</span> (method == <span class="string">"GET"</span>) &#123;</span><br><span class="line">    xhr.open(method, url + <span class="string">"?"</span> + data, flag);</span><br><span class="line">    xhr.send();</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    xhr.open(method, url, flag);</span><br><span class="line">    xhr.setRequestHeader(<span class="string">"Content-type"</span>, <span class="string">"application/x-www-form-urlencoded"</span>);</span><br><span class="line">    xhr.send(data);</span><br><span class="line">  &#125;</span><br><span class="line">  xhr.onreadystatechange = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (xhr.readyState === <span class="number">4</span>) &#123;</span><br><span class="line">      <span class="keyword">if</span> (xhr.status === <span class="number">200</span>) &#123;</span><br><span class="line">        callback(xhr.responseText);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/24/CSS/%E6%B0%B4%E5%B9%B3%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD%E7%9A%845%E7%A7%8D%E6%96%B9%E6%A1%88/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -692,224 +1046,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/22/HTML/%E4%B8%BB%E6%B5%81%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E4%BB%8B%E7%BB%8D/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/blogs/images/avatar.gif">
-      <meta itemprop="name" content="HC">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="HC">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/blogs/2020/03/22/HTML/%E4%B8%BB%E6%B5%81%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E4%BB%8B%E7%BB%8D/" class="post-title-link" itemprop="url">HTML/主流浏览器的介绍</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-03-22 16:20:29 / Modified: 16:35:12" itemprop="dateCreated datePublished" datetime="2020-03-22T16:20:29+08:00">2020-03-22</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="主流浏览器"><a href="#主流浏览器" class="headerlink" title="主流浏览器"></a>主流浏览器</h1><ul>
-<li>主流浏览器要满足两个条件<br>  1 有一定的市场份额<br>  2 有独立研发的内核</li>
-</ul>
-<h2 id="现在的主流浏览器及其内核"><a href="#现在的主流浏览器及其内核" class="headerlink" title="现在的主流浏览器及其内核"></a>现在的主流浏览器及其内核</h2><p>1 IE: trident<br>2 Google chrome : Webkit 2014后改为blink<br>3 Firefox: Gecko<br>4 Opera: presto<br>5 Safari: Webkit</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/22/JS-DOM/window%E5%AF%B9%E8%B1%A1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/blogs/images/avatar.gif">
-      <meta itemprop="name" content="HC">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="HC">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/blogs/2020/03/22/JS-DOM/window%E5%AF%B9%E8%B1%A1/" class="post-title-link" itemprop="url">JS-DOM/window对象</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-03-22 15:59:24 / Modified: 16:02:18" itemprop="dateCreated datePublished" datetime="2020-03-22T15:59:24+08:00">2020-03-22</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="window对象"><a href="#window对象" class="headerlink" title="window对象"></a>window对象</h1><ul>
-<li>可以直接使用document.xxx 是因为document 是window对象的属性</li>
-</ul>
-<h2 id="自身方法"><a href="#自身方法" class="headerlink" title="自身方法"></a>自身方法</h2><p>可以省略window</p>
-<ul>
-<li>open 打开一个新窗口 使用方法 window.open(“页面路径”，”打开方法（_self/_blank）”,”配置”)</li>
-<li>alert   弹窗   window.alert()    </li>
-<li>comfirm    弹窗  window.comfirm()</li>
-<li>prompt    弹窗   window.prompt</li>
-</ul>
-<h2 id="对象属性"><a href="#对象属性" class="headerlink" title="对象属性"></a>对象属性</h2><ul>
-<li>document.write    在当前文件流中写入   可以利用它加html元素 </li>
-<li>location   地址栏   location.href   得到当前网页的地址</li>
-<li>navigator  有关浏览器的</li>
-<li>history  : 得到历史记录  只能获取当前网站的历史记录   history.back() 后退  history.go()   history.forward() 前进一个网站</li>
-<li>console<br>console.log()  打印valueOf的返回值<br>console.dir()   打印对象结构<br>console.time() + 代码+console.timeEnd()   查看代码运行时间<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//查看运行该函数运行的时间</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.time();</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'fjakslj'</span>);</span><br><span class="line">&#125;</span><br><span class="line">a()</span><br><span class="line"><span class="built_in">console</span>.timeEnd()</span><br></pre></td></tr></table></figure></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/22/JS-DOM/dom%E5%85%83%E7%B4%A0%E6%A0%B7%E5%BC%8F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/blogs/images/avatar.gif">
-      <meta itemprop="name" content="HC">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="HC">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/blogs/2020/03/22/JS-DOM/dom%E5%85%83%E7%B4%A0%E6%A0%B7%E5%BC%8F/" class="post-title-link" itemprop="url">JS-DOM/dom元素样式</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-03-22 15:52:55 / Modified: 15:58:35" itemprop="dateCreated datePublished" datetime="2020-03-22T15:52:55+08:00">2020-03-22</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="dom元素样式"><a href="#dom元素样式" class="headerlink" title="dom元素样式"></a>dom元素样式</h1><h2 id="控制dom元素的类样式"><a href="#控制dom元素的类样式" class="headerlink" title="控制dom元素的类样式"></a>控制dom元素的类样式</h2><ul>
-<li>className: 获取或设置元素的类名</li>
-<li>classList : dom4新属性，使用于控制元素类名的对象(调用方式：dom对象.classList.xxx())<ul>
-<li>add： 用于添加类名</li>
-<li>remove： 用于移除类名</li>
-<li>toggle: 用于添加或移除类名(有类名的时候就除，无类名的时候就加）</li>
-<li>contains： 判断一个类名是否存（’类名’，true/false）true表示强制添加，false表示强制删除</li>
-</ul>
-</li>
-</ul>
-<h2 id="获取样式"><a href="#获取样式" class="headerlink" title="获取样式"></a>获取样式</h2><ul>
-<li><p>有两种方式</p>
-</li>
-<li><p>dom.style.xxx : 得到行内样式某对象   只能得到行内样式</p>
-</li>
-<li><p>window.getComputedStyle(dom对象)：   得到最终计算后的样式也就是属性计算后（确定声明值，层叠冲突，使用继承，使用默认）的值  ， 由于是window的对象，所以可以直接调用 <strong>可以有第二个参数，用于得到伪元素对象</strong> 如  getComputedStyle(dom对象,该对象的伪类元素名)    <strong>注意该函数返回得到的是字符串形式，一般要转化为number类型的</strong>  用parseInt转换</p>
-</li>
-</ul>
-<h2 id="设置样式"><a href="#设置样式" class="headerlink" title="设置样式"></a>设置样式</h2><ul>
-<li>dom对象.style.xxx =” 值”     该值要用双引号括起来  只有这个可以写</li>
-</ul>
-<h2 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h2><p><strong>css中的段横线命名法在js中换为小驼峰式</strong> ,如<strong>background-color</strong>, 在js种设置改样式时要用小驼峰命名法<strong>backgroundColor</strong></p>
-<p><strong>注意区分获得和设置样式   用 dom.style.xxx 获取是只能获取行间样式(如<div class='abc'></div>的class属性)   用dom对象.style.xxx = “”设置时可以设置全部该对象的样式</strong></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -980,7 +1116,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/blogs/archives/">
         
-          <span class="site-state-item-count">72</span>
+          <span class="site-state-item-count">75</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

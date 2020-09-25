@@ -145,6 +145,190 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/20/JS/%E5%B1%9E%E6%80%A7%E6%8F%8F%E8%BF%B0%E7%AC%A6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blogs/images/avatar.gif">
+      <meta itemprop="name" content="HC">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HC">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/blogs/2020/03/20/JS/%E5%B1%9E%E6%80%A7%E6%8F%8F%E8%BF%B0%E7%AC%A6/" class="post-title-link" itemprop="url">JS/属性描述符</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-03-20 19:31:46 / Modified: 19:32:13" itemprop="dateCreated datePublished" datetime="2020-03-20T19:31:46+08:00">2020-03-20</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="属性描述符："><a href="#属性描述符：" class="headerlink" title="属性描述符："></a>属性描述符：</h1><p>1 数据属性<br>2 存取器属性：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Object</span>.defineProperty(对象名,<span class="string">"属性名"</span>,&#123;</span><br><span class="line"><span class="keyword">get</span>: function()&#123;&#125;</span><br><span class="line"><span class="keyword">set</span>: function(val)&#123;&#125;</span><br><span class="line">enumerable: <span class="literal">true</span>/<span class="literal">false</span></span><br><span class="line">configurable: <span class="literal">true</span>/<span class="literal">false</span></span><br><span class="line">writable: <span class="literal">true</span>/<span class="literal">false</span></span><br><span class="line"></span><br><span class="line">&#125;)</span><br><span class="line">       <span class="number">1</span> 当给它赋值时，会运行一个函数</span><br><span class="line">        <span class="number">2</span> 当获取值时，会运行一个函数</span><br><span class="line"></span><br><span class="line"><span class="keyword">get</span>: function()&#123;&#125;</span><br><span class="line"><span class="keyword">set</span>: function(val)&#123;&#125;</span><br><span class="line">configurable  重新修改<span class="built_in">Object</span>.defineProperty()</span><br><span class="line">enumerable  遍历该属性名</span><br><span class="line">writable  是否可改</span><br></pre></td></tr></table></figure>
+
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/20/CSS/%E5%AE%B9%E6%98%93%E6%B7%B7%E6%B7%86%E7%9A%84css%E5%B1%9E%E6%80%A7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blogs/images/avatar.gif">
+      <meta itemprop="name" content="HC">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HC">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/blogs/2020/03/20/CSS/%E5%AE%B9%E6%98%93%E6%B7%B7%E6%B7%86%E7%9A%84css%E5%B1%9E%E6%80%A7/" class="post-title-link" itemprop="url">CSS/容易混淆的css属性</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-03-20 19:30:54 / Modified: 19:31:10" itemprop="dateCreated datePublished" datetime="2020-03-20T19:30:54+08:00">2020-03-20</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>text-indent 首行缩进<br>text-decoration 划线（下划线，中划线，上划线）t<br>text-align 文本对齐方式<br>font-style 斜体等<br>list-style 去掉ul和li的点<br>vertical-align:  文本垂直对齐方式</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/20/CSS/%E8%A1%8C%E7%BA%A7%E5%85%83%E7%B4%A0%E5%92%8C%E5%9D%97%E7%BA%A7%E5%85%83%E7%B4%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blogs/images/avatar.gif">
+      <meta itemprop="name" content="HC">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HC">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/blogs/2020/03/20/CSS/%E8%A1%8C%E7%BA%A7%E5%85%83%E7%B4%A0%E5%92%8C%E5%9D%97%E7%BA%A7%E5%85%83%E7%B4%A0/" class="post-title-link" itemprop="url">CSS/行级元素和块级元素</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-03-20 19:27:57 / Modified: 19:30:34" itemprop="dateCreated datePublished" datetime="2020-03-20T19:27:57+08:00">2020-03-20</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="不可替换元素-内容的展现由内容本身决定"><a href="#不可替换元素-内容的展现由内容本身决定" class="headerlink" title="不可替换元素(内容的展现由内容本身决定)"></a>不可替换元素(内容的展现由内容本身决定)</h1><ul>
+<li>块级元素：容器元素(div header footer aside article section) h1~h6 p  ul ol li form address</li>
+<li>行级元素：span strong em a i del<h1 id="可替换元素"><a href="#可替换元素" class="headerlink" title="可替换元素"></a>可替换元素</h1></li>
+<li>行块级元素(内容的展现由元素属性决定)<br>img button input select textarea </li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/20/CSS/%E8%A1%8C%E7%BA%A7%E5%85%83%E7%B4%A0%E7%9A%84%E7%89%B9%E7%82%B9/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -597,194 +781,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/20/HTML/vscode%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/blogs/images/avatar.gif">
-      <meta itemprop="name" content="HC">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="HC">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/blogs/2020/03/20/HTML/vscode%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE/" class="post-title-link" itemprop="url">HTML/vscode常用快捷键</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-03-20 19:13:30 / Modified: 19:13:54" itemprop="dateCreated datePublished" datetime="2020-03-20T19:13:30+08:00">2020-03-20</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="vscode注释"><a href="#vscode注释" class="headerlink" title="vscode注释"></a>vscode注释</h1><p>1 注释：<br>　　a)?单行注释：[ctrl+k,ctrl+c] 或 ctrl+/<br>　　b)?取消单行注释：[ctrl+k,ctrl+u] (按下ctrl不放，再按k + u)<br>　　c)?多行注释：[alt+shift+A]<br>　　d)?多行注释：/**<br>2、移动行：alt+up/down<br>3、显示/隐藏左侧目录栏?ctrl + b<br>4、复制当前行：shift + alt +up/down<br>5、删除当前行：shift + ctrl + k<br>6、控制台终端显示与隐藏：ctrl + ~<br>7、查找文件/安装vs code?插件地址：ctrl + p<br>8、代码格式化：shift + alt +f<br>9、新建一个窗口: ctrl + shift + n<br>10、行增加缩进:?ctrl + [<br>11、行减少缩进:?ctrl + ]<br>12、裁剪尾随空格(去掉一行的末尾那些没用的空格)?: ctrl + shift + x<br>13、字体放大/缩小:?ctrl + ( + 或 - )<br>14、拆分编辑器 :ctrl + 1/2/3<br>15、切换窗口: ?ctrl + shift + left/right<br>16、关闭编辑器窗口: ?ctrl + w<br>17、关闭所有窗口 :?ctrl + k + w<br>18、切换全屏 :F11<br>19、自动换行: ?alt + z<br>20、显示git: ? ctrl + shift + g<br>21、全局查找文件：ctrl + p<br>22、显示相关插件的命令(如：git log)：ctrl + shift + p<br>23、选中文字：shift + left / right / up / down<br>24、折叠代码： ctrl + k + 0-9 (0是完全折叠)<br>25、展开代码： ctrl + k + j (完全展开代码)<br>26、删除行?： ctrl + shift + k<br>27、快速切换主题：ctrl + k / ctrl + t<br>28、快速回到顶部?： ctrl + home<br>29、快速回到底部?: ctrl + end<br>30、格式化选定代码?：ctrl + k / ctrl +f<br>31、选中代码 ：?shift + 鼠标左键<br>32、多行同时添加内容（光标） ：ctrl + alt + up/down<br>33、全局替换：ctrl + shift + h<br>34、当前文件替换：ctrl + h<br>35、打开最近打开的文件：ctrl + r<br>36、打开新的命令窗：ctrl + shift + c<br>二、vs code 的常用插件<br>1、Auto Rename Tag?修改html标签，自动帮你完成尾部闭合标签的同步修改，和webstorm一样。<br>2、Auto Close Tag?自动闭合HTML标签<br>4、Beautiful?格式化代码的工具<br>5、Dash?Dash是MacOS的API文档浏览器和代码段管理器<br>6、Ejs Snippets?ejs 代码提示<br>7、ESLint?检查javascript语法错误与提示<br>8、File Navigator?快速查找文件<br>9、Git History(git log)查看git log<br>10、Gulp Snippets?写gulp时用到，gulp语法提示。<br>11、HTML CSS Support ?在HTML标签上写class智能提示当前项目所支持的样式<br>12、HTML Snippets?超级好用且初级的H5代码片段以及提示<br>13、Debug for Chrome让vs code映射chrome的debug功能，静态页面都可以用vscode来打断点调试、配饰稍微复杂一点<br>14、Document this?Js的注释模板<br>15、jQuery Code Snippets?jquery提示工具<br>16、Html2jade?html模板转pug模板<br>17、JS-CSS-HTML Formatter?格式化<br>18、Npm intellisense?require 时的包提示工具<br>19、Open in browser?打开默认浏览器<br>20、One Dark Theme?一个vs code的主题<br>21、Path Intellisense?自动路径补全、默认不带这个功能<br>22、Project Manager多个项目之间快速切换的工具<br>23、Pug(Jade) snippets?pug语法提示<br>24、React Components?根据文件名创建反应组件代码。<br>25、React Native Tools?reactNative工具类为React Native项目提供了开发环境。<br>26、Stylelintcss/sass代码审查<br>27、Typings auto installer?安装vscode 的代码提示依赖库，基于typtings的<br>28、View In Browser?默认浏览器查看HTML文件（快捷键Ctrl+F1可以修改）</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/20/CSS/margin%E5%A1%8C%E9%99%B7/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/blogs/images/avatar.gif">
-      <meta itemprop="name" content="HC">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="HC">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/blogs/2020/03/20/CSS/margin%E5%A1%8C%E9%99%B7/" class="post-title-link" itemprop="url">CSS/margin塌陷</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-03-20 19:11:10 / Modified: 19:12:27" itemprop="dateCreated datePublished" datetime="2020-03-20T19:11:10+08:00">2020-03-20</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="父子"><a href="#父子" class="headerlink" title="父子"></a>父子</h1><p>margin塌陷是div里边也有div，子div的垂直margin（top和bottom）看不到父级的border-top，因此无法移动，只有当它的margin-top高于父级的才可以，但是会带着父级一起移动</p>
-<ul>
-<li>解决：<br>1 将子元素的margin-top 改为设置父元素的pidding-top<br>2 触发bfc position: absolute    display :  block      float:  left/right     overflow:  hidden</li>
-</ul>
-<h1 id="兄弟"><a href="#兄弟" class="headerlink" title="兄弟"></a>兄弟</h1><ul>
-<li>两个兄弟div的垂直方向存在margin合并，这个不须解决，要想这两个在垂直方向有距离，只要将在上的的div的margin-bottom设置为该距离就好  </li>
-</ul>
-<h1 id="以上两个塌陷两者的距离都是取两个值的最大值"><a href="#以上两个塌陷两者的距离都是取两个值的最大值" class="headerlink" title="以上两个塌陷两者的距离都是取两个值的最大值"></a>以上两个塌陷两者的距离都是取两个值的最大值</h1>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/20/HTML/%E5%85%83%E7%B4%A0%E7%9A%84%E5%8C%85%E5%90%AB%E5%85%B3%E7%B3%BB/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/blogs/images/avatar.gif">
-      <meta itemprop="name" content="HC">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="HC">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/blogs/2020/03/20/HTML/%E5%85%83%E7%B4%A0%E7%9A%84%E5%8C%85%E5%90%AB%E5%85%B3%E7%B3%BB/" class="post-title-link" itemprop="url">HTML/元素的包含关系</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-03-20 19:10:13 / Modified: 19:10:20" itemprop="dateCreated datePublished" datetime="2020-03-20T19:10:13+08:00">2020-03-20</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ul>
-<li>容器元素可以包含任何元素</li>
-<li>a元素几乎可以包含任何元素</li>
-<li>某些元素有特定的父子关系  ul li   ol li </li>
-<li>p元素与h1-h6不能相互嵌套</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -855,7 +851,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/blogs/archives/">
         
-          <span class="site-state-item-count">72</span>
+          <span class="site-state-item-count">75</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

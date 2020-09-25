@@ -145,6 +145,207 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/20/JS/%E7%AE%97%E6%9C%AF%E8%BF%90%E7%AE%97%E7%AC%A6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blogs/images/avatar.gif">
+      <meta itemprop="name" content="HC">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HC">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/blogs/2020/03/20/JS/%E7%AE%97%E6%9C%AF%E8%BF%90%E7%AE%97%E7%AC%A6/" class="post-title-link" itemprop="url">JS/算术运算符</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-03-20 15:22:34 / Modified: 15:23:01" itemprop="dateCreated datePublished" datetime="2020-03-20T15:22:34+08:00">2020-03-20</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="算数运算符"><a href="#算数运算符" class="headerlink" title="算数运算符"></a>算数运算符</h1><ul>
+<li>% 得到的值的符号主要看前一个数的符号   如  A % B     得到的符号主要看 A 的符号</li>
+</ul>
+<p>-除加号外的其他算术运算符号  - * / % 等 ， 在其他类型的运算时，即string  boolean undefined null  对象时，会先将他们转为number类型，再运算    null =&gt; 0   undefined =&gt; NaN    对象  =&gt;  NaN</p>
+<ul>
+<li>加号</li>
+</ul>
+<p>#两边至少有一边是字符串，则得到的是字符串拼接的结果</p>
+<p>number -&gt; 数字字符串<br>null -&gt; “null”<br>underfined -&gt; “undefined”<br>对象 -&gt; “[object Object]”</p>
+<p>#两边都不是字符串，但是一边是对象，先将对象转为字符串，在进行字符串的拼接</p>
+<p>#其他按照正常数学运算进行运算</p>
+<h1 id="a-的结果不一样-表示将对象转为-number类型的-NaN-a-先将-转为字符串，再按照字符串拼接-“a-object-Object-”"><a href="#a-的结果不一样-表示将对象转为-number类型的-NaN-a-先将-转为字符串，再按照字符串拼接-“a-object-Object-”" class="headerlink" title="+{}      a + {}   的结果不一样   + {}  表示将对象转为 number类型的  NaN     a + {}  先将{} 转为字符串，再按照字符串拼接 “a[object Object]”"></a>+{}      a + {}   的结果不一样   + {}  表示将对象转为 number类型的  NaN     a + {}  先将{} 转为字符串，再按照字符串拼接 “a[object Object]”</h1><ul>
+<li>“” /  “ “   转为number都为0</li>
+</ul>
+<p>-0 / 0 ==&gt; NaN</p>
+<p>-+””  ==&gt; 表示正的意思， 转为number</p>
+<ul>
+<li>= . [] ()  都是常见的表达式                  </li>
+</ul>
+<p>-表达式 = 操作数 +操作符</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/20/JS/%E6%95%B0%E7%BB%84%E5%8E%BB%E9%87%8D%E4%B8%89%E7%A7%8D%E6%96%B9%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blogs/images/avatar.gif">
+      <meta itemprop="name" content="HC">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HC">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/blogs/2020/03/20/JS/%E6%95%B0%E7%BB%84%E5%8E%BB%E9%87%8D%E4%B8%89%E7%A7%8D%E6%96%B9%E6%B3%95/" class="post-title-link" itemprop="url">JS/数组去重三种方法</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-03-20 15:21:28 / Modified: 15:22:13" itemprop="dateCreated datePublished" datetime="2020-03-20T15:21:28+08:00">2020-03-20</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="利用对象的不可重复性"><a href="#利用对象的不可重复性" class="headerlink" title="利用对象的不可重复性"></a>利用对象的不可重复性</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Array</span>.prototype.unique = <span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;</span><br><span class="line"><span class="keyword">var</span> obj = &#123;&#125;</span><br><span class="line"><span class="keyword">var</span> newArr = []</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="keyword">this</span>.length; i ++) &#123;</span><br><span class="line">	<span class="keyword">if</span> (!obj[<span class="keyword">this</span>[i]])&#123;</span><br><span class="line">		obj[<span class="keyword">this</span>[i]] = <span class="string">'a'</span>;</span><br><span class="line">		newArr.push(<span class="keyword">this</span>[i]);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="利用Set的无重复性"><a href="#利用Set的无重复性" class="headerlink" title="利用Set的无重复性"></a>利用Set的无重复性</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">Array</span>.from(<span class="keyword">new</span> <span class="built_in">Set</span>(arr));</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="利用数组的filter-方法"><a href="#利用数组的filter-方法" class="headerlink" title="利用数组的filter 方法"></a>利用数组的filter 方法</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> newArr = arr.filter(<span class="function"><span class="keyword">function</span>(<span class="params">ele, index, arr</span>) </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> arr.indexOf(ele) === index;</span><br><span class="line">		</span><br><span class="line">	&#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/20/JS/Array%E6%9E%84%E9%80%A0%E5%99%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blogs/images/avatar.gif">
+      <meta itemprop="name" content="HC">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HC">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/blogs/2020/03/20/JS/Array%E6%9E%84%E9%80%A0%E5%99%A8/" class="post-title-link" itemprop="url">JS/Array构造器</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-03-20 15:20:50 / Modified: 15:21:06" itemprop="dateCreated datePublished" datetime="2020-03-20T15:20:50+08:00">2020-03-20</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Array构造器"><a href="#Array构造器" class="headerlink" title="Array构造器"></a>Array构造器</h1><h2 id="静态成员：（通过Array-xxx-直接调用）"><a href="#静态成员：（通过Array-xxx-直接调用）" class="headerlink" title="静态成员：（通过Array.xxx 直接调用）"></a>静态成员：（通过Array.xxx 直接调用）</h2><p>1 Array.from() ,可以将一个伪数组转化为真数组(如函数的arguement就是一个伪数组)<br>2 Array.isArray(), 判断是不是数组<br>3 Array.of() , 传入的参数，创建新的数组</p>
+<h2 id="实例成员：（通过var-arr-new-Array-arr-xxx调用）-gt-Array-property-xxx-arr是Array-new出来的原型就是它"><a href="#实例成员：（通过var-arr-new-Array-arr-xxx调用）-gt-Array-property-xxx-arr是Array-new出来的原型就是它" class="headerlink" title="实例成员：（通过var arr = new Array(),  arr.xxx调用）===&gt;Array.property.xxx   arr是Array new出来的原型就是它"></a>实例成员：（通过var arr = new Array(),  arr.xxx调用）===&gt;Array.property.xxx   arr是Array new出来的原型就是它</h2><p>1 arr.fill()  ,当数组为空时，传入的值全部用来填满数组<br>2 arr.pop() , 将最后一项删除，并返回该值<br>3 arr.push() , 在数组最后一项加值<br>4 arr.reverse() , 颠倒数组中 元素的排列顺序<br>5 arr.shift() ,  删除数组的第一个元素<br>6 arr.unshift() , 在数组的第一项加值<br><em>7 arr.sort(function(){}) , 给数组排序（回调函数的方式）    ,函数返回大于0 时（既大于0时才会交换位置) 升序排列，等于0 不变，小于0 时降序排列<br>当想要将无序变为有序时，返回Math.random()-0.5<br>8 arr.splice(索引，删除数量，添加的数据) ，可以添加和删除元素<br>不会改变数组：<br>9 arr.concat() ,组合若干个数组得到一个新数组<br>10 arr.includes() ,数组中数组中是否包含传入的值,可以传第二个参数，表示从该下标开始找<br>11 arr.join(), 连接数组元素组成一个字符串，可以是一些符号等<br>12 arr.slice(),用于截断数组，传入索引，”左闭右开”[a,b)<br>13 arr.indexOf() , （从左往右）返回数组中第一个与传入值相等的数据的下标，找不到返回-1<br>14 arr,lastIndexOf() ,（从右往左数） 返回数组中第一个与传入值相等的值的下标<br>迭代方法<br>*</em>15 arr.forEach(function(数组元素，下标，数组本身){})  ,遍历数组，有多少元素就遍历多少次<br>16 arr.every(function(){数组元素，索引，数组本身}) ,是否所有元素都满足条件 （如是否所有的同学都及格）<br>17 arr.some(function(数组元素，索引，数组本身){}) ，至少有一个满足<br>*<em>18 arr.filter(function(数组元素，索引，数组本身){}) , 过滤数组，得到所有满足条件的元素组成的数组<br>19 arr.find(function(数组元素，索引，数组本身){}) , 查找第一个满足条件的元素，并返回这个元素   ，找不到则返回undefined<br>20 arr,findIndex(function(数组元素，索引，函数本身){}) ，返回满足元素的下标<br>*</em>21 arr.map(function(数组元素(ele)，索引(index)，数组本身){}) ，返回一个有回调函数的返回值组成的新数组 如return{<br>name: “a”+ index,<br>value: ele<br>}<br>22 arr,reduce(function(a,b){},默认值)，统计函数   如 return a+b或者其他</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/20/JS/%E7%AB%8B%E5%8D%B3%E6%89%A7%E8%A1%8C%E5%87%BD%E6%95%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -582,193 +783,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/20/JS/%E9%98%B2%E6%AD%A2%E6%B1%A1%E6%9F%93%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F%20%E7%AB%8B%E5%8D%B3%E6%89%A7%E8%A1%8C%E5%87%BD%E6%95%B0%E8%A7%A3%E5%86%B3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/blogs/images/avatar.gif">
-      <meta itemprop="name" content="HC">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="HC">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/blogs/2020/03/20/JS/%E9%98%B2%E6%AD%A2%E6%B1%A1%E6%9F%93%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F%20%E7%AB%8B%E5%8D%B3%E6%89%A7%E8%A1%8C%E5%87%BD%E6%95%B0%E8%A7%A3%E5%86%B3/" class="post-title-link" itemprop="url">JS/防止污染全局变量 立即执行函数解决</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-03-20 14:58:52 / Modified: 14:59:48" itemprop="dateCreated datePublished" datetime="2020-03-20T14:58:52+08:00">2020-03-20</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> init = (<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="keyword">var</span> name = <span class="string">'123'</span>;</span><br><span class="line">		<span class="function"><span class="keyword">function</span> <span class="title">callName</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">			<span class="built_in">console</span>.log(name)</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;  <span class="comment">//返回一个函数，等待被调用，且不污染全局变量</span></span><br><span class="line">			callName()</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">                &#125;())</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/20/JS/%E5%AF%B9%E8%B1%A1%E6%B7%B7%E5%90%88%E5%92%8C%E5%AF%B9%E8%B1%A1%E5%85%8B%E9%9A%86/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/blogs/images/avatar.gif">
-      <meta itemprop="name" content="HC">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="HC">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/blogs/2020/03/20/JS/%E5%AF%B9%E8%B1%A1%E6%B7%B7%E5%90%88%E5%92%8C%E5%AF%B9%E8%B1%A1%E5%85%8B%E9%9A%86/" class="post-title-link" itemprop="url">JS/对象混合和对象克隆</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-03-20 14:52:27 / Modified: 14:53:56" itemprop="dateCreated datePublished" datetime="2020-03-20T14:52:27+08:00">2020-03-20</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>#对象混合：两个对象混合，产生一个新对象   自己封装一个函数，或者使用js提供的方法<br>-Object.assign(obj1, obj2)   obj2混合到到Obj1  把后边的对象混合到前边的对象，返回前边的对象<br>-改装：Object.assign({}, obj1, obj2)   将obj2和obj1进行混合，混合完后又跟空对象混合,返回那个混合后的空对象<br>-使用场景，当传入一个对象时，函数内有默认的对象值，将传入的对象与默认值对象进行混合，传入的有值就用传入的值，如果没有值，就是用默认值</p>
-<p>#对象克隆  赋值一个完全一样的对象  克隆js没有提供方法 要自己封装<br>-赋值数组： arr.slice()<br>-浅度克隆  对对象或数组的属性不做处理，如果里面还有数组，对象等，就会地址一样，修改一个另一个也跟着改变<br>-深度克隆   对对象和数组的属性再克隆，让他们的地址不一样</p>
-<ul>
-<li>源码如下<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 克隆对象</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;*&#125;</span> </span>obj </span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;*&#125;</span> </span>deep 是否深度克隆</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">clone</span>(<span class="params">obj, deep</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">Array</span>.isArray(obj)) &#123; <span class="comment">//数组</span></span><br><span class="line">        <span class="keyword">if</span> (deep) &#123;</span><br><span class="line">            <span class="keyword">var</span> arr = [];</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; obj.length; i++) &#123;</span><br><span class="line">                arr.push(clone(obj[i], deep));</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> arr;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> obj.slice();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">typeof</span> (obj) === <span class="string">"object"</span>) &#123; <span class="comment">//普通对象</span></span><br><span class="line">        <span class="keyword">var</span> newObj = &#123;&#125;;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> prop <span class="keyword">in</span> obj) &#123;</span><br><span class="line">            <span class="keyword">if</span> (deep) &#123; <span class="comment">//深度克隆</span></span><br><span class="line">                newObj[prop] = clone(obj[prop], deep);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                newObj[prop] = obj[prop];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> newObj;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123; <span class="comment">//函数、原始类型</span></span><br><span class="line">        <span class="keyword">return</span> obj; <span class="comment">//递归出口</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/20/JS/%E9%80%92%E5%BD%92/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/blogs/images/avatar.gif">
-      <meta itemprop="name" content="HC">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="HC">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/blogs/2020/03/20/JS/%E9%80%92%E5%BD%92/" class="post-title-link" itemprop="url">JS/递归</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-03-20 14:51:45 / Modified: 14:52:01" itemprop="dateCreated datePublished" datetime="2020-03-20T14:51:45+08:00">2020-03-20</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="递归要考虑的东西"><a href="#递归要考虑的东西" class="headerlink" title="递归要考虑的东西"></a>递归要考虑的东西</h1><ul>
-<li><p>执行栈   每执行一次都要在执行栈中开辟一块空间执行</p>
-</li>
-<li><p>要有出口</p>
-</li>
-</ul>
-<p>例如  </p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">callStack</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (n ===<span class="number">1</span> || n === <span class="number">2</span>) &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">	&#125; </span><br><span class="line">	<span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> callStack(n - <span class="number">1</span>) + callStack(n - <span class="number">2</span>)	</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">callStack(<span class="number">4</span>)</span><br><span class="line"></span><br><span class="line">callStack(<span class="number">4</span>) = callStack(<span class="number">3</span>)(先变为<span class="number">2</span>) + callStack(<span class="number">2</span>)(后变为<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">callStack(<span class="number">3</span>) = callStack(<span class="number">2</span>) (先变为<span class="number">1</span>)+ callStack(<span class="number">1</span>)(先变为<span class="number">1</span>）</span><br><span class="line"></span><br><span class="line">callStack(<span class="number">2</span>) = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">callStack(<span class="number">1</span>) = <span class="number">1</span></span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -839,7 +853,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/blogs/archives/">
         
-          <span class="site-state-item-count">72</span>
+          <span class="site-state-item-count">75</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
